@@ -1,0 +1,913 @@
+<html class="h-full" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<title>FusionPrime — Tech Solutions</title>
+<meta name="description" content="Desenvolvemos softwares, apps e sistemas que transformam ideias em soluções digitais de alto impacto. Python, Flutter, ERP, IA."/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="assets/resource_3fa48481346f.es"></script>
+<link href="assets/lucide_37ad69c8e3b6.css" rel="stylesheet"/>
+<link href="assets/css2_9b8bf743d4a8.css" rel="stylesheet"/>
+<style>.font-manrope { font-family: 'Manrope', sans-serif !important; }</style>
+<style>
+[style*="--border-gradient"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: var(--border-radius-before, inherit);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  background: var(--border-gradient);
+  pointer-events: none;
+}
+
+@keyframes border-spin {
+  to { background: linear-gradient(#000000, #000000) padding-box, conic-gradient(from 360deg, transparent 0%, #1d4ed8 5%, #8484ff 15%, #1d4ed8 30%, transparent 40%, transparent 100%) border-box; }
+}
+@keyframes dot-spin {
+  to { mask-image: conic-gradient(from 405deg, black, transparent 10% 90%, black); }
+}
+@keyframes shimmer {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes enterUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes orbit {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 10px rgba(34,211,238,0.2); }
+  50%       { box-shadow: 0 0 24px rgba(34,211,238,0.55); }
+}
+@keyframes bar-bounce {
+  0%, 100% { transform: scaleY(1); }
+  50%       { transform: scaleY(0.45); }
+}
+@keyframes shine {
+  from { background-position: 0 0; }
+  to   { background-position: -200% 0; }
+}
+@keyframes progress-fill {
+  from { width: 0%; }
+  to   { width: 78%; }
+}
+
+.animate-enter   { animation: enterUp 0.6s cubic-bezier(0.16,1,0.3,1) forwards; opacity: 0; }
+.animate-orbit   { animation: orbit 20s linear infinite; }
+.animate-float   { animation: float 4s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 3s infinite; }
+.animate-bar     { animation: bar-bounce 1s ease-in-out infinite; }
+.delay-100 { animation-delay: .1s; }
+.delay-200 { animation-delay: .2s; }
+.delay-300 { animation-delay: .3s; }
+.delay-400 { animation-delay: .4s; }
+
+.perspective-midrange { perspective: 800px !important; }
+</style>
+<script>
+tailwind.config = {
+  theme: { extend: {} },
+  plugins: [function({ addUtilities }) {
+    addUtilities({
+      ".perspective-midrange": { perspective: "800px" },
+      ".transform-style-preserve-3d": { "transform-style": "preserve-3d" },
+    });
+  }]
+};
+</script>
+</head>
+<body class="h-full bg-black text-slate-100 antialiased">
+
+<!-- UnicornStudio animated background -->
+<div class="aura-background-component top-0 w-full -z-10 absolute h-[800px] brightness-75" data-alpha-mask="80" style="mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent)">
+  <div class="absolute w-full h-full left-0 top-0 -z-10" data-us-project="bmaMERjX2VZDtPrh4Zwx"></div>
+  <script type="text/javascript">!function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.34/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();</script>
+</div>
+
+<div class="min-h-screen text-slate-100">
+<div class="flex min-h-screen flex-col relative">
+
+<!-- ============================================================ -->
+<!-- NAV                                                          -->
+<!-- ============================================================ -->
+<header class="sticky z-50 transition-all bg-gradient-to-b from-slate-950/90 via-slate-950/60 to-slate-950/20 border-white/5 border-b top-0 backdrop-blur-md">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 lg:px-6">
+    <!-- Logo -->
+    <a href="#" class="flex items-center">
+      <img src="FP Logo Detalhe  600x200 - Transparente.png" alt="FusionPrime" class="h-8 w-auto"/>
+    </a>
+    <!-- Desktop nav -->
+    <nav class="hidden gap-8 md:flex items-center">
+      <a href="#servicos" class="transition hover:text-slate-50 text-xs font-normal text-slate-300 font-sans flex items-center gap-2">
+        <span class="lucide lucide-layers h-[14px] w-[14px]"></span>Serviços
+      </a>
+      <a href="#ia" class="transition hover:text-slate-50 text-xs font-normal text-slate-300 font-sans flex items-center gap-2">
+        <span class="lucide lucide-sparkles h-[14px] w-[14px]"></span>IA & Inovação
+      </a>
+      <a href="#portfolio" class="transition hover:text-slate-50 text-xs font-normal text-slate-300 font-sans flex items-center gap-2">
+        <span class="lucide lucide-briefcase h-[14px] w-[14px]"></span>Portfólio
+      </a>
+      <a href="#sobre" class="transition hover:text-slate-50 text-xs font-normal text-slate-300 font-sans flex items-center gap-2">
+        <span class="lucide lucide-user-circle-2 h-[14px] w-[14px]"></span>Sobre
+      </a>
+      <a href="#planos" class="transition hover:text-slate-50 text-xs font-normal text-slate-300 font-sans flex items-center gap-2">
+        <span class="lucide lucide-tag h-[14px] w-[14px]"></span>Planos
+      </a>
+    </nav>
+    <!-- CTA -->
+    <div class="flex items-center gap-3">
+      <a href="#contato" class="hidden md:inline-flex hover:bg-white/10 text-xs font-normal text-slate-200 font-sans bg-white/5 border-white/10 border rounded-full pt-1.5 pr-3 pb-1.5 pl-3 backdrop-blur items-center gap-2">
+        <span class="lucide lucide-mail h-[13px] w-[13px]"></span>Contato
+      </a>
+      <div class="inline-block bg-transparent">
+        <button onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})" class="overflow-hidden focus:outline-none transition-all duration-300 text-lg font-medium text-white bg-black rounded-full pt-1.5 pr-4 pb-1.5 pl-4 relative" style="background: linear-gradient(#000000, #000000) padding-box, conic-gradient(from 0deg, transparent 0%, #1d4ed8 5%, #8484ff 15%, #1d4ed8 30%, transparent 40%, transparent 100%) border-box; box-shadow: inset 0 0 0 1px #1a1818; animation: border-spin 2.5s linear infinite; font-family: 'Inter', 'Helvetica Neue', sans-serif">
+          <span class="z-10 inline-block text-xs relative font-sans font-medium">Iniciar projeto</span>
+          <span class="absolute inset-[2px] z-0 rounded-full" style="background: radial-gradient(circle at 2px 2px, white 0.5px, transparent 0) padding-box; background-size: 4px 4px; background-repeat: space; mask-image: conic-gradient(from 45deg, black, transparent 10% 90%, black); opacity: 0.4; animation: dot-spin 2.5s linear infinite;"></span>
+          <span class="z-[1] aspect-square -translate-x-1/2 -translate-y-1/2 w-full absolute top-1/2 right-0 bottom-0 left-1/2" style="background: linear-gradient(-50deg, transparent, #1d4ed8, transparent); opacity: 0.6; animation: shimmer 4s linear infinite"></span>
+        </button>
+      </div>
+      <!-- Mobile menu toggle -->
+      <button aria-label="Menu" class="md:hidden inline-flex items-center justify-center p-1.5 text-slate-300 hover:text-white hover:bg-white/10 rounded-md transition-colors" onclick="document.getElementById('mobile-menu').classList.toggle('hidden');document.getElementById('icon-menu').classList.toggle('hidden');document.getElementById('icon-close').classList.toggle('hidden');">
+        <svg class="w-5 h-5 block" fill="none" id="icon-menu" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+        <svg class="w-5 h-5 hidden" fill="none" id="icon-close" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+      </button>
+    </div>
+  </div>
+  <!-- Mobile menu -->
+  <div class="hidden md:hidden absolute top-full left-0 w-full bg-slate-950/95 border-b border-white/5 backdrop-blur-xl shadow-2xl origin-top transition-all" id="mobile-menu">
+    <nav class="flex flex-col px-4 py-6 gap-5">
+      <a href="#servicos" class="inline-flex gap-3 text-sm font-normal text-slate-300 hover:text-white items-center font-sans transition-colors"><span class="lucide lucide-layers h-4 w-4"></span>Serviços</a>
+      <a href="#ia" class="inline-flex gap-3 text-sm font-normal text-slate-300 hover:text-white items-center font-sans transition-colors"><span class="lucide lucide-sparkles h-4 w-4"></span>IA & Inovação</a>
+      <a href="#portfolio" class="inline-flex gap-3 text-sm font-normal text-slate-300 hover:text-white items-center font-sans transition-colors"><span class="lucide lucide-briefcase h-4 w-4"></span>Portfólio</a>
+      <a href="#sobre" class="inline-flex gap-3 text-sm font-normal text-slate-300 hover:text-white items-center font-sans transition-colors"><span class="lucide lucide-user-circle-2 h-4 w-4"></span>Sobre</a>
+      <a href="#planos" class="inline-flex gap-3 text-sm font-normal text-slate-300 hover:text-white items-center font-sans transition-colors"><span class="lucide lucide-tag h-4 w-4"></span>Planos</a>
+      <a href="#contato" class="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-normal text-slate-200 hover:bg-white/10 transition-colors font-sans">Fale conosco</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- HERO                                                         -->
+<!-- ============================================================ -->
+<section class="mx-auto flex max-w-6xl flex-col gap-12 px-4 pt-10 pb-16 lg:px-6 lg:pt-14">
+  <div class="grid lg:grid-cols-[1.1fr,0.9fr] lg:items-center mt-12 mb-24 gap-x-10 gap-y-10">
+    <!-- Copy -->
+    <div class="space-y-6">
+      <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-2 py-1 text-[11px] font-medium text-slate-200 backdrop-blur">
+        <span class="flex h-5 w-5 items-center justify-center rounded-full text-[10px] text-white bg-gradient-to-tl from-blue-400 to-blue-600 font-sans font-bold">20</span>
+        <span class="font-sans">Anos de experiência em desenvolvimento de software</span>
+      </div>
+      <h1 class="sm:text-5xl md:text-6xl text-4xl text-slate-50 font-manrope font-medium tracking-tighter">
+        Transformamos ideias em
+        <span class="bg-clip-text text-transparent bg-gradient-to-br from-blue-400 to-blue-600 font-manrope font-medium tracking-tighter">
+          soluções digitais
+        </span>
+        de alto impacto
+      </h1>
+      <p class="md:text-base text-sm font-normal text-slate-300 max-w-lg font-sans">
+        Do backend robusto ao app mobile, do ERP ao recurso com IA — entregamos mais que código. Entregamos resultados que movem o seu negócio.
+      </p>
+      <div class="flex flex-wrap gap-3 items-center">
+        <div class="inline-block bg-transparent">
+          <button onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})" class="overflow-hidden focus:outline-none transition-all duration-300 text-lg font-medium text-white bg-black rounded-full pt-1 pr-10 pb-1 pl-10 relative" style="background: linear-gradient(#000000, #000000) padding-box, conic-gradient(from 0deg, transparent 0%, #1d4ed8 5%, #8484ff 15%, #1d4ed8 30%, transparent 40%, transparent 100%) border-box; box-shadow: inset 0 0 0 1px #1a1818; animation: border-spin 2.5s linear infinite; font-family: 'Inter', 'Helvetica Neue', sans-serif">
+            <span class="z-10 inline-block text-sm relative font-sans">Iniciar projeto</span>
+            <span class="absolute inset-[2px] z-0 rounded-full" style="background: radial-gradient(circle at 2px 2px, white 0.5px, transparent 0) padding-box; background-size: 4px 4px; background-repeat: space; mask-image: conic-gradient(from 45deg, black, transparent 10% 90%, black); opacity: 0.4; animation: dot-spin 2.5s linear infinite;"></span>
+            <span class="z-[1] aspect-square -translate-x-1/2 -translate-y-1/2 w-full absolute top-1/2 right-0 bottom-0 left-1/2" style="background: linear-gradient(-50deg, transparent, #1d4ed8, transparent); opacity: 0.6; animation: shimmer 4s linear infinite"></span>
+          </button>
+        </div>
+        <a href="#portfolio" class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-medium text-slate-200 hover:bg-white/10 font-sans transition-colors">
+          Ver portfólio
+        </a>
+        <p class="w-full text-[11px] font-normal text-slate-400 sm:w-auto font-sans">
+          Sem enrolação. Direto ao ponto. Resultado garantido.
+        </p>
+      </div>
+    </div>
+
+    <!-- Hero visual — project dashboard card -->
+    <div class="relative">
+      <div class="absolute -top-8 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full blur-3xl bg-blue-500/20"></div>
+      <div class="bg-gradient-to-b from-slate-900/80 via-slate-950/80 to-black/90 border-blue-300/20 border rounded-[26px] pt-[1px] pr-[1px] pb-[1px] pl-[1px] relative shadow-[0_0_60px_rgba(34,197,235,0.45)]">
+        <div class="bg-gradient-to-b from-slate-950 via-slate-950/95 to-black rounded-[24px] pt-8 pb-0 relative">
+          <!-- Card header -->
+          <div class="relative px-6 pt-4 flex items-center justify-between">
+            <span class="text-[11px] font-medium text-slate-300 font-sans">FusionPrime Studio</span>
+            <div class="flex items-center gap-2 text-[10px] text-slate-400">
+              <span class="flex items-center gap-1 font-sans">
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_6px_#10b981]"></span>
+                Em produção
+              </span>
+            </div>
+          </div>
+          <!-- Central visual -->
+          <div class="relative mx-auto mt-2 h-64 w-full max-w-md">
+            <div class="absolute inset-x-4 bottom-0 top-10 rounded-[140px] border bg-gradient-to-b via-transparent to-transparent blur-2xl border-blue-500/30 from-blue-500/25"></div>
+            <div class="flex flex-col h-full relative items-center justify-end">
+              <div class="flex w-full mb-4 relative items-center justify-center">
+                <div class="relative h-40 w-40 sm:h-48 sm:w-48 rounded-full border bg-gradient-to-b from-slate-900 via-slate-950 to-black shadow-[0_0_60px_rgba(34,197,235,0.55)] border-blue-400/50">
+                  <div class="animate-[spin_10s_linear_infinite] opacity-70 rounded-full absolute top-[2px] right-[2px] bottom-[2px] left-[2px]" style="background: conic-gradient(transparent, rgba(59,130,246,0.5), transparent)"></div>
+                  <div class="absolute inset-4 rounded-full bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950"></div>
+                  <!-- Center text -->
+                  <div class="flex flex-col h-full z-10 pointer-events-none relative gap-1 items-center justify-center">
+                    <div class="text-base font-semibold tracking-tight text-slate-50 font-sans">E-commerce</div>
+                    <div class="flex items-center gap-1 text-[10px] font-medium text-slate-400 font-sans">
+                      <span class="lucide lucide-code-2 h-3.5 w-3.5 text-blue-400"></span>
+                      Python · Flutter
+                    </div>
+                  </div>
+                  <!-- Orbiting tech pills -->
+                  <div class="absolute top-0 right-0 bottom-0 left-0">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+                      <div class="flex gap-1.5 text-[10px] shadow-blue-500/40 font-medium text-slate-100 bg-slate-900/90 rounded-full pt-1 pr-2 pb-1 pl-2 shadow-lg items-center">
+                        <span class="lucide lucide-globe h-3 w-3 text-blue-400"></span>
+                        <span class="font-sans">Web App</span>
+                      </div>
+                    </div>
+                    <div class="absolute left-0 top-14 -translate-x-1/3">
+                      <div class="flex gap-1.5 text-[10px] shadow-blue-500/40 font-medium text-slate-100 bg-slate-900/90 rounded-full pt-1 pr-2 pb-1 pl-2 shadow-lg items-center">
+                        <span class="lucide lucide-smartphone h-3 w-3 text-blue-400"></span>
+                        <span class="font-sans">Mobile</span>
+                      </div>
+                    </div>
+                    <div class="absolute right-0 top-14 translate-x-1/3">
+                      <div class="flex gap-1.5 text-[10px] shadow-blue-500/40 font-medium text-slate-100 bg-slate-900/90 rounded-full pt-1 pr-2 pb-1 pl-2 shadow-lg items-center">
+                        <span class="lucide lucide-sparkles h-3 w-3 text-blue-400"></span>
+                        <span class="font-sans">IA</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Progress footer -->
+          <div class="relative mb-4 flex w-full items-center justify-between px-6 text-[11px] text-slate-300">
+            <div class="flex items-center gap-2">
+              <span class="lucide lucide-bot h-3.5 w-3.5 text-blue-400"></span>
+              <span class="font-sans">Stack: Python + Flutter + IA</span>
+            </div>
+            <span class="text-[10px] text-emerald-400 font-sans font-medium">Entregue ✓</span>
+          </div>
+          <div class="w-full px-6 pb-5">
+            <div class="h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
+              <div class="h-full bg-gradient-to-r from-blue-400 via-blue-400 to-blue-500" style="width:100%"></div>
+            </div>
+            <div class="mt-2 flex items-center justify-between text-[10px] text-slate-400 font-sans">
+              <span>Progresso do projeto</span>
+              <span class="text-emerald-400">100%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SERVIÇOS                                                     -->
+<!-- ============================================================ -->
+<section id="servicos" class="flex flex-col lg:px-6 max-w-6xl mx-auto px-4 pb-24 gap-12">
+  <style>
+    @keyframes enterUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    .animate-enter { animation: enterUp 0.6s cubic-bezier(0.16,1,0.3,1) forwards; opacity:0; }
+  </style>
+  <!-- Header -->
+  <div class="flex flex-col items-center text-center animate-enter space-y-4">
+    <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium backdrop-blur text-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.2)] font-sans">
+      <span class="lucide lucide-layers h-3.5 w-3.5"></span>
+      O que entregamos
+    </div>
+    <h2 class="text-3xl text-slate-50 md:text-5xl font-manrope font-medium tracking-tighter">
+      Soluções sob medida para
+      <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-200 via-blue-400 to-blue-600 font-manrope font-medium tracking-tighter">cada desafio</span>
+    </h2>
+    <p class="max-w-xl text-sm text-slate-400 leading-relaxed font-sans">
+      Desenvolvemos com as tecnologias certas para cada problema — sem over-engineering, sem atalhos. Qualidade e entrega são inegociáveis.
+    </p>
+  </div>
+  <!-- Service cards -->
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-2 gap-x-6 gap-y-6">
+    <!-- Web -->
+    <div class="group flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:bg-slate-900/80 bg-slate-900/40 rounded-3xl p-6 relative backdrop-blur-md hover:shadow-blue-500/10 animate-enter delay-100" style="position:relative; --border-gradient:linear-gradient(135deg,rgba(59,130,246,0),rgba(59,130,246,0.2),rgba(59,130,246,0)); --border-radius-before:24px">
+      <div class="mb-6">
+        <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-lg group-hover:scale-110 transition-transform duration-300 text-blue-400 mb-4">
+          <span class="lucide lucide-globe h-6 w-6"></span>
+        </div>
+        <h3 class="text-lg font-semibold text-slate-200 transition-colors group-hover:text-blue-100 font-sans">Desenvolvimento Web</h3>
+        <p class="mt-2 text-sm text-slate-400 leading-relaxed font-sans">Aplicações web robustas e escaláveis. Especialistas em Python (Django, FastAPI, Flask), mas também dominamos Node.js, TypeScript e React para entregas full-stack completas.</p>
+      </div>
+      <div class="flex flex-wrap gap-2 mt-auto">
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Python</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Django</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">FastAPI</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Node.js</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">TypeScript</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">React</span>
+      </div>
+    </div>
+    <!-- Mobile -->
+    <div class="group flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:bg-slate-900/80 bg-slate-900/40 rounded-3xl p-6 relative backdrop-blur-md hover:shadow-blue-500/10 animate-enter delay-200" style="position:relative; --border-gradient:linear-gradient(135deg,rgba(59,130,246,0),rgba(59,130,246,0.2),rgba(59,130,246,0)); --border-radius-before:24px">
+      <div class="mb-6">
+        <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-lg group-hover:scale-110 transition-transform duration-300 text-blue-400 mb-4">
+          <span class="lucide lucide-smartphone h-6 w-6"></span>
+        </div>
+        <h3 class="text-lg font-semibold text-slate-200 transition-colors group-hover:text-blue-100 font-sans">App Mobile</h3>
+        <p class="mt-2 text-sm text-slate-400 leading-relaxed font-sans">Apps nativos para iOS e Android com uma única base de código. Flutter garante performance nativa, UI fluida e experiência premium — sem sacrificar velocidade de entrega.</p>
+      </div>
+      <div class="flex flex-wrap gap-2 mt-auto">
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Flutter</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Dart</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">iOS</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Android</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Cross-platform</span>
+      </div>
+    </div>
+    <!-- ERP -->
+    <div class="group flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:bg-slate-900/80 bg-slate-900/40 rounded-3xl p-6 relative backdrop-blur-md hover:shadow-blue-500/10 animate-enter delay-300" style="position:relative; --border-gradient:linear-gradient(135deg,rgba(59,130,246,0),rgba(59,130,246,0.2),rgba(59,130,246,0)); --border-radius-before:24px">
+      <div class="mb-6">
+        <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-lg group-hover:scale-110 transition-transform duration-300 text-blue-400 mb-4">
+          <span class="lucide lucide-database h-6 w-6"></span>
+        </div>
+        <h3 class="text-lg font-semibold text-slate-200 transition-colors group-hover:text-blue-100 font-sans">Sistemas ERP</h3>
+        <p class="mt-2 text-sm text-slate-400 leading-relaxed font-sans">Sistemas de gestão empresarial desenvolvidos sob medida para o seu negócio. Módulos de estoque, financeiro, RH, vendas e muito mais — integrados, rápidos e seguros.</p>
+      </div>
+      <div class="flex flex-wrap gap-2 mt-auto">
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Customizado</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Integrado</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Financeiro</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Estoque</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">RH</span>
+      </div>
+    </div>
+    <!-- IA -->
+    <div class="group flex flex-col overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl bg-gradient-to-tl via-slate-900/40 rounded-3xl p-6 relative backdrop-blur-md hover:shadow-blue-500/20 animate-enter delay-400 from-blue-500/10 to-blue-500/10" style="position:relative; --border-gradient:linear-gradient(315deg,rgba(59,130,246,0.25),rgba(59,130,246,0),rgba(59,130,246,0.25)); --border-radius-before:24px">
+      <div class="absolute top-0 right-0 bottom-0 left-0 bg-[radial-gradient(circle_at_80%_20%,_var(--tw-gradient-stops))] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 from-blue-900/25 rounded-3xl"></div>
+      <div class="mb-6 relative z-10">
+        <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-blue-500/30 bg-blue-500/10 shadow-lg group-hover:scale-110 transition-transform duration-300 text-blue-400 mb-4 animate-pulse-glow">
+          <span class="lucide lucide-sparkles h-6 w-6"></span>
+        </div>
+        <h3 class="text-lg font-semibold text-slate-200 transition-colors group-hover:text-blue-300 font-sans">Features com IA</h3>
+        <p class="mt-2 text-sm text-slate-400 leading-relaxed font-sans">Integramos inteligência artificial diretamente nos seus produtos — recomendações, classificação, geração de conteúdo, chatbots e muito mais. IA aplicada, não experimental.</p>
+      </div>
+      <div class="flex flex-wrap gap-2 mt-auto relative z-10">
+        <span class="rounded-full px-2.5 py-0.5 text-[10px] font-medium bg-blue-500/20 text-blue-300 border border-blue-500/30 shadow-[0_0_10px_rgba(59,130,246,0.2)] font-sans">LLMs</span>
+        <span class="rounded-full px-2.5 py-0.5 text-[10px] font-medium bg-blue-500/20 text-blue-300 border border-blue-500/30 font-sans">OpenAI</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">RAG</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Classificação</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Chatbots</span>
+      </div>
+    </div>
+    <!-- Landing Pages -->
+    <div class="group md:col-span-2 flex flex-col md:flex-row overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:bg-slate-900/80 bg-slate-900/40 rounded-3xl p-6 relative backdrop-blur-md hover:shadow-blue-500/10 animate-enter delay-400" style="position:relative; --border-gradient:linear-gradient(135deg,rgba(59,130,246,0),rgba(59,130,246,0.2),rgba(59,130,246,0)); --border-radius-before:24px">
+      <div class="mb-6 md:mb-0 md:mr-8 md:w-1/2">
+        <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-lg group-hover:scale-110 transition-transform duration-300 text-blue-400 mb-4">
+          <span class="lucide lucide-monitor h-6 w-6"></span>
+        </div>
+        <h3 class="text-lg font-semibold text-slate-200 transition-colors group-hover:text-blue-100 font-sans">Landing Pages Personalizadas</h3>
+        <p class="mt-2 text-sm text-slate-400 leading-relaxed font-sans">Criamos landing pages de alto impacto que convertem visitantes em clientes. Design exclusivo, animações fluidas, performance máxima e copy estratégico — tudo alinhado à identidade da sua marca.</p>
+      </div>
+      <div class="flex flex-col justify-between md:w-1/2 gap-4">
+        <div class="grid grid-cols-2 gap-3">
+          <div class="rounded-2xl border border-white/5 bg-slate-950/50 p-3 flex items-center gap-2.5 group-hover:border-white/10 transition-colors">
+            <span class="lucide lucide-zap h-4 w-4 text-blue-400 shrink-0"></span>
+            <span class="text-xs text-slate-300 font-sans">Alta conversão</span>
+          </div>
+          <div class="rounded-2xl border border-white/5 bg-slate-950/50 p-3 flex items-center gap-2.5 group-hover:border-white/10 transition-colors">
+            <span class="lucide lucide-palette h-4 w-4 text-blue-400 shrink-0"></span>
+            <span class="text-xs text-slate-300 font-sans">Design exclusivo</span>
+          </div>
+          <div class="rounded-2xl border border-white/5 bg-slate-950/50 p-3 flex items-center gap-2.5 group-hover:border-white/10 transition-colors">
+            <span class="lucide lucide-gauge h-4 w-4 text-blue-400 shrink-0"></span>
+            <span class="text-xs text-slate-300 font-sans">Performance máxima</span>
+          </div>
+          <div class="rounded-2xl border border-white/5 bg-slate-950/50 p-3 flex items-center gap-2.5 group-hover:border-white/10 transition-colors">
+            <span class="lucide lucide-smartphone h-4 w-4 text-blue-400 shrink-0"></span>
+            <span class="text-xs text-slate-300 font-sans">Mobile-first</span>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">HTML/CSS</span>
+          <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">JavaScript</span>
+          <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">SEO</span>
+          <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Tailwind</span>
+          <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Animações</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- DIFERENCIAIS / IA                                           -->
+<!-- ============================================================ -->
+<section id="ia" class="flex flex-col lg:px-6 max-w-6xl mx-auto px-4 pb-24 gap-12">
+  <div class="flex flex-col items-center text-center animate-enter space-y-4">
+    <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium backdrop-blur shadow-[0_0_15px_rgba(34,211,238,0.15)] text-blue-400 font-sans">
+      <span class="lucide lucide-zap h-3.5 w-3.5"></span>
+      Por que a FusionPrime
+    </div>
+    <h2 class="text-3xl text-slate-50 md:text-4xl font-manrope font-medium tracking-tighter">
+      Mais que um fornecedor.
+      <span class="bg-clip-text text-transparent bg-gradient-to-r animate-pulse to-blue-400 from-blue-200 font-manrope font-medium tracking-tighter">Um parceiro estratégico</span>
+    </h2>
+    <p class="max-w-2xl text-sm text-slate-400 font-sans">
+      Trazemos experiência de especialista para cada linha de código. A diferença entre software que funciona e software que escala está nos detalhes — e nós dominamos os detalhes.
+    </p>
+  </div>
+  <!-- Bento grid -->
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+    <!-- Senior expertise -->
+    <div class="group flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:bg-slate-900/80 bg-slate-900/40 rounded-3xl p-6 relative backdrop-blur-md hover:shadow-blue-500/10 animate-enter delay-100" style="position:relative; --border-gradient:linear-gradient(135deg,rgba(59,130,246,0),rgba(59,130,246,0.2),rgba(59,130,246,0)); --border-radius-before:24px">
+      <div class="relative z-10 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="text-lg font-semibold text-slate-200 transition-colors group-hover:text-blue-100 font-sans">Expertise de 20 anos</h3>
+          <div class="h-2 w-2 rounded-full bg-blue-500 animate-pulse shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
+        </div>
+        <p class="text-xs text-slate-400 font-sans leading-relaxed">Cada decisão técnica é tomada por quem já viu o que funciona — e o que quebra — em produção real, durante duas décadas de projetos.</p>
+      </div>
+      <div class="relative z-10 space-y-2 rounded-xl border border-white/5 bg-slate-950/50 p-4 transition-all group-hover:border-white/10 group-hover:bg-slate-950/80">
+        <div class="flex items-center justify-between text-[11px] text-slate-400 font-sans">
+          <span>Projetos entregues</span><span class="text-slate-200 font-semibold">100+</span>
+        </div>
+        <div class="flex items-center justify-between text-[11px] text-slate-400 font-sans">
+          <span>Anos no mercado</span><span class="text-slate-200 font-semibold">20+</span>
+        </div>
+        <div class="flex items-center justify-between text-[11px] text-slate-400 font-sans">
+          <span>Tecnologias dominadas</span><span class="text-slate-200 font-semibold">15+</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- IA hub — center card -->
+    <div class="group flex flex-col overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl bg-gradient-to-b from-slate-900/60 to-black rounded-3xl px-6 py-6 relative hover:shadow-blue-500/20 animate-enter delay-200" style="position:relative; --border-gradient:linear-gradient(135deg,rgba(59,130,246,0),rgba(59,130,246,0.2),rgba(59,130,246,0)); --border-radius-before:24px">
+      <div class="absolute top-0 right-0 bottom-0 left-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 from-blue-900/20 rounded-3xl"></div>
+      <div class="relative z-10 flex h-full min-h-[280px] flex-col items-center justify-center">
+        <div class="relative flex h-48 w-full items-center justify-center perspective-midrange">
+          <div class="relative z-20 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-slate-950 animate-pulse-glow group-hover:scale-110 transition-transform duration-300">
+            <span class="lucide lucide-sparkles h-8 w-8 text-blue-400"></span>
+          </div>
+          <div class="absolute inset-0 flex items-center justify-center animate-orbit pointer-events-none">
+            <div class="absolute" style="transform:rotate(0deg) translateY(-80px) rotate(0deg)">
+              <div class="flex h-9 w-9 items-center justify-center rounded-lg border border-white/5 bg-slate-900/90 shadow-lg backdrop-blur-sm animate-[spin_20s_linear_infinite_reverse]">
+                <span class="lucide lucide-globe h-4 w-4 text-blue-400"></span>
+              </div>
+            </div>
+            <div class="absolute" style="transform:rotate(120deg) translateY(-80px) rotate(-120deg)">
+              <div class="flex h-9 w-9 items-center justify-center rounded-lg border border-white/5 bg-slate-900/90 shadow-lg backdrop-blur-sm animate-[spin_20s_linear_infinite_reverse]">
+                <span class="lucide lucide-smartphone h-4 w-4 text-blue-400"></span>
+              </div>
+            </div>
+            <div class="absolute" style="transform:rotate(240deg) translateY(-80px) rotate(-240deg)">
+              <div class="flex h-9 w-9 items-center justify-center rounded-lg border border-white/5 bg-slate-900/90 shadow-lg backdrop-blur-sm animate-[spin_20s_linear_infinite_reverse]">
+                <span class="lucide lucide-database h-4 w-4 text-emerald-400"></span>
+              </div>
+            </div>
+          </div>
+          <svg class="absolute inset-0 h-full w-full text-white/5 opacity-50 group-hover:opacity-100 transition-opacity duration-500" style="pointer-events:none">
+            <circle class="animate-[spin_30s_linear_infinite]" cx="50%" cy="50%" fill="none" r="80" stroke="currentColor" stroke-dasharray="4 4" stroke-width="1"></circle>
+          </svg>
+        </div>
+        <h3 class="mt-4 text-center text-lg font-semibold text-slate-200 group-hover:text-white transition-colors font-sans">Stack Integrado</h3>
+        <p class="max-w-xs text-center text-xs text-slate-400 group-hover:text-slate-300 transition-colors font-sans mt-2">Web, Mobile, ERP e IA trabalhando juntos em ecossistemas coesos e escaláveis.</p>
+      </div>
+    </div>
+
+    <!-- Code quality -->
+    <div class="group flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:bg-slate-900/80 bg-slate-900/40 rounded-3xl p-6 relative backdrop-blur-md hover:shadow-blue-500/10 animate-enter delay-300" style="position:relative; --border-gradient:linear-gradient(135deg,rgba(59,130,246,0),rgba(59,130,246,0.2),rgba(59,130,246,0)); --border-radius-before:24px">
+      <div class="relative z-10 mb-6">
+        <h3 class="text-lg font-semibold text-slate-200 transition-colors group-hover:text-blue-100 font-sans mb-2">Código que escala</h3>
+        <p class="text-xs text-slate-400 font-sans leading-relaxed">Não entregamos protótipos disfarçados de produto. Arquitetura limpa, testes, documentação e código que outro dev consegue manter.</p>
+      </div>
+      <div class="relative z-10 space-y-3 rounded-xl border border-white/5 bg-slate-950/50 p-4 group-hover:border-white/10 group-hover:bg-slate-950/80 transition-all">
+        <div class="flex items-center gap-2">
+          <span class="lucide lucide-check-circle h-3.5 w-3.5 text-emerald-400"></span>
+          <span class="text-[11px] text-slate-300 font-sans">Arquitetura limpa</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="lucide lucide-check-circle h-3.5 w-3.5 text-emerald-400"></span>
+          <span class="text-[11px] text-slate-300 font-sans">Testes automatizados</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="lucide lucide-check-circle h-3.5 w-3.5 text-emerald-400"></span>
+          <span class="text-[11px] text-slate-300 font-sans">Documentação completa</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="lucide lucide-check-circle h-3.5 w-3.5 text-emerald-400"></span>
+          <span class="text-[11px] text-slate-300 font-sans">Deploy & CI/CD configurado</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PORTFÓLIO                                                    -->
+<!-- ============================================================ -->
+<section id="portfolio" class="flex flex-col lg:px-6 max-w-6xl mx-auto px-4 pb-24 gap-12">
+  <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 animate-enter">
+    <div class="space-y-3">
+      <div class="flex items-center gap-2 text-blue-400">
+        <span class="lucide lucide-briefcase h-[18px] w-[18px]"></span>
+        <span class="text-xs font-medium uppercase tracking-wider font-sans">Projetos entregues</span>
+      </div>
+      <h2 class="text-3xl leading-tight text-slate-50 md:text-4xl lg:text-5xl font-manrope font-medium tracking-tighter">
+        Do conceito à
+        <span class="bg-clip-text text-transparent bg-gradient-to-r animate-pulse to-blue-400 from-blue-200 font-manrope font-medium tracking-tighter">produção</span>
+      </h2>
+    </div>
+    <p class="max-w-sm text-sm leading-relaxed text-slate-400 font-sans">
+      Cada projeto é uma solução real para um problema real. Veja alguns dos sistemas que construímos e colocamos no ar.
+    </p>
+  </div>
+  <!-- Portfolio grid -->
+  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <article class="group flex flex-col overflow-hidden bg-gradient-to-br rounded-2xl from-blue-500/0 via-blue-500/10 to-blue-500/0" style="position:relative; --border-gradient:linear-gradient(315deg,rgba(255,255,255,0.1),rgba(255,255,255,0)); --border-radius-before:16px">
+      <div class="overflow-hidden w-full h-32 relative">
+        <img alt="E-commerce Platform" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" src="assets/6f6eb6d2-42ff-4512-877b-fe27ef_9d2c1d7d8d41.webp"/>
+        <div class="bg-gradient-to-t from-black/70 via-black/20 to-transparent absolute inset-0"></div>
+      </div>
+      <div class="flex flex-1 flex-col p-3.5">
+        <div class="mb-1 flex items-center justify-between gap-2">
+          <h3 class="text-[13px] font-semibold tracking-tight text-slate-50 font-sans">E-commerce Platform</h3>
+          <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Web</span>
+        </div>
+        <div class="flex flex-wrap items-center justify-between gap-1 text-[11px] text-slate-400">
+          <span class="font-sans">Python · Django</span>
+          <span class="font-sans">Entregue ✓</span>
+        </div>
+      </div>
+    </article>
+    <article class="group flex flex-col overflow-hidden bg-gradient-to-br rounded-2xl from-blue-500/0 via-blue-500/10 to-blue-500/0" style="position:relative; --border-gradient:linear-gradient(135deg,rgba(59,130,246,0),rgba(59,130,246,0.1),rgba(59,130,246,0)); --border-radius-before:16px">
+      <div class="relative h-32 w-full overflow-hidden">
+        <img alt="App Mobile Gestão" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" src="assets/613b77bb-3447-42c7-93d2-2e919e_79a327500cd3.webp"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+      </div>
+      <div class="flex flex-1 flex-col p-3.5">
+        <div class="mb-1 flex items-center justify-between gap-2">
+          <h3 class="text-[13px] font-semibold tracking-tight text-slate-50 font-sans">App de Gestão</h3>
+          <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Mobile</span>
+        </div>
+        <div class="flex flex-wrap items-center justify-between gap-1 text-[11px] text-slate-400">
+          <span class="font-sans">Flutter · Dart</span>
+          <span class="font-sans">Entregue ✓</span>
+        </div>
+      </div>
+    </article>
+    <article class="group flex flex-col overflow-hidden bg-gradient-to-br rounded-2xl from-blue-500/0 via-blue-500/10 to-blue-500/0">
+      <div class="relative h-32 w-full overflow-hidden">
+        <img alt="Sistema ERP" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" src="assets/6267906a-0a72-43a3-beb6-9255fe_3e94d5403119.webp"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+      </div>
+      <div class="flex flex-1 flex-col p-3.5">
+        <div class="mb-1 flex items-center justify-between gap-2">
+          <h3 class="text-[13px] font-semibold tracking-tight text-slate-50 font-sans">ERP Customizado</h3>
+          <span class="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-300 font-sans">ERP</span>
+        </div>
+        <div class="flex flex-wrap items-center justify-between gap-1 text-[11px] text-slate-400">
+          <span class="font-sans">Python · FastAPI</span>
+          <span class="font-sans">Entregue ✓</span>
+        </div>
+      </div>
+    </article>
+    <article class="group flex flex-col overflow-hidden bg-gradient-to-br rounded-2xl from-blue-500/0 via-blue-500/10 to-blue-500/0" style="position:relative; --border-gradient:linear-gradient(315deg,rgba(255,255,255,0.1),rgba(255,255,255,0)); --border-radius-before:16px">
+      <div class="overflow-hidden w-full h-32 relative">
+        <img alt="Feature IA" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" src="assets/491fb3a7-aa96-4243-8cf2-c33942_1e8a58e802de.webp"/>
+        <div class="bg-gradient-to-t from-black/70 via-black/20 to-transparent absolute inset-0"></div>
+      </div>
+      <div class="flex flex-1 flex-col p-3.5">
+        <div class="mb-1 flex items-center justify-between gap-2">
+          <h3 class="text-[13px] font-semibold tracking-tight text-slate-50 font-sans">Assistente IA</h3>
+          <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/20 text-blue-300 border border-blue-500/30 font-sans">IA</span>
+        </div>
+        <div class="flex flex-wrap items-center justify-between gap-1 text-[11px] text-slate-400">
+          <span class="font-sans">Python · LLM</span>
+          <span class="font-sans">Entregue ✓</span>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SOBRE / FUNDADOR                                             -->
+<!-- ============================================================ -->
+<section id="sobre" class="flex flex-col gap-16 lg:px-6 lg:py-16 max-w-6xl mx-auto pt-8 px-4 pb-24 relative">
+  <div class="grid grid-cols-1 lg:grid-cols-[1fr,1fr] gap-12 lg:items-center">
+    <!-- Text side -->
+    <div class="space-y-6 animate-enter">
+      <div class="flex items-center gap-2 text-blue-400">
+        <span class="lucide lucide-user-circle-2 h-[18px] w-[18px]"></span>
+        <span class="text-xs font-medium uppercase tracking-wider font-sans">O fundador</span>
+      </div>
+      <h2 class="text-3xl leading-tight text-slate-50 md:text-4xl font-manrope font-medium tracking-tighter">
+        Especialista sênior com
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-200 via-blue-400 to-blue-600 font-manrope font-medium tracking-tighter">20 anos de experiência</span>
+      </h2>
+      <p class="text-sm text-slate-400 leading-relaxed font-sans max-w-lg">
+        A FusionPrime foi fundada por um desenvolvedor sênior com mais de duas décadas de atuação em projetos de software — de startups a grandes corporações. Essa bagagem se reflete diretamente na qualidade e maturidade técnica de cada entrega.
+      </p>
+      <p class="text-sm text-slate-400 leading-relaxed font-sans max-w-lg">
+        Acreditamos que o fundador de uma software house precisa ser, acima de tudo, um engenheiro de verdade. Não apenas um gestor. Aqui, quem lidera o projeto também entende o código.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-slate-200 backdrop-blur font-sans">
+          <span class="lucide lucide-shield-check h-3.5 w-3.5 text-emerald-400"></span>
+          Desenvolvedor Sênior
+        </div>
+        <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-slate-200 backdrop-blur font-sans">
+          <span class="lucide lucide-code-2 h-3.5 w-3.5 text-blue-400"></span>
+          Full Stack Specialist
+        </div>
+        <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-slate-200 backdrop-blur font-sans">
+          <span class="lucide lucide-sparkles h-3.5 w-3.5 text-blue-400"></span>
+          IA & Inovação
+        </div>
+      </div>
+    </div>
+    <!-- Stats card -->
+    <div class="animate-float">
+      <div class="bg-gradient-to-b from-slate-900/80 via-slate-950/80 to-black/90 border-blue-300/20 border rounded-[26px] p-[1px] shadow-[0_0_60px_rgba(34,197,235,0.25)]">
+        <div class="bg-gradient-to-b from-slate-950 via-slate-950/95 to-black rounded-[24px] p-8">
+          <div class="grid grid-cols-2 gap-6">
+            <div class="flex flex-col gap-1">
+              <span class="text-4xl font-manrope font-medium tracking-tighter text-white">20<span class="text-blue-400">+</span></span>
+              <span class="text-xs text-slate-400 font-sans">Anos de experiência</span>
+            </div>
+            <div class="flex flex-col gap-1">
+              <span class="text-4xl font-manrope font-medium tracking-tighter text-white">100<span class="text-blue-400">+</span></span>
+              <span class="text-xs text-slate-400 font-sans">Projetos entregues</span>
+            </div>
+            <div class="flex flex-col gap-1">
+              <span class="text-4xl font-manrope font-medium tracking-tighter text-white">5</span>
+              <span class="text-xs text-slate-400 font-sans">Serviços especializados</span>
+            </div>
+            <div class="flex flex-col gap-1">
+              <span class="text-4xl font-manrope font-medium tracking-tighter text-white">∞</span>
+              <span class="text-xs text-slate-400 font-sans">Comprometimento</span>
+            </div>
+          </div>
+          <div class="mt-6 pt-6 border-t border-white/5">
+            <p class="text-xs text-slate-400 font-sans leading-relaxed italic">
+              "Entregamos mais que código — entregamos soluções que o seu negócio precisa para crescer."
+            </p>
+            <p class="text-[11px] text-blue-400 font-sans mt-2 font-medium">— Fundador, FusionPrime</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PLANOS                                                       -->
+<!-- ============================================================ -->
+<section id="planos" class="flex flex-col lg:px-6 max-w-6xl mx-auto px-4 pb-24 gap-12">
+  <div class="flex flex-col items-center text-center animate-enter space-y-6">
+    <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium backdrop-blur text-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.2)] font-sans">
+      <span class="lucide lucide-tag h-3.5 w-3.5"></span>
+      Planos & Investimento
+    </div>
+    <h2 class="text-3xl text-slate-50 md:text-5xl font-manrope font-medium tracking-tighter">
+      Transparência do
+      <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-200 via-blue-400 to-blue-600 font-manrope font-medium tracking-tighter">início ao fim</span>
+    </h2>
+    <p class="max-w-xl text-sm text-slate-400 leading-relaxed font-sans">
+      Cada projeto é único. Os planos abaixo servem como ponto de partida — sempre adequamos a proposta à realidade e ao escopo do seu negócio.
+    </p>
+  </div>
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-3 lg:gap-8">
+    <!-- MVP -->
+    <div class="group relative flex flex-col rounded-3xl border border-white/5 bg-slate-900/20 p-8 backdrop-blur-sm transition-all hover:bg-slate-900/40 hover:border-white/10">
+      <div class="mb-6">
+        <h3 class="text-lg font-semibold text-slate-200 font-sans">MVP</h3>
+        <p class="mt-1 text-[10px] text-slate-500 font-sans uppercase tracking-wider">Produto Mínimo Viável</p>
+        <div class="mt-4 flex items-baseline gap-1">
+          <span class="text-sm text-slate-500 font-sans">A partir de</span>
+        </div>
+        <div class="flex items-baseline gap-1 mt-1">
+          <span class="text-4xl text-white font-manrope font-medium tracking-tighter">R$5k</span>
+        </div>
+        <p class="mt-4 text-xs leading-relaxed text-slate-400 font-sans">Ideal para startups e projetos que precisam validar a ideia no mercado rapidamente, com qualidade e sem desperdício.</p>
+      </div>
+      <ul class="mb-8 space-y-3 flex-1">
+        <li class="flex items-start gap-3 text-xs text-slate-300 font-sans">
+          <svg class="h-4 w-4 shrink-0 text-slate-500" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          Escopo definido em conjunto
+        </li>
+        <li class="flex items-start gap-3 text-xs text-slate-300 font-sans">
+          <svg class="h-4 w-4 shrink-0 text-slate-500" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          Web ou Mobile (uma plataforma)
+        </li>
+        <li class="flex items-start gap-3 text-xs text-slate-300 font-sans">
+          <svg class="h-4 w-4 shrink-0 text-slate-500" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          Deploy incluso
+        </li>
+        <li class="flex items-start gap-3 text-xs text-slate-300 font-sans">
+          <svg class="h-4 w-4 shrink-0 text-slate-500" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          30 dias de suporte pós-entrega
+        </li>
+      </ul>
+      <a href="#contato" class="w-full rounded-lg border border-white/10 bg-white/5 py-2.5 text-xs font-semibold text-white text-center transition-all hover:bg-white/10 hover:scale-[1.02] active:scale-[0.98] font-sans block">
+        Solicitar orçamento
+      </a>
+    </div>
+
+    <!-- Profissional — highlight -->
+    <div class="group relative flex flex-col rounded-3xl bg-slate-900/40 p-8 backdrop-blur-md transition-all hover:-translate-y-1 shadow-2xl shadow-blue-900/10" style="position:relative">
+      <div class="absolute inset-0 rounded-3xl p-[1px] bg-gradient-to-b from-blue-500/40 via-blue-500/10 to-transparent pointer-events-none"></div>
+      <div class="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-blue-500/20 blur-[60px] pointer-events-none group-hover:bg-blue-500/30 transition-colors duration-500"></div>
+      <div class="relative z-10 mb-6">
+        <div class="flex items-center justify-between">
+          <h3 class="text-lg font-semibold text-white font-sans">Profissional</h3>
+          <span class="rounded-full bg-blue-500/20 px-2.5 py-0.5 text-[10px] font-medium text-blue-300 border border-blue-500/30 shadow-[0_0_10px_rgba(59,130,246,0.2)] font-sans">Mais pedido</span>
+        </div>
+        <p class="mt-1 text-[10px] text-slate-500 font-sans uppercase tracking-wider">Projeto completo</p>
+        <div class="mt-4 flex items-baseline gap-1">
+          <span class="text-sm text-slate-500 font-sans">A partir de</span>
+        </div>
+        <div class="flex items-baseline gap-1 mt-1">
+          <span class="text-4xl text-white font-manrope font-medium tracking-tighter">R$15k</span>
+        </div>
+        <p class="mt-4 text-xs leading-relaxed text-slate-300 font-sans">Para negócios que precisam de uma solução robusta, escalável e integrada — sem atalhos e com resultado de longo prazo.</p>
+      </div>
+      <ul class="relative z-10 mb-8 space-y-3 flex-1">
+        <li class="flex items-start gap-3 text-xs text-slate-200 font-sans">
+          <div class="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-blue-500/20 text-blue-400">
+            <svg fill="none" height="10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="10"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          Web + Mobile integrados
+        </li>
+        <li class="flex items-start gap-3 text-xs text-slate-200 font-sans">
+          <div class="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-blue-500/20 text-blue-400">
+            <svg fill="none" height="10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="10"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          Painel admin incluso
+        </li>
+        <li class="flex items-start gap-3 text-xs text-slate-200 font-sans">
+          <div class="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-blue-500/20 text-blue-400">
+            <svg fill="none" height="10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="10"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          API REST documentada
+        </li>
+        <li class="flex items-start gap-3 text-xs text-slate-200 font-sans">
+          <div class="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-blue-500/20 text-blue-400">
+            <svg fill="none" height="10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="10"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          90 dias de suporte
+        </li>
+        <li class="flex items-start gap-3 text-xs text-slate-200 font-sans">
+          <div class="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-blue-500/20 text-blue-400">
+            <svg fill="none" height="10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="10"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          Feature de IA opcional
+        </li>
+      </ul>
+      <a href="#contato" class="relative z-10 w-full rounded-lg bg-white py-2.5 text-xs font-bold text-slate-950 text-center transition-all hover:bg-blue-50 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:scale-[1.02] active:scale-[0.98] font-sans block">
+        Solicitar orçamento
+      </a>
+    </div>
+
+    <!-- Enterprise -->
+    <div class="group relative flex flex-col rounded-3xl border border-white/5 bg-slate-900/20 p-8 backdrop-blur-sm transition-all hover:bg-slate-900/40 hover:border-white/10">
+      <div class="mb-6">
+        <h3 class="text-lg font-semibold text-slate-200 font-sans">Enterprise</h3>
+        <p class="mt-1 text-[10px] text-slate-500 font-sans uppercase tracking-wider">Sob demanda</p>
+        <div class="mt-4 flex items-baseline gap-1 mt-5">
+          <span class="text-4xl text-white font-manrope font-medium tracking-tighter">Customizado</span>
+        </div>
+        <p class="mt-4 text-xs leading-relaxed text-slate-400 font-sans">Para projetos complexos, ERPs completos, sistemas multi-tenant ou integrações com IA em larga escala. Orçamento sob consulta.</p>
+      </div>
+      <ul class="mb-8 space-y-3 flex-1">
+        <li class="flex items-start gap-3 text-xs text-slate-300 font-sans">
+          <svg class="h-4 w-4 shrink-0 text-slate-500" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          Escopo 100% customizado
+        </li>
+        <li class="flex items-start gap-3 text-xs text-slate-300 font-sans">
+          <svg class="h-4 w-4 shrink-0 text-slate-500" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          ERP completo ou sistema legado
+        </li>
+        <li class="flex items-start gap-3 text-xs text-slate-300 font-sans">
+          <svg class="h-4 w-4 shrink-0 text-slate-500" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          SLA e suporte dedicado
+        </li>
+        <li class="flex items-start gap-3 text-xs text-slate-300 font-sans">
+          <svg class="h-4 w-4 shrink-0 text-slate-500" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          IA integrada ao core do sistema
+        </li>
+      </ul>
+      <a href="#contato" class="w-full rounded-lg border border-white/10 bg-white/5 py-2.5 text-xs font-semibold text-white text-center transition-all hover:bg-white/10 hover:scale-[1.02] active:scale-[0.98] font-sans block">
+        Falar com especialista
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- CONTATO / CTA FINAL                                         -->
+<!-- ============================================================ -->
+<section id="contato" class="flex flex-col lg:px-6 max-w-6xl mx-auto px-4 pb-32 gap-8">
+  <div class="relative rounded-3xl p-[1px] bg-gradient-to-b from-blue-500/30 via-blue-500/10 to-transparent">
+    <div class="bg-gradient-to-b from-slate-900/80 to-black/90 rounded-[22px] p-10 md:p-16 text-center backdrop-blur-md relative overflow-hidden">
+      <div class="absolute -top-16 left-1/2 -translate-x-1/2 h-48 w-48 rounded-full bg-blue-500/20 blur-[60px] pointer-events-none"></div>
+      <div class="relative z-10 space-y-6">
+        <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium backdrop-blur text-blue-400 font-sans">
+          <span class="lucide lucide-mail h-3.5 w-3.5"></span>
+          Vamos conversar
+        </div>
+        <h2 class="text-3xl md:text-5xl font-manrope font-medium tracking-tighter text-slate-50">
+          Tem um projeto em mente?
+          <span class="bg-clip-text text-transparent bg-gradient-to-br from-blue-400 to-blue-600 font-manrope font-medium tracking-tighter block">Vamos construir juntos.</span>
+        </h2>
+        <p class="text-sm text-slate-400 font-sans max-w-lg mx-auto leading-relaxed">
+          Conte-nos o seu desafio. Em até 24h respondemos com uma análise técnica e uma proposta honesta — sem promessas vazias.
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center pt-2">
+          <div class="inline-block bg-transparent">
+            <a href="mailto:contato@fusionprime.com.br" class="overflow-hidden focus:outline-none transition-all duration-300 font-medium text-white bg-black rounded-full pt-3 pr-10 pb-3 pl-10 relative block" style="background: linear-gradient(#000000, #000000) padding-box, conic-gradient(from 0deg, transparent 0%, #1d4ed8 5%, #8484ff 15%, #1d4ed8 30%, transparent 40%, transparent 100%) border-box; box-shadow: inset 0 0 0 1px #1a1818; animation: border-spin 2.5s linear infinite; font-family: 'Inter', 'Helvetica Neue', sans-serif">
+              <span class="z-10 inline-flex items-center gap-2 text-sm relative font-sans font-medium">
+                <span class="lucide lucide-send h-4 w-4"></span>
+                Enviar mensagem
+              </span>
+              <span class="absolute inset-[2px] z-0 rounded-full" style="background: radial-gradient(circle at 2px 2px, white 0.5px, transparent 0) padding-box; background-size: 4px 4px; background-repeat: space; mask-image: conic-gradient(from 45deg, black, transparent 10% 90%, black); opacity: 0.4; animation: dot-spin 2.5s linear infinite;"></span>
+              <span class="z-[1] aspect-square -translate-x-1/2 -translate-y-1/2 w-full absolute top-1/2 right-0 bottom-0 left-1/2" style="background: linear-gradient(-50deg, transparent, #1d4ed8, transparent); opacity: 0.6; animation: shimmer 4s linear infinite"></span>
+            </a>
+          </div>
+          <a href="https://wa.me/5500000000000" target="_blank" class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-slate-200 hover:bg-white/10 font-sans transition-colors">
+            <span class="lucide lucide-message-circle h-4 w-4"></span>
+            WhatsApp
+          </a>
+        </div>
+        <p class="text-[11px] text-slate-500 font-sans">Resposta em até 24 horas · Orçamento sem compromisso</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- FOOTER                                                       -->
+<!-- ============================================================ -->
+<footer class="bg-gradient-to-t from-black via-slate-950/80 to-transparent border-white/5 border-t">
+  <div class="mx-auto max-w-6xl px-4 lg:px-6 pt-12 pb-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+      <!-- Brand -->
+      <div class="col-span-2 md:col-span-2">
+        <img src="FP Logo Detalhe  600x200 - Transparente.png" alt="FusionPrime" class="h-8 w-auto mb-4"/>
+        <p class="text-xs text-slate-400 font-sans leading-relaxed max-w-xs">
+          Desenvolvemos softwares, apps e sistemas. Entregamos mais que código — entregamos soluções que movem o seu negócio.
+        </p>
+        <div class="flex gap-3 mt-5">
+          <a href="#" class="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-colors">
+            <span class="lucide lucide-github h-3.5 w-3.5 text-slate-300"></span>
+          </a>
+          <a href="#" class="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-colors">
+            <span class="lucide lucide-linkedin h-3.5 w-3.5 text-slate-300"></span>
+          </a>
+          <a href="#" class="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-colors">
+            <span class="lucide lucide-instagram h-3.5 w-3.5 text-slate-300"></span>
+          </a>
+        </div>
+      </div>
+      <!-- Serviços -->
+      <div>
+        <h4 class="text-[11px] font-semibold text-slate-200 uppercase tracking-wider font-sans mb-4">Serviços</h4>
+        <ul class="space-y-2.5">
+          <li><a href="#servicos" class="text-xs text-slate-400 hover:text-slate-200 transition-colors font-sans">Desenvolvimento Web</a></li>
+          <li><a href="#servicos" class="text-xs text-slate-400 hover:text-slate-200 transition-colors font-sans">App Mobile</a></li>
+          <li><a href="#servicos" class="text-xs text-slate-400 hover:text-slate-200 transition-colors font-sans">Sistemas ERP</a></li>
+          <li><a href="#ia" class="text-xs text-slate-400 hover:text-slate-200 transition-colors font-sans">Features com IA</a></li>
+          <li><a href="#servicos" class="text-xs text-slate-400 hover:text-slate-200 transition-colors font-sans">Landing Pages</a></li>
+        </ul>
+      </div>
+      <!-- Empresa -->
+      <div>
+        <h4 class="text-[11px] font-semibold text-slate-200 uppercase tracking-wider font-sans mb-4">Empresa</h4>
+        <ul class="space-y-2.5">
+          <li><a href="#sobre" class="text-xs text-slate-400 hover:text-slate-200 transition-colors font-sans">Sobre nós</a></li>
+          <li><a href="#portfolio" class="text-xs text-slate-400 hover:text-slate-200 transition-colors font-sans">Portfólio</a></li>
+          <li><a href="#planos" class="text-xs text-slate-400 hover:text-slate-200 transition-colors font-sans">Planos</a></li>
+          <li><a href="#contato" class="text-xs text-slate-400 hover:text-slate-200 transition-colors font-sans">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="flex flex-col gap-4 text-center border-white/5 border-t pt-6 md:flex-row md:items-center md:justify-between">
+      <p class="text-[11px] text-slate-500 font-sans">© 2025 FusionPrime Tech Solutions. Todos os direitos reservados.</p>
+      <div class="flex items-center justify-center gap-1 text-[11px] text-slate-500 font-sans">
+        <span class="lucide lucide-shield-check h-3 w-3 text-emerald-500/60"></span>
+        Código com qualidade. Entrega com responsabilidade.
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div>
+</div>
+</body>
+</html>

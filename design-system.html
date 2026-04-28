@@ -1,0 +1,1927 @@
+<html class="h-full" lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>NovaPulse — Design System</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="assets/resource_3fa48481346f.es"></script>
+<link href="assets/lucide_37ad69c8e3b6.css" rel="stylesheet"/>
+<link href="assets/css2_9b8bf743d4a8.css" id="all-fonts-link-font-manrope" rel="stylesheet"/>
+<style id="all-fonts-style-font-manrope">.font-manrope { font-family: 'Manrope', sans-serif !important; }</style>
+<style id="border-gradient-shared-style">
+[style*="--border-gradient"]::before {
+content: "";
+position: absolute;
+inset: 0;
+padding: 1px;
+border-radius: var(--border-radius-before, inherit);
+-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+-webkit-mask-composite: xor;
+mask-composite: exclude;
+background: var(--border-gradient);
+pointer-events: none;
+}
+</style>
+<style>
+.perspective-midrange { perspective: 800px !important; }
+@keyframes border-spin {
+  to { background: linear-gradient(#000000, #000000) padding-box, conic-gradient(from 360deg, transparent 0%, #1d4ed8 5%, #8484ff 15%, #1d4ed8 30%, transparent 40%, transparent 100%) border-box; }
+}
+@keyframes dot-spin {
+  to { mask-image: conic-gradient(from 405deg, black, transparent 10% 90%, black); }
+}
+@keyframes shimmer {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes shine {
+  from { background-position: 0 0; }
+  to { background-position: -200% 0; }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 10px rgba(34,211,238,0.2); }
+  50% { box-shadow: 0 0 20px rgba(34,211,238,0.6); }
+}
+@keyframes enterUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.bg-shine {
+  background: linear-gradient(110deg, #000103 45%, #1e2631 55%, #000103);
+  background-size: 200% 100%;
+  animation: shine 2s infinite linear;
+}
+
+/* Design System nav */
+.ds-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(2,6,23,0.92);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  backdrop-filter: blur(12px);
+}
+.ds-nav a {
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+.ds-nav a:hover { color: #f8fafc; }
+.ds-section-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #3b82f6;
+  margin-bottom: 12px;
+  font-family: 'Inter', sans-serif;
+}
+.ds-divider {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  margin: 64px 0;
+}
+.ds-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.ds-row:last-child { border-bottom: none; }
+.ds-row-label {
+  width: 140px;
+  flex-shrink: 0;
+  font-size: 11px;
+  color: #475569;
+  font-family: 'Inter', monospace;
+}
+.ds-row-spec {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: 11px;
+  color: #475569;
+  font-family: monospace;
+}
+.ds-swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+.ds-swatch {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.ds-swatch-color {
+  height: 72px;
+}
+.ds-swatch-info {
+  padding: 10px 12px;
+  background: rgba(255,255,255,0.03);
+}
+.ds-swatch-name {
+  font-size: 11px;
+  font-weight: 600;
+  color: #e2e8f0;
+  font-family: 'Inter', sans-serif;
+}
+.ds-swatch-value {
+  font-size: 10px;
+  color: #64748b;
+  font-family: monospace;
+  margin-top: 2px;
+}
+</style>
+<script>
+tailwind.config = {
+  theme: { extend: {} },
+  plugins: [
+    function({ addUtilities }) {
+      const rotateValues = [0, 5, 10, 15, 20, 30, 45, 75];
+      const rotateXUtilities = {};
+      const rotateYUtilities = {};
+      rotateValues.forEach((value) => {
+        rotateXUtilities[`.rotate-x-${value}`] = { '--tw-rotate-x': `${value}deg`, transform: `translate3d(var(--tw-translate-x,0),var(--tw-translate-y,0),var(--tw-translate-z,0)) rotateX(var(--tw-rotate-x,0)) rotateY(var(--tw-rotate-y,0)) rotateZ(var(--tw-rotate-z,0)) skewX(var(--tw-skew-x,0)) skewY(var(--tw-skew-y,0)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))` };
+        rotateYUtilities[`.rotate-y-${value}`] = { '--tw-rotate-y': `${value}deg`, transform: `translate3d(var(--tw-translate-x,0),var(--tw-translate-y,0),var(--tw-translate-z,0)) rotateX(var(--tw-rotate-x,0)) rotateY(var(--tw-rotate-y,0)) rotateZ(var(--tw-rotate-z,0)) skewX(var(--tw-skew-x,0)) skewY(var(--tw-skew-y,0)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))` };
+      });
+      addUtilities({ ...rotateXUtilities, ...rotateYUtilities,
+        ".perspective-none": { perspective: "none" },
+        ".perspective-dramatic": { perspective: "100px" },
+        ".perspective-near": { perspective: "300px" },
+        ".perspective-normal": { perspective: "500px" },
+        ".perspective-midrange": { perspective: "800px" },
+        ".perspective-distant": { perspective: "1200px" },
+        ".transform-style-preserve-3d": { "transform-style": "preserve-3d" },
+      });
+    }
+  ]
+};
+</script>
+</head>
+<body class="h-full bg-black text-slate-100 antialiased">
+
+<!-- Background (component) — UnicornStudio animated wave -->
+<div class="aura-background-component top-0 w-full -z-10 absolute h-[800px] brightness-75" data-alpha-mask="80" style="mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent)"><div class="absolute w-full h-full left-0 top-0 -z-10" data-us-project="bmaMERjX2VZDtPrh4Zwx"></div><script type="text/javascript">!function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.34/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();</script></div>
+
+<!-- ============================================================ -->
+<!-- DESIGN SYSTEM TOP NAV                                        -->
+<!-- ============================================================ -->
+<div class="ds-nav font-sans">
+  <div class="mx-auto flex max-w-6xl items-center gap-6 overflow-x-auto px-4 py-3 lg:px-6">
+    <span class="flex-shrink-0 text-[11px] font-semibold text-slate-50 tracking-tight">NovaPulse DS</span>
+    <div class="flex items-center gap-6">
+      <a href="#hero">Hero</a>
+      <a href="#typography">Typography</a>
+      <a href="#colors">Colors</a>
+      <a href="#components">Components</a>
+      <a href="#layout">Layout</a>
+      <a href="#motion">Motion</a>
+      <a href="#icons">Icons</a>
+    </div>
+  </div>
+</div>
+
+<div class="min-h-screen text-slate-100">
+<div class="flex min-h-screen flex-col relative">
+
+<!-- ============================================================ -->
+<!-- SECTION 0 — HERO CLONE (text adapted for Design System)      -->
+<!-- ============================================================ -->
+<div id="hero">
+
+<!-- Original site header nav -->
+<header class="sticky z-50 transition-all bg-gradient-to-b from-slate-950/90 via-slate-950/60 to-slate-950/20 border-white/5 border-b top-0 backdrop-blur-md">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 lg:px-6">
+    <a class="flex items-center gap-2" href="#">
+      <span class="text-base font-semibold text-slate-50 font-sans tracking-tight">NovaPulse</span>
+    </a>
+    <nav class="hidden gap-8 md:flex text-sm font-normal text-slate-200 gap-x-8 gap-y-8 items-center">
+      <a class="text-slate-300 hover:text-slate-100 transition-colors text-sm font-sans" href="#">Discover</a>
+      <a class="text-slate-300 hover:text-slate-100 transition-colors text-sm font-sans" href="#">Studio</a>
+      <a class="text-slate-300 hover:text-slate-100 transition-colors text-sm font-sans" href="#">Pricing</a>
+      <a class="text-slate-300 hover:text-slate-100 transition-colors text-sm font-sans" href="#">Blog</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <button class="text-sm font-medium text-slate-300 hover:text-slate-100 font-sans">Log in</button>
+      <div class="inline-block bg-transparent">
+        <button class="overflow-hidden focus:outline-none transition-all duration-300 text-lg font-medium text-white bg-black rounded-full pt-1 pr-5 pb-1 pl-5 relative" style="background: linear-gradient(#000000, #000000) padding-box, conic-gradient(from 0deg, transparent 0%, #1d4ed8 5%, #8484ff 15%, #1d4ed8 30%, transparent 40%, transparent 100%) border-box; box-shadow: inset 0 0 0 1px #1a1818; animation: border-spin 2.5s linear infinite; font-family: 'Inter', 'Helvetica Neue', sans-serif">
+          <span class="z-10 inline-block text-sm relative font-sans">Get started</span>
+          <span class="absolute inset-[2px] z-0 rounded-full" style="background: radial-gradient(circle at 2px 2px, white 0.5px, transparent 0) padding-box; background-size: 4px 4px; background-repeat: space; mask-image: conic-gradient(from 45deg, black, transparent 10% 90%, black); opacity: 0.4; animation: dot-spin 2.5s linear infinite;"></span>
+          <span class="z-[1] aspect-square -translate-x-1/2 -translate-y-1/2 w-full absolute top-1/2 right-0 bottom-0 left-1/2" style="background: linear-gradient(-50deg, transparent, #1d4ed8, transparent); opacity: 0.6; animation: shimmer 4s linear infinite"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Hero section — exact clone, text adapted -->
+<section class="mx-auto flex max-w-6xl flex-col gap-12 px-4 pt-10 pb-16 lg:px-6 lg:pt-14">
+  <div class="grid lg:grid-cols-[1.1fr,0.9fr] lg:items-center mt-12 mb-24 gap-x-10 gap-y-10">
+    <!-- Hero copy (adapted text only) -->
+    <div class="space-y-6">
+      <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-2 py-1 text-[11px] font-medium text-slate-200 backdrop-blur">
+        <span class="flex h-5 w-5 items-center justify-center rounded-full text-[10px] text-slate-950 bg-gradient-to-tl from-blue-400 to-blue-600 font-sans">DS</span>
+        <span class="font-sans">NovaPulse — Living Design System</span>
+      </div>
+      <h1 class="sm:text-5xl md:text-6xl text-4xl text-slate-50 font-manrope font-medium tracking-tighter">
+        Every token,
+        <span class="bg-clip-text text-transparent bg-gradient-to-br from-blue-400 to-blue-600 font-manrope font-medium tracking-tighter">
+          every pattern
+        </span>
+        in one place
+      </h1>
+      <p class="md:text-base text-sm font-normal text-slate-300 max-w-lg font-sans">
+        The canonical reference for NovaPulse UI — exact classes, animations, and components straight from the source. Build with confidence using the real design language.
+      </p>
+      <div class="flex flex-wrap gap-3 gap-x-3 gap-y-3 items-center">
+        <div class="inline-block bg-transparent">
+          <button class="overflow-hidden focus:outline-none transition-all duration-300 text-lg font-medium text-white bg-black rounded-full pt-1 pr-10 pb-1 pl-10 relative" style="background: linear-gradient(#000000, #000000) padding-box, conic-gradient(from 0deg, transparent 0%, #1d4ed8 5%, #8484ff 15%, #1d4ed8 30%, transparent 40%, transparent 100%) border-box; box-shadow: inset 0 0 0 1px #1a1818; animation: border-spin 2.5s linear infinite; font-family: 'Inter', 'Helvetica Neue', sans-serif">
+            <span class="z-10 inline-block text-sm relative font-sans">Explore tokens</span>
+            <span class="absolute inset-[2px] z-0 rounded-full" style="background: radial-gradient(circle at 2px 2px, white 0.5px, transparent 0) padding-box; background-size: 4px 4px; background-repeat: space; mask-image: conic-gradient(from 45deg, black, transparent 10% 90%, black); opacity: 0.4; animation: dot-spin 2.5s linear infinite;"></span>
+            <span class="z-[1] aspect-square -translate-x-1/2 -translate-y-1/2 w-full absolute top-1/2 right-0 bottom-0 left-1/2" style="background: linear-gradient(-50deg, transparent, #1d4ed8, transparent); opacity: 0.6; animation: shimmer 4s linear infinite"></span>
+          </button>
+        </div>
+        <button class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-medium text-slate-200 hover:bg-white/10 font-sans">
+          View source
+        </button>
+        <p class="w-full text-[11px] font-normal text-slate-400 sm:w-auto font-sans">
+          Exact classes · Zero approximations · Real assets
+        </p>
+      </div>
+    </div>
+    <!-- Hero visual — exact clone -->
+    <div class="relative">
+      <div class="absolute -top-8 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full blur-3xl bg-blue-500/20"></div>
+      <div class="bg-gradient-to-b from-slate-900/80 via-slate-950/80 to-black/90 border-blue-300/20 border rounded-[26px] pt-[1px] pr-[1px] pb-[1px] pl-[1px] relative shadow-[0_0_60px_rgba(34,197,235,0.45)]">
+        <div class="bg-gradient-to-b from-slate-950 via-slate-950/95 to-black rounded-[24px] pt-8 pb-0 relative">
+          <div class="absolute top-0 right-0 bottom-0 left-0"></div>
+          <!-- Dial header -->
+          <div class="relative px-6 pt-4 flex items-center justify-between">
+            <span class="text-[11px] font-medium text-slate-300 font-sans">Session Orbit</span>
+            <div class="flex items-center gap-2 text-[10px] text-slate-400">
+              <span class="flex items-center gap-1 font-sans">
+                <span class="lucide lucide-flame h-3.5 w-3.5 text-amber-400"></span>
+                Live trends
+              </span>
+            </div>
+          </div>
+          <!-- Dial -->
+          <div class="relative mx-auto mt-2 h-64 w-full max-w-md">
+            <div class="absolute inset-x-4 bottom-0 top-10 rounded-[140px] border bg-gradient-to-b via-transparent to-transparent blur-2xl border-blue-500/30 from-blue-500/25"></div>
+            <div class="flex flex-col h-full relative items-center justify-end">
+              <div class="flex w-full mb-4 relative items-center justify-center">
+                <div class="relative h-40 w-40 sm:h-48 sm:w-48 rounded-full border bg-gradient-to-b from-slate-900 via-slate-950 to-black shadow-[0_0_60px_rgba(34,197,235,0.55)] border-blue-400/50">
+                  <div class="animate-[spin_10s_linear_infinite] opacity-70 rounded-full absolute top-[2px] right-[2px] bottom-[2px] left-[2px]"></div>
+                  <div class="absolute inset-4 rounded-full bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950"></div>
+                  <div class="flex flex-col h-full z-10 pointer-events-none relative gap-x-1 gap-y-1 items-center justify-center">
+                    <div class="text-base font-semibold tracking-tight text-slate-50 font-sans">Trending Mix</div>
+                    <div class="flex items-center gap-1 text-[10px] font-medium text-slate-400 font-sans">
+                      <span class="lucide lucide-waves h-3.5 w-3.5 text-blue-400"></span>
+                      128 BPM · Chillwave
+                    </div>
+                  </div>
+                  <!-- Orbiting pills -->
+                  <div class="absolute top-0 right-0 bottom-0 left-0">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+                      <div class="flex gap-2 text-[10px] shadow-blue-500/40 font-medium text-slate-100 bg-slate-900/90 rounded-full pt-1 pr-2 pb-1 pl-2 shadow-lg gap-x-2 gap-y-2 items-center">
+                        <svg class="ml-0.5 w-[16px] h-[16px]" fill="none" stroke-width="2" style="width:16px;height:16px;color:rgb(248,250,252)" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" fill="currentColor"></path></svg>
+                        <span class="font-sans">AI Playlist</span>
+                      </div>
+                    </div>
+                    <div class="absolute left-0 top-14 -translate-x-1/3">
+                      <div class="flex gap-2 text-[10px] shadow-blue-500/40 font-medium text-slate-100 bg-slate-900/90 rounded-full pt-1 pr-2 pb-1 pl-2 shadow-lg gap-x-2 gap-y-2 items-center">
+                        <span class="lucide lucide-coffee h-4 w-4 text-slate-100 ml-0.5"></span>
+                        <span class="font-sans">Lo-fi Focus</span>
+                      </div>
+                    </div>
+                    <div class="absolute right-0 top-14 translate-x-1/3">
+                      <div class="flex gap-2 text-[10px] shadow-blue-500/40 font-medium text-slate-100 bg-slate-900/90 rounded-full pt-1 pr-2 pb-1 pl-2 shadow-lg gap-x-2 gap-y-2 items-center">
+                        <span class="lucide lucide-gamepad-2 h-4 w-4 text-slate-100 ml-0.5"></span>
+                        <span class="font-sans">Game Mode</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Controls -->
+          <div class="relative mb-4 flex w-full items-center justify-between px-6 text-[11px] text-slate-300">
+            <div class="flex items-center gap-2">
+              <span class="lucide lucide-bot h-3.5 w-3.5 text-blue-400"></span>
+              <span class="font-sans">Prompt: "neon midnight drive"</span>
+            </div>
+            <div class="hidden items-center gap-3 sm:flex">
+              <button class="flex h-6 w-6 items-center justify-center rounded-full border border-white/15 bg-white/5 hover:bg-white/10 transition-colors">
+                <span class="lucide lucide-skip-back h-3 w-3"></span>
+              </button>
+              <button class="flex h-7 w-7 items-center justify-center rounded-full text-slate-950 shadow-md hover:scale-105 transition-all active:scale-95 bg-blue-500 shadow-blue-500/40 hover:bg-blue-400" id="orbit-play-btn" onclick="toggleOrbitPlayer()">
+                <svg class="block w-[16px] h-[16px] ml-0.5" fill="none" height="16" id="orbit-icon-play" stroke-width="2" style="color:rgb(2,6,23);width:16px;height:16px" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M23 12c0-1.035-.53-2.07-1.591-2.647L8.597 2.385C6.534 1.264 4 2.724 4 5.033V12z" fill="#f8fafc" fill-rule="evenodd"></path><path d="m8.597 21.615l12.812-6.968A2.99 2.99 0 0 0 23 12H4v6.967c0 2.31 2.534 3.769 4.597 2.648" fill="#f8fafc" opacity=".5"></path></svg>
+                <svg class="w-[16px] h-[16px] hidden" fill="currentColor" height="16" id="orbit-icon-pause" stroke="none" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><rect height="16" rx="1" width="4" x="6" y="4"></rect><rect height="16" rx="1" width="4" x="14" y="4"></rect></svg>
+              </button>
+              <button class="flex h-6 w-6 items-center justify-center rounded-full border border-white/15 bg-white/5 hover:bg-white/10 transition-colors">
+                <span class="lucide lucide-skip-forward h-3 w-3"></span>
+              </button>
+            </div>
+          </div>
+          <div class="w-full px-6 pb-5">
+            <div class="h-1.5 w-full overflow-hidden rounded-full bg-slate-800 cursor-pointer hover:h-2 transition-all">
+              <div class="h-full w-[35%] bg-gradient-to-r transition-all duration-100 ease-linear via-blue-400 from-blue-400 to-blue-500" id="orbit-progress-bar"></div>
+            </div>
+            <div class="mt-2 flex items-center justify-between text-[10px] text-slate-400 font-mono">
+              <span class="font-sans" id="orbit-current-time">00:52</span>
+              <span class="font-sans" id="orbit-total-time">02:27</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div><!-- /hero -->
+
+<audio class="hidden" id="orbit-music-player" preload="metadata" src="assets/audio_1808fbf07a_ee412d2ca6a7.mp3"></audio>
+<script>
+function dsBillingToggle() {
+  const btn = document.getElementById('ds-billing-btn');
+  const knob = document.getElementById('ds-billing-knob');
+  const isOn = btn.getAttribute('aria-checked') === 'true';
+  btn.setAttribute('aria-checked', !isOn);
+  if (!isOn) {
+    knob.classList.remove('translate-x-0');
+    knob.classList.add('translate-x-5');
+  } else {
+    knob.classList.remove('translate-x-5');
+    knob.classList.add('translate-x-0');
+  }
+}
+function toggleOrbitPlayer() {
+  const audio = document.getElementById('orbit-music-player');
+  const playIcon = document.getElementById('orbit-icon-play');
+  const pauseIcon = document.getElementById('orbit-icon-pause');
+  if (!audio) return;
+  if (audio.paused) {
+    audio.play();
+    if(playIcon) playIcon.classList.add('hidden');
+    if(pauseIcon) pauseIcon.classList.remove('hidden');
+  } else {
+    audio.pause();
+    if(playIcon) playIcon.classList.remove('hidden');
+    if(pauseIcon) pauseIcon.classList.add('hidden');
+  }
+}
+</script>
+
+<!-- ============================================================ -->
+<!-- SECTIONS WRAPPER                                              -->
+<!-- ============================================================ -->
+<div class="mx-auto max-w-6xl px-4 lg:px-6 pb-32">
+
+  <hr class="ds-divider"/>
+
+  <!-- ========================================================= -->
+  <!-- SECTION 1 — TYPOGRAPHY                                     -->
+  <!-- ========================================================= -->
+  <section id="typography">
+    <p class="ds-section-label font-sans">01 — Typography</p>
+
+    <!-- Heading 1 -->
+    <div class="ds-row">
+      <span class="ds-row-label font-sans">Heading 1</span>
+      <h1 class="sm:text-5xl md:text-6xl text-4xl text-slate-50 font-manrope font-medium tracking-tighter">
+        Compose your sound
+      </h1>
+      <span class="ds-row-spec">40–60px / tracking-tighter / Manrope Medium</span>
+    </div>
+
+    <!-- Heading 1 Gradient -->
+    <div class="ds-row">
+      <span class="ds-row-label font-sans">Heading 1 — Gradient</span>
+      <h1 class="sm:text-5xl md:text-6xl text-4xl font-manrope font-medium tracking-tighter bg-clip-text text-transparent bg-gradient-to-br from-blue-400 to-blue-600">
+        signature sound
+      </h1>
+      <span class="ds-row-spec">gradient-to-br blue-400→blue-600</span>
+    </div>
+
+    <!-- Heading 2 -->
+    <div class="ds-row">
+      <span class="ds-row-label font-sans">Heading 2</span>
+      <h2 class="text-3xl text-slate-50 md:text-5xl font-manrope font-medium tracking-tighter">
+        Production power, scaled to you
+      </h2>
+      <span class="ds-row-spec">30–48px / Manrope Medium</span>
+    </div>
+
+    <!-- Heading 2 Gradient span -->
+    <div class="ds-row">
+      <span class="ds-row-label font-sans">Heading 2 — Gradient</span>
+      <h2 class="text-3xl md:text-5xl font-manrope font-medium tracking-tighter">
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-200 via-blue-400 to-blue-600 font-manrope font-medium tracking-tighter">scaled to you</span>
+      </h2>
+      <span class="ds-row-spec">gradient-to-r blue-200→blue-400→blue-600</span>
+    </div>
+
+    <!-- Heading 3 Section -->
+    <div class="ds-row">
+      <span class="ds-row-label font-sans">Heading 3 — Section</span>
+      <h2 class="text-[18px] md:text-[20px] font-semibold tracking-tight text-slate-50 font-sans">
+        Featured drops
+      </h2>
+      <span class="ds-row-spec">18–20px / font-sans Semibold</span>
+    </div>
+
+    <!-- Heading 3 Card -->
+    <div class="ds-row">
+      <span class="ds-row-label font-sans">Heading 3 — Card</span>
+      <h3 class="text-[13px] font-semibold tracking-tight text-slate-50 font-sans">
+        Prism Echoes
+      </h3>
+      <span class="ds-row-spec">13px / font-sans Semibold</span>
+    </div>
+
+    <!-- Heading 3 Pricing -->
+    <div class="ds-row">
+      <span class="ds-row-label font-sans">Heading 3 — Pricing</span>
+      <h3 class="text-lg font-semibold text-slate-200 font-sans">Creator</h3>
+      <span class="ds-row-spec">18px / font-sans Semibold / slate-200</span>
+    </div>
+
+    <!-- Price Display -->
+    <div class="ds-row">
+      <span class="ds-row-label font-sans">Price Display</span>
+      <span class="text-4xl text-white font-manrope font-medium tracking-tighter">$29</span>
+      <span class="ds-row-spec">36px / Manrope Medium / white</span>
+    </div>
+
+    <!-- Paragraph Large -->
+    <div class="ds-row">
+      <span class="ds-row-label font-sans">Paragraph Large</span>
+      <p class="md:text-base text-sm font-normal text-slate-300 max-w-lg font-sans">
+        NovaPulse turns your ideas into royalty-free tracks tuned for streaming, shorts and live sessions.
+      </p>
+      <span class="ds-row-spec">14–16px / font-sans Regular / slate-300</span>
+    </div>
+
+    <!-- Paragraph Small -->
+    <div class="ds-row">
+      <span class="ds-row-label font-sans">Paragraph Small</span>
+      <p class="text-[12px] font-normal text-slate-400 font-sans">
+        Handpicked instrumentals and atmospheres tuned for creators and storytellers.
+      </p>
+      <span class="ds-row-spec">12px / font-sans Regular / slate-400</span>
+    </div>
+
+    <!-- Label / Meta -->
+    <div class="ds-row">
+      <span class="ds-row-label font-sans">Label / Meta</span>
+      <p class="text-[11px] font-normal text-slate-400 font-sans">
+        No copyright claims. Full commercial license included.
+      </p>
+      <span class="ds-row-spec">11px / font-sans Regular / slate-400</span>
+    </div>
+
+    <!-- Badge Text -->
+    <div class="ds-row">
+      <span class="ds-row-label font-sans">Badge Text</span>
+      <span class="text-[11px] font-medium text-slate-200 font-sans">New: Studio-grade stems in one prompt</span>
+      <span class="ds-row-spec">11px / font-sans Medium / slate-200</span>
+    </div>
+
+    <!-- Tiny / Timestamp -->
+    <div class="ds-row">
+      <span class="ds-row-label font-sans">Tiny / Timestamp</span>
+      <span class="text-[10px] text-slate-400 font-sans">110 BPM · Synthwave</span>
+      <span class="ds-row-spec">10px / font-sans Regular / slate-400</span>
+    </div>
+
+    <!-- Monospace time -->
+    <div class="ds-row">
+      <span class="ds-row-label font-sans">Mono / Time</span>
+      <span class="text-[10px] text-slate-400 font-mono">02:27</span>
+      <span class="ds-row-spec">10px / font-mono / slate-400</span>
+    </div>
+  </section>
+
+  <hr class="ds-divider"/>
+
+  <!-- ========================================================= -->
+  <!-- SECTION 2 — COLORS & SURFACES                             -->
+  <!-- ========================================================= -->
+  <section id="colors">
+    <p class="ds-section-label font-sans">02 — Colors & Surfaces</p>
+
+    <!-- Backgrounds -->
+    <h3 class="text-[13px] font-semibold text-slate-400 font-sans mb-4 mt-2">Backgrounds</h3>
+    <div class="ds-swatch-grid mb-8">
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-black"></div>
+        <div class="ds-swatch-info">
+          <div class="ds-swatch-name">Page Base</div>
+          <div class="ds-swatch-value">bg-black / #000000</div>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-slate-950"></div>
+        <div class="ds-swatch-info">
+          <div class="ds-swatch-name">Surface 950</div>
+          <div class="ds-swatch-value">bg-slate-950 / #020617</div>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background: rgba(15,23,42,0.4)"></div>
+        <div class="ds-swatch-info">
+          <div class="ds-swatch-name">Card Surface</div>
+          <div class="ds-swatch-value">bg-slate-900/40</div>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background: rgba(15,23,42,0.2)"></div>
+        <div class="ds-swatch-info">
+          <div class="ds-swatch-name">Card Surface Subtle</div>
+          <div class="ds-swatch-value">bg-slate-900/20</div>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background: rgba(255,255,255,0.05)"></div>
+        <div class="ds-swatch-info">
+          <div class="ds-swatch-name">Glass / Button</div>
+          <div class="ds-swatch-value">bg-white/5</div>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background: rgba(255,255,255,0.1)"></div>
+        <div class="ds-swatch-info">
+          <div class="ds-swatch-name">Glass Hover</div>
+          <div class="ds-swatch-value">bg-white/10</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text Colors -->
+    <h3 class="text-[13px] font-semibold text-slate-400 font-sans mb-4">Text</h3>
+    <div class="ds-swatch-grid mb-8">
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-black flex items-center justify-center">
+          <span class="text-slate-50 text-2xl font-manrope font-medium">Aa</span>
+        </div>
+        <div class="ds-swatch-info">
+          <div class="ds-swatch-name">Heading</div>
+          <div class="ds-swatch-value">text-slate-50 / #f8fafc</div>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-black flex items-center justify-center">
+          <span class="text-slate-200 text-2xl font-sans font-medium">Aa</span>
+        </div>
+        <div class="ds-swatch-info">
+          <div class="ds-swatch-name">Subheading</div>
+          <div class="ds-swatch-value">text-slate-200 / #e2e8f0</div>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-black flex items-center justify-center">
+          <span class="text-slate-300 text-2xl font-sans">Aa</span>
+        </div>
+        <div class="ds-swatch-info">
+          <div class="ds-swatch-name">Body</div>
+          <div class="ds-swatch-value">text-slate-300 / #cbd5e1</div>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-black flex items-center justify-center">
+          <span class="text-slate-400 text-2xl font-sans">Aa</span>
+        </div>
+        <div class="ds-swatch-info">
+          <div class="ds-swatch-name">Muted</div>
+          <div class="ds-swatch-value">text-slate-400 / #94a3b8</div>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-black flex items-center justify-center">
+          <span class="text-blue-400 text-2xl font-sans">Aa</span>
+        </div>
+        <div class="ds-swatch-info">
+          <div class="ds-swatch-name">Accent</div>
+          <div class="ds-swatch-value">text-blue-400 / #60a5fa</div>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-black flex items-center justify-center">
+          <span class="text-emerald-300 text-2xl font-sans">Aa</span>
+        </div>
+        <div class="ds-swatch-info">
+          <div class="ds-swatch-name">Success</div>
+          <div class="ds-swatch-value">text-emerald-300 / #6ee7b7</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accent Colors -->
+    <h3 class="text-[13px] font-semibold text-slate-400 font-sans mb-4">Accent Palette</h3>
+    <div class="ds-swatch-grid mb-8">
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-blue-600"></div>
+        <div class="ds-swatch-info">
+          <div class="ds-swatch-name">Blue 600</div>
+          <div class="ds-swatch-value">bg-blue-600 / #2563eb</div>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-blue-500"></div>
+        <div class="ds-swatch-info">
+          <div class="ds-swatch-name">Blue 500 — Primary</div>
+          <div class="ds-swatch-value">bg-blue-500 / #3b82f6</div>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-blue-400"></div>
+        <div class="ds-swatch-info">
+          <div class="ds-swatch-name">Blue 400</div>
+          <div class="ds-swatch-value">bg-blue-400 / #60a5fa</div>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-blue-300"></div>
+        <div class="ds-swatch-info">
+          <div class="ds-swatch-name">Blue 300</div>
+          <div class="ds-swatch-value">bg-blue-300 / #93c5fd</div>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background: rgba(59,130,246,0.2)"></div>
+        <div class="ds-swatch-info">
+          <div class="ds-swatch-name">Blue Tint</div>
+          <div class="ds-swatch-value">bg-blue-500/20</div>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background: rgba(59,130,246,0.1)"></div>
+        <div class="ds-swatch-info">
+          <div class="ds-swatch-name">Blue Subtle</div>
+          <div class="ds-swatch-value">bg-blue-500/10</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Borders -->
+    <h3 class="text-[13px] font-semibold text-slate-400 font-sans mb-4">Borders & Dividers</h3>
+    <div class="space-y-3 mb-8">
+      <div class="flex items-center gap-4">
+        <div class="h-8 w-32 rounded-lg border border-white/5 flex-shrink-0"></div>
+        <div>
+          <div class="text-[11px] text-slate-300 font-sans font-medium">Default border</div>
+          <div class="text-[10px] text-slate-500 font-mono">border-white/5 / rgba(255,255,255,0.05)</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="h-8 w-32 rounded-lg border border-white/10 flex-shrink-0"></div>
+        <div>
+          <div class="text-[11px] text-slate-300 font-sans font-medium">Subtle border</div>
+          <div class="text-[10px] text-slate-500 font-mono">border-white/10 / rgba(255,255,255,0.10)</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="h-8 w-32 rounded-lg border border-white/15 flex-shrink-0"></div>
+        <div>
+          <div class="text-[11px] text-slate-300 font-sans font-medium">Medium border</div>
+          <div class="text-[10px] text-slate-500 font-mono">border-white/15 / rgba(255,255,255,0.15)</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="h-8 w-32 rounded-lg border border-blue-300/20 flex-shrink-0"></div>
+        <div>
+          <div class="text-[11px] text-slate-300 font-sans font-medium">Accent border</div>
+          <div class="text-[10px] text-slate-500 font-mono">border-blue-300/20 / card accent</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="h-8 w-32 rounded-lg border border-blue-500/30 flex-shrink-0"></div>
+        <div>
+          <div class="text-[11px] text-slate-300 font-sans font-medium">Accent border strong</div>
+          <div class="text-[10px] text-slate-500 font-mono">border-blue-500/30 / dial ring</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gradients -->
+    <h3 class="text-[13px] font-semibold text-slate-400 font-sans mb-4">Gradients</h3>
+    <div class="ds-swatch-grid mb-2">
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background: linear-gradient(to bottom right, #60a5fa, #2563eb)"></div>
+        <div class="ds-swatch-info">
+          <div class="ds-swatch-name">Hero Gradient Text</div>
+          <div class="ds-swatch-value">gradient-to-br blue-400→blue-600</div>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background: linear-gradient(to right, #bfdbfe, #60a5fa, #2563eb)"></div>
+        <div class="ds-swatch-info">
+          <div class="ds-swatch-name">H2 Gradient Text</div>
+          <div class="ds-swatch-value">gradient-to-r blue-200→400→600</div>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background: linear-gradient(to bottom, #0f172a, #020617)"></div>
+        <div class="ds-swatch-info">
+          <div class="ds-swatch-name">Card Body</div>
+          <div class="ds-swatch-value">gradient-to-b slate-900→slate-950</div>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background: linear-gradient(rgba(15,23,42,0.9), rgba(2,6,23,0.8), rgba(0,0,0,0.9))"></div>
+        <div class="ds-swatch-info">
+          <div class="ds-swatch-name">Hero Card Wrap</div>
+          <div class="ds-swatch-value">gradient-to-b slate-900/80→slate-950/80→black/90</div>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background: linear-gradient(to bottom, rgba(15,23,42,0.9), rgba(2,6,23,0.6), rgba(2,6,23,0.2))"></div>
+        <div class="ds-swatch-info">
+          <div class="ds-swatch-name">Nav Background</div>
+          <div class="ds-swatch-value">gradient-to-b slate-950/90→60→20</div>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.7))"></div>
+        <div class="ds-swatch-info">
+          <div class="ds-swatch-name">Image Overlay</div>
+          <div class="ds-swatch-value">gradient-to-t black/70 via black/20</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glow / Shadow -->
+    <h3 class="text-[13px] font-semibold text-slate-400 font-sans mb-4 mt-8">Glows & Shadows</h3>
+    <div class="flex flex-wrap gap-6 mb-4">
+      <div class="flex flex-col items-center gap-2">
+        <div class="h-16 w-16 rounded-full bg-blue-500 shadow-[0_0_60px_rgba(34,197,235,0.55)]"></div>
+        <span class="text-[10px] text-slate-400 font-mono text-center">Dial glow<br/>shadow-[0_0_60px_rgba(34,197,235,0.55)]</span>
+      </div>
+      <div class="flex flex-col items-center gap-2">
+        <div class="h-16 w-16 rounded-full bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.2)]"></div>
+        <span class="text-[10px] text-slate-400 font-mono text-center">Badge glow<br/>shadow-[0_0_15px_rgba(59,130,246,0.2)]</span>
+      </div>
+      <div class="flex flex-col items-center gap-2">
+        <div class="h-16 w-16 rounded-full bg-blue-500 shadow-md shadow-blue-500/40"></div>
+        <span class="text-[10px] text-slate-400 font-mono text-center">Button shadow<br/>shadow-md shadow-blue-500/40</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="ds-divider"/>
+
+  <!-- ========================================================= -->
+  <!-- SECTION 3 — UI COMPONENTS                                 -->
+  <!-- ========================================================= -->
+  <section id="components">
+    <p class="ds-section-label font-sans">03 — UI Components</p>
+
+    <!-- ---- BUTTONS ---- -->
+    <h3 class="text-[13px] font-semibold text-slate-400 font-sans mb-6">Buttons</h3>
+
+    <!-- Primary CTA — animated border-spin -->
+    <div class="ds-row flex-wrap items-start gap-6">
+      <span class="ds-row-label font-sans">Primary CTA</span>
+      <div class="flex flex-wrap gap-6 items-center">
+        <!-- Default -->
+        <div class="flex flex-col items-center gap-2">
+          <div class="inline-block bg-transparent">
+            <button class="overflow-hidden focus:outline-none transition-all duration-300 text-lg font-medium text-white bg-black rounded-full pt-1 pr-10 pb-1 pl-10 relative" style="background: linear-gradient(#000000, #000000) padding-box, conic-gradient(from 0deg, transparent 0%, #1d4ed8 5%, #8484ff 15%, #1d4ed8 30%, transparent 40%, transparent 100%) border-box; box-shadow: inset 0 0 0 1px #1a1818; animation: border-spin 2.5s linear infinite; font-family: 'Inter', 'Helvetica Neue', sans-serif">
+              <span class="z-10 inline-block text-sm relative font-sans">Generate a track</span>
+              <span class="absolute inset-[2px] z-0 rounded-full" style="background: radial-gradient(circle at 2px 2px, white 0.5px, transparent 0) padding-box; background-size: 4px 4px; background-repeat: space; mask-image: conic-gradient(from 45deg, black, transparent 10% 90%, black); opacity: 0.4; animation: dot-spin 2.5s linear infinite;"></span>
+              <span class="z-[1] aspect-square -translate-x-1/2 -translate-y-1/2 w-full absolute top-1/2 right-0 bottom-0 left-1/2" style="background: linear-gradient(-50deg, transparent, #1d4ed8, transparent); opacity: 0.6; animation: shimmer 4s linear infinite"></span>
+            </button>
+          </div>
+          <span class="text-[10px] text-slate-500 font-mono">Default</span>
+        </div>
+        <!-- Smaller variant (nav) -->
+        <div class="flex flex-col items-center gap-2">
+          <div class="inline-block bg-transparent">
+            <button class="overflow-hidden focus:outline-none transition-all duration-300 text-lg font-medium text-white bg-black rounded-full pt-1 pr-5 pb-1 pl-5 relative" style="background: linear-gradient(#000000, #000000) padding-box, conic-gradient(from 0deg, transparent 0%, #1d4ed8 5%, #8484ff 15%, #1d4ed8 30%, transparent 40%, transparent 100%) border-box; box-shadow: inset 0 0 0 1px #1a1818; animation: border-spin 2.5s linear infinite; font-family: 'Inter', 'Helvetica Neue', sans-serif">
+              <span class="z-10 inline-block text-sm relative font-sans">Get started</span>
+              <span class="absolute inset-[2px] z-0 rounded-full" style="background: radial-gradient(circle at 2px 2px, white 0.5px, transparent 0) padding-box; background-size: 4px 4px; background-repeat: space; mask-image: conic-gradient(from 45deg, black, transparent 10% 90%, black); opacity: 0.4; animation: dot-spin 2.5s linear infinite;"></span>
+              <span class="z-[1] aspect-square -translate-x-1/2 -translate-y-1/2 w-full absolute top-1/2 right-0 bottom-0 left-1/2" style="background: linear-gradient(-50deg, transparent, #1d4ed8, transparent); opacity: 0.6; animation: shimmer 4s linear infinite"></span>
+            </button>
+          </div>
+          <span class="text-[10px] text-slate-500 font-mono">Nav variant (pr-5 pl-5)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ghost / Secondary -->
+    <div class="ds-row flex-wrap items-start gap-6">
+      <span class="ds-row-label font-sans">Ghost / Secondary</span>
+      <div class="flex flex-wrap gap-6 items-center">
+        <div class="flex flex-col items-center gap-2">
+          <button class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-medium text-slate-200 hover:bg-white/10 font-sans">
+            Watch demo
+          </button>
+          <span class="text-[10px] text-slate-500 font-mono">Default</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <button class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-medium text-slate-200 font-sans">
+            Watch demo
+          </button>
+          <span class="text-[10px] text-slate-500 font-mono">Hover (bg-white/10)</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <button class="hidden text-[11px] font-medium text-slate-300 hover:text-slate-100 md:inline-flex items-center gap-1 font-sans">
+            View all
+            <svg class="h-4 w-4" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 12L5 12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.4" stroke-width="2"></path><path d="M14 17L19 12L14 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          </button>
+          <button class="text-[11px] font-medium text-slate-300 inline-flex items-center gap-1 font-sans">
+            View all
+            <svg class="h-4 w-4" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 12L5 12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.4" stroke-width="2"></path><path d="M14 17L19 12L14 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          </button>
+          <span class="text-[10px] text-slate-500 font-mono">Text + arrow</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Icon Buttons -->
+    <div class="ds-row flex-wrap items-start gap-6">
+      <span class="ds-row-label font-sans">Icon Buttons</span>
+      <div class="flex flex-wrap gap-6 items-center">
+        <div class="flex flex-col items-center gap-2">
+          <button class="flex h-7 w-7 items-center justify-center rounded-full text-slate-950 shadow-md hover:scale-105 transition-all active:scale-95 bg-blue-500 shadow-blue-500/40 hover:bg-blue-400">
+            <svg class="w-[16px] h-[16px] ml-0.5" fill="none" height="16" stroke-width="2" style="color:rgb(2,6,23);width:16px;height:16px" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M23 12c0-1.035-.53-2.07-1.591-2.647L8.597 2.385C6.534 1.264 4 2.724 4 5.033V12z" fill="#f8fafc" fill-rule="evenodd"></path><path d="m8.597 21.615l12.812-6.968A2.99 2.99 0 0 0 23 12H4v6.967c0 2.31 2.534 3.769 4.597 2.648" fill="#f8fafc" opacity=".5"></path></svg>
+          </button>
+          <span class="text-[10px] text-slate-500 font-mono">Play h-7 w-7</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <button class="flex h-8 w-8 items-center justify-center rounded-full text-slate-950 shadow-md hover:scale-105 transition-transform cursor-pointer bg-blue-500 shadow-blue-500/40">
+            <svg class="w-[16px] h-[16px] ml-0.5" fill="none" stroke-width="2" style="width:16px;height:16px;color:rgb(2,6,23)" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" fill="currentColor"></path></svg>
+          </button>
+          <span class="text-[10px] text-slate-500 font-mono">Play card h-8 w-8</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <button class="flex h-6 w-6 items-center justify-center rounded-full border border-white/15 bg-white/5 hover:bg-white/10 transition-colors">
+            <span class="lucide lucide-skip-back h-3 w-3"></span>
+          </button>
+          <span class="text-[10px] text-slate-500 font-mono">Skip h-6 w-6</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing Buttons -->
+    <div class="ds-row flex-wrap items-start gap-6">
+      <span class="ds-row-label font-sans">Pricing Buttons</span>
+      <div class="flex flex-wrap gap-6 items-center">
+        <div class="flex flex-col items-center gap-2">
+          <button class="w-48 rounded-lg border border-white/10 bg-white/5 py-2.5 text-xs font-semibold text-white transition-all hover:bg-white/10 hover:scale-[1.02] active:scale-[0.98] font-sans">
+            Get Started
+          </button>
+          <span class="text-[10px] text-slate-500 font-mono">Subtle (Starter/Studio)</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <button class="w-48 rounded-lg bg-white py-2.5 text-xs font-bold text-slate-950 transition-all hover:bg-blue-50 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:scale-[1.02] active:scale-[0.98] font-sans">
+            Start Free Trial
+          </button>
+          <span class="text-[10px] text-slate-500 font-mono">White (Creator/highlight)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bento Action Buttons -->
+    <div class="ds-row flex-wrap items-start gap-6">
+      <span class="ds-row-label font-sans">Bento Actions</span>
+      <div class="flex flex-wrap gap-3 items-center">
+        <div class="flex flex-col items-center gap-2">
+          <button class="flex items-center gap-2 rounded-lg border border-white/5 bg-white/5 p-2 transition-all hover:bg-white/10 hover:scale-105 active:scale-95">
+            <div class="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500/20 text-blue-400">
+              <span class="lucide lucide-search h-3.5 w-3.5"></span>
+            </div>
+            <div class="h-1.5 w-8 rounded-full bg-white/20"></div>
+          </button>
+          <span class="text-[10px] text-slate-500 font-mono">Default</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <button class="flex items-center gap-2 rounded-lg border border-white/5 bg-white/10 p-2 scale-105">
+            <div class="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500/20 text-blue-400">
+              <span class="lucide lucide-mic h-3.5 w-3.5"></span>
+            </div>
+            <div class="h-1.5 w-8 rounded-full bg-white/20"></div>
+          </button>
+          <span class="text-[10px] text-slate-500 font-mono">Hover</span>
+        </div>
+      </div>
+    </div>
+
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,0.04);margin:32px 0"/>
+
+    <!-- ---- BADGES ---- -->
+    <h3 class="text-[13px] font-semibold text-slate-400 font-sans mb-6">Badges & Tags</h3>
+    <div class="ds-row flex-wrap gap-4">
+      <span class="ds-row-label font-sans">Card Badges</span>
+      <div class="flex flex-wrap gap-3 items-center">
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Premium</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Vocals</span>
+        <span class="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-300 font-sans">Ambient</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/20 text-blue-300 border border-blue-500/30 shadow-[0_0_10px_rgba(59,130,246,0.2)] font-sans">Popular</span>
+        <span class="rounded-full bg-emerald-500/10 px-1.5 py-0.5 text-[9px] text-emerald-400 border border-emerald-500/20 font-sans">-20%</span>
+      </div>
+    </div>
+    <div class="ds-row flex-wrap gap-4">
+      <span class="ds-row-label font-sans">Section Badges</span>
+      <div class="flex flex-wrap gap-3 items-center">
+        <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-2 py-1 text-[11px] font-medium text-slate-200 backdrop-blur font-sans">
+          <span class="flex h-5 w-5 items-center justify-center rounded-full text-[10px] text-slate-950 bg-gradient-to-tl from-blue-400 to-blue-600 font-sans">AI</span>
+          <span class="font-sans">New: Studio-grade stems</span>
+        </div>
+        <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium backdrop-blur text-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.2)] font-sans">
+          <span class="lucide lucide-sparkles h-3.5 w-3.5"></span>
+          Flexible Plans
+        </div>
+        <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium backdrop-blur shadow-[0_0_15px_rgba(34,211,238,0.15)] text-blue-400 font-sans">
+          <span class="lucide lucide-zap h-3.5 w-3.5"></span>
+          Workflow Engine
+        </div>
+      </div>
+    </div>
+
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,0.04);margin:32px 0"/>
+
+    <!-- ---- INPUT ---- -->
+    <h3 class="text-[13px] font-semibold text-slate-400 font-sans mb-6">Inputs</h3>
+    <div class="ds-row flex-wrap items-start gap-6">
+      <span class="ds-row-label font-sans">Search Input</span>
+      <div class="flex flex-col gap-4 w-full max-w-sm">
+        <div class="flex flex-col items-start gap-2">
+          <div class="flex items-center gap-2 rounded-lg border border-white/10 bg-slate-900 px-3 py-2 w-full">
+            <svg class="text-slate-500" fill="none" height="14" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="11.5" cy="11.5" fill="currentColor" fill-opacity="0.5" r="9.5"></circle>
+              <path d="M18.5 18.5L22 22" stroke="currentColor" stroke-linecap="round" stroke-width="2.5"></path>
+            </svg>
+            <span class="text-[10px] text-slate-500 font-sans">Add collaborator...</span>
+          </div>
+          <span class="text-[10px] text-slate-500 font-mono">Default — border-white/10</span>
+        </div>
+        <div class="flex flex-col items-start gap-2">
+          <div class="flex items-center gap-2 rounded-lg border border-blue-500/30 bg-slate-900 px-3 py-2 w-full">
+            <svg class="text-blue-400" fill="none" height="14" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="11.5" cy="11.5" fill="currentColor" fill-opacity="0.5" r="9.5"></circle>
+              <path d="M18.5 18.5L22 22" stroke="currentColor" stroke-linecap="round" stroke-width="2.5"></path>
+            </svg>
+            <span class="text-[10px] text-slate-400 font-sans">Add collaborator...</span>
+          </div>
+          <span class="text-[10px] text-slate-500 font-mono">Focus / Group-hover — border-blue-500/30</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toggle -->
+    <div class="ds-row flex-wrap items-start gap-6">
+      <span class="ds-row-label font-sans">Toggle Switch</span>
+      <div class="flex flex-wrap gap-8 items-center">
+        <div class="flex flex-col items-center gap-2">
+          <button aria-checked="false" class="relative h-6 w-11 rounded-full bg-slate-800 border border-white/5 transition-colors hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-950" role="switch">
+            <span class="absolute left-1 top-1 h-4 w-4 transform rounded-full bg-blue-500 transition-transform shadow-lg translate-x-0"></span>
+          </button>
+          <span class="text-[10px] text-slate-500 font-mono">Off (Monthly)</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <button aria-checked="true" class="relative h-6 w-11 rounded-full bg-slate-700 border border-white/5 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-950" role="switch">
+            <span class="absolute left-1 top-1 h-4 w-4 transform rounded-full bg-blue-500 transition-transform shadow-lg translate-x-5"></span>
+          </button>
+          <span class="text-[10px] text-slate-500 font-mono">On (Yearly)</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="text-xs font-medium text-slate-400 font-sans">Monthly</span>
+          <button aria-checked="false" class="relative h-6 w-11 rounded-full bg-slate-800 border border-white/5 transition-colors hover:bg-slate-700 focus:outline-none" id="ds-billing-btn" onclick="dsBillingToggle()" role="switch">
+            <span class="absolute left-1 top-1 h-4 w-4 transform rounded-full bg-blue-500 transition-transform shadow-lg translate-x-0" id="ds-billing-knob"></span>
+          </button>
+          <span class="text-xs font-medium text-slate-200 flex items-center gap-1.5 font-sans">
+            Yearly <span class="rounded-full bg-emerald-500/10 px-1.5 py-0.5 text-[9px] text-emerald-400 border border-emerald-500/20 font-sans">-20%</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,0.04);margin:32px 0"/>
+
+    <!-- ---- CARDS ---- -->
+    <h3 class="text-[13px] font-semibold text-slate-400 font-sans mb-6">Cards</h3>
+
+    <!-- Track Cards -->
+    <p class="text-[11px] text-slate-500 font-sans mb-3 font-medium">Track Cards — article.group (hover: scale image, no translate)</p>
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-8">
+      <!-- Card 1 -->
+      <article class="group flex flex-col overflow-hidden bg-gradient-to-br rounded-2xl from-blue-500/0 via-blue-500/10 to-blue-500/0" style="position: relative; --border-gradient: linear-gradient(315deg, rgba(255,255,255,0.1), rgba(255,255,255,0)); --border-radius-before: 16px">
+        <div class="overflow-hidden w-full h-32 relative">
+          <img alt="Prism Echoes cover" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" src="assets/6f6eb6d2-42ff-4512-877b-fe27ef_9d2c1d7d8d41.webp"/>
+          <div class="bg-gradient-to-t from-black/70 via-black/20 to-transparent absolute top-0 right-0 bottom-0 left-0"></div>
+          <button class="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center rounded-full text-slate-950 shadow-md hover:scale-105 transition-transform cursor-pointer z-10 bg-blue-500 shadow-blue-500/40">
+            <svg class="w-[16px] h-[16px] ml-0.5" fill="none" stroke-width="2" style="width:16px;height:16px;color:rgb(2,6,23)" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" fill="currentColor"></path></svg>
+          </button>
+        </div>
+        <div class="flex flex-1 flex-col pt-3.5 pr-3.5 pb-3.5 pl-3.5">
+          <div class="mb-1 flex items-center justify-between gap-2">
+            <h3 class="text-[13px] font-semibold tracking-tight text-slate-50 font-sans">Prism Echoes</h3>
+            <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Premium</span>
+          </div>
+          <div class="flex flex-wrap items-center justify-between gap-1 text-[11px] text-slate-400">
+            <span class="font-sans">Artist: VRL Collective</span>
+            <span class="font-sans">110 BPM · Synthwave</span>
+          </div>
+        </div>
+      </article>
+      <!-- Card 2 -->
+      <article class="group flex flex-col overflow-hidden bg-gradient-to-br rounded-2xl from-blue-500/0 via-blue-500/10 to-blue-500/0" style="position: relative; --border-gradient: linear-gradient(135deg, rgba(59,130,246,0), rgba(59,130,246,0.1), rgba(59,130,246,0)); --border-radius-before: 16px">
+        <div class="relative h-32 w-full overflow-hidden">
+          <img alt="Liquid Neon cover" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" src="assets/613b77bb-3447-42c7-93d2-2e919e_79a327500cd3.webp"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+          <button class="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center rounded-full text-slate-950 shadow-md hover:scale-105 transition-transform cursor-pointer z-10 bg-blue-500 shadow-blue-500/40">
+            <svg class="w-4 h-4 ml-0.5" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" fill="currentColor"></path></svg>
+          </button>
+        </div>
+        <div class="flex flex-1 flex-col pt-3.5 pr-3.5 pb-3.5 pl-3.5">
+          <div class="mb-1 flex items-center justify-between gap-2">
+            <h3 class="text-[13px] font-semibold tracking-tight text-slate-50 font-sans">Liquid Neon</h3>
+            <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Vocals</span>
+          </div>
+          <div class="flex flex-wrap items-center justify-between gap-1 text-[11px] text-slate-400">
+            <span class="font-sans">Artist: Nara Bloom</span>
+            <span class="font-sans">92 BPM · Alt Pop</span>
+          </div>
+        </div>
+      </article>
+      <!-- Card 3 -->
+      <article class="group flex flex-col overflow-hidden bg-gradient-to-br rounded-2xl from-blue-500/0 via-blue-500/10 to-blue-500/0">
+        <div class="relative h-32 w-full overflow-hidden">
+          <img alt="Aurora Drift cover" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" src="assets/6267906a-0a72-43a3-beb6-9255fe_3e94d5403119.webp"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+          <button class="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center rounded-full text-slate-950 shadow-md hover:scale-105 transition-transform cursor-pointer z-10 bg-blue-500 shadow-blue-500/40">
+            <svg class="w-4 h-4 ml-0.5" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" fill="currentColor"></path></svg>
+          </button>
+        </div>
+        <div class="flex flex-1 flex-col pt-3.5 pr-3.5 pb-3.5 pl-3.5">
+          <div class="mb-1 flex items-center justify-between gap-2">
+            <h3 class="text-[13px] font-semibold tracking-tight text-slate-50 font-sans">Aurora Drift</h3>
+            <span class="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-300 font-sans">Ambient</span>
+          </div>
+          <div class="flex flex-wrap items-center justify-between gap-1 text-[11px] text-slate-400">
+            <span class="font-sans">Artist: Zephyr Lab</span>
+            <span class="font-sans">74 BPM · Ambient</span>
+          </div>
+        </div>
+      </article>
+      <!-- Card 4 — hover state simulated -->
+      <article class="group flex flex-col overflow-hidden bg-gradient-to-br rounded-2xl from-blue-500/0 via-blue-500/10 to-blue-500/0" style="position: relative; --border-gradient: linear-gradient(315deg, rgba(255,255,255,0.1), rgba(255,255,255,0)); --border-radius-before: 16px">
+        <div class="overflow-hidden w-full h-32 relative">
+          <img alt="Cover" class="h-full w-full object-cover transition duration-500 scale-105" src="assets/491fb3a7-aa96-4243-8cf2-c33942_1e8a58e802de.webp"/>
+          <div class="bg-gradient-to-t from-black/70 via-black/20 to-transparent absolute top-0 right-0 bottom-0 left-0"></div>
+          <button class="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center rounded-full text-slate-950 shadow-md cursor-pointer z-10 bg-blue-500 shadow-blue-500/40">
+            <svg class="w-4 h-4 ml-0.5" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" fill="currentColor"></path></svg>
+          </button>
+        </div>
+        <div class="flex flex-1 flex-col pt-3.5 pr-3.5 pb-3.5 pl-3.5">
+          <div class="mb-1 flex items-center justify-between gap-2">
+            <h3 class="text-[13px] font-semibold tracking-tight text-slate-50 font-sans">Neon Pulse</h3>
+            <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">New</span>
+          </div>
+          <div class="flex flex-wrap items-center justify-between gap-1 text-[11px] text-slate-400">
+            <span class="font-sans">Artist: NovaPulse AI</span>
+            <span class="font-sans">120 BPM · Future Bass</span>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Bento Cards -->
+    <p class="text-[11px] text-slate-500 font-sans mb-3 font-medium">Bento Cards — hover: -translate-y-1, shadow-2xl, border glow</p>
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-3 mb-8">
+      <!-- Bento Standard -->
+      <div class="group flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:bg-slate-900/80 bg-slate-900/40 rounded-3xl pt-6 pr-6 pb-6 pl-6 relative backdrop-blur-md justify-between hover:shadow-blue-500/10 hover:border-blue-500/30" style="position: relative; --border-gradient: linear-gradient(135deg, rgba(59,130,246,0), rgba(59,130,246,0.2), rgba(59,130,246,0)); --border-radius-before: 24px">
+        <div class="relative z-10 mb-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-semibold text-slate-200 transition-colors group-hover:text-blue-100 font-sans">Live Session Sync</h3>
+            <div class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_#10b981]"></div>
+          </div>
+          <p class="mt-2 text-xs text-slate-400 font-sans">Invite vocalists and producers to collaborate on your project in real-time.</p>
+        </div>
+        <div class="relative z-10 space-y-3 rounded-xl border border-white/5 bg-slate-950/50 p-4 transition-all group-hover:border-white/10 group-hover:bg-slate-950/80">
+          <div class="flex items-center gap-2 rounded-lg border border-white/10 bg-slate-900 px-3 py-2 transition-colors group-hover:border-blue-500/30">
+            <svg class="text-slate-500 transition-colors group-hover:text-blue-400" fill="none" height="14" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg"><circle cx="11.5" cy="11.5" fill="currentColor" fill-opacity="0.5" r="9.5"></circle><path d="M18.5 18.5L22 22" stroke="currentColor" stroke-linecap="round" stroke-width="2.5"></path></svg>
+            <span class="text-[10px] text-slate-500 group-hover:text-slate-400 font-sans">Add collaborator...</span>
+          </div>
+          <div class="flex items-center justify-between rounded-lg bg-white/5 p-2 group-hover:bg-white/10 transition-colors cursor-pointer">
+            <div class="flex items-center gap-2">
+              <div class="h-8 w-8 overflow-hidden rounded-full bg-gradient-to-br p-[1px] to-blue-600 from-blue-500">
+                <img alt="User" class="h-full w-full rounded-full object-cover" src="assets/32bd1b67-735b-4792-bd12-9726c9_ee3fde37c899.webp"/>
+              </div>
+              <div>
+                <div class="text-[11px] font-medium text-slate-200 font-sans">Alex Rivera</div>
+                <div class="text-[9px] text-slate-400 font-sans">Lead Guitar</div>
+              </div>
+            </div>
+            <div class="flex flex-col items-end gap-1">
+              <span class="text-[9px] text-emerald-400 font-sans">Live</span>
+              <div class="h-1 w-12 overflow-hidden rounded-full bg-slate-800">
+                <div class="h-full w-3/4 rounded-full bg-emerald-500 animate-[pulse_1s_ease-in-out_infinite]"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Bento Gradient variant -->
+      <div class="group flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl bg-gradient-to-tl via-slate-900/40 rounded-3xl p-6 relative backdrop-blur-md hover:shadow-blue-500/10 hover:border-blue-500/30 from-blue-500/10 to-blue-500/10" style="--border-gradient: linear-gradient(315deg, rgba(59,130,246,0.2), rgba(59,130,246,0), rgba(59,130,246,0.2)); --border-radius-before: 24px">
+        <div class="z-10 flex-1 flex flex-col mb-4 relative justify-center">
+          <div class="relative rounded-xl border border-white/10 bg-slate-950/50 p-4 shadow-2xl transition-colors group-hover:bg-slate-950/80">
+            <div class="mb-3 flex items-center gap-2">
+              <svg class="text-slate-500" fill="none" height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="6" fill="currentColor" fill-opacity="0.5" r="4"></circle><path d="M20 17.5C20 19.9853 16.4183 22 12 22C7.58172 22 4 19.9853 4 17.5C4 15.0147 7.58172 13 12 13C16.4183 13 20 15.0147 20 17.5Z" fill="currentColor"></path></svg>
+              <div class="rounded-lg bg-white/5 px-3 py-1.5 text-[11px] text-slate-200 border border-white/5 transition-colors group-hover:border-blue-500/20 font-sans">Add shimmer reverb to vocals</div>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <button class="flex items-center gap-2 rounded-lg border border-white/5 bg-white/5 p-2 transition-all hover:bg-white/10 hover:scale-105 active:scale-95">
+                <div class="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500/20 text-blue-400"><span class="lucide lucide-search h-3.5 w-3.5"></span></div>
+                <div class="h-1.5 w-8 rounded-full bg-white/20"></div>
+              </button>
+              <button class="flex items-center gap-2 rounded-lg border border-white/5 bg-white/5 p-2 transition-all hover:bg-white/10 hover:scale-105 active:scale-95">
+                <div class="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500/20 text-blue-400"><span class="lucide lucide-mic h-3.5 w-3.5"></span></div>
+                <div class="h-1.5 w-8 rounded-full bg-white/20"></div>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="z-10 mt-auto relative">
+          <h3 class="text-lg font-semibold text-slate-200 transition-colors group-hover:text-blue-300 font-sans">Mix Assistant</h3>
+          <p class="mt-2 text-xs text-slate-400 font-sans">Natural language control for complex signal chains.</p>
+        </div>
+      </div>
+      <!-- Bento large (gradient-to-b black) -->
+      <div class="group flex flex-col overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl bg-gradient-to-b from-slate-900/60 to-black rounded-3xl pt-6 pr-6 pb-6 pl-6 relative hover:shadow-blue-500/20 hover:border-blue-500/30" style="position: relative; --border-gradient: linear-gradient(135deg, rgba(59,130,246,0), rgba(59,130,246,0.2), rgba(59,130,246,0)); --border-radius-before: 24px">
+        <div class="absolute top-0 right-0 bottom-0 left-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 from-blue-900/20"></div>
+        <div class="relative z-10 flex h-full min-h-[200px] flex-col items-center justify-center gap-4 py-8">
+          <div class="relative z-20 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-slate-950 group-hover:scale-110 transition-transform duration-300" style="animation: pulse-glow 3s infinite">
+            <div class="h-8 w-8 rounded-lg bg-gradient-to-br shadow-lg to-blue-500 from-blue-400 shadow-blue-500/50"></div>
+          </div>
+          <h3 class="text-center text-lg font-semibold text-slate-200 group-hover:text-white transition-colors font-sans">Universal Audio Hub</h3>
+          <p class="max-w-xs text-center text-xs text-slate-400 group-hover:text-slate-300 transition-colors font-sans">Connects with Ableton, Logic Pro, and FL Studio.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,0.04);margin:32px 0"/>
+
+    <!-- ---- PRICING CARDS ---- -->
+    <h3 class="text-[13px] font-semibold text-slate-400 font-sans mb-6">Pricing Cards</h3>
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-3 lg:gap-8">
+      <!-- Starter — subtle -->
+      <div class="group relative flex flex-col rounded-3xl border border-white/5 bg-slate-900/20 p-8 backdrop-blur-sm transition-all hover:bg-slate-900/40 hover:border-white/10">
+        <div class="mb-6">
+          <h3 class="text-lg font-semibold text-slate-200 font-sans">Starter</h3>
+          <div class="mt-4 flex items-baseline gap-1">
+            <span class="text-4xl text-white font-manrope font-medium tracking-tighter">$0</span>
+            <span class="text-sm text-slate-500 font-sans">/mo</span>
+          </div>
+          <p class="mt-4 text-xs leading-relaxed text-slate-400 font-sans">Perfect for hobbyists exploring AI music generation.</p>
+        </div>
+        <ul class="mb-8 space-y-3 flex-1">
+          <li class="flex items-start gap-3 text-xs text-slate-300 font-sans">
+            <svg class="h-4 w-4 shrink-0 text-slate-500" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            5 generations per day
+          </li>
+          <li class="flex items-start gap-3 text-xs text-slate-300 font-sans">
+            <svg class="h-4 w-4 shrink-0 text-slate-500" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Standard quality (128kbps)
+          </li>
+          <li class="flex items-start gap-3 text-xs text-slate-300 font-sans">
+            <svg class="h-4 w-4 shrink-0 text-slate-500" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Personal license
+          </li>
+        </ul>
+        <button class="w-full rounded-lg border border-white/10 bg-white/5 py-2.5 text-xs font-semibold text-white transition-all hover:bg-white/10 hover:scale-[1.02] active:scale-[0.98] font-sans">
+          Get Started
+        </button>
+      </div>
+
+      <!-- Creator — highlighted -->
+      <div class="group relative flex flex-col rounded-3xl bg-slate-900/40 p-8 backdrop-blur-md transition-all hover:-translate-y-1 shadow-2xl shadow-blue-900/10" style="--border-gradient: linear-gradient(to bottom, rgba(59,130,246,0.5), rgba(59,130,246,0.1)); position: relative;">
+        <div class="absolute inset-0 rounded-3xl p-[1px] bg-gradient-to-b from-blue-500/40 via-blue-500/10 to-transparent pointer-events-none"></div>
+        <div class="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-blue-500/20 blur-[60px] pointer-events-none group-hover:bg-blue-500/30 transition-colors duration-500"></div>
+        <div class="relative z-10 mb-6">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-semibold text-white font-sans">Creator</h3>
+            <span class="rounded-full bg-blue-500/20 px-2.5 py-0.5 text-[10px] font-medium text-blue-300 border border-blue-500/30 shadow-[0_0_10px_rgba(59,130,246,0.2)] font-sans">Popular</span>
+          </div>
+          <div class="mt-4 flex items-baseline gap-1">
+            <span class="text-4xl text-white font-manrope font-medium tracking-tighter">$29</span>
+            <span class="text-sm text-slate-500 font-sans">/mo</span>
+          </div>
+          <p class="mt-4 text-xs leading-relaxed text-slate-300 font-sans">For content creators who need high-quality stems and copyright clearance.</p>
+        </div>
+        <ul class="relative z-10 mb-8 space-y-3 flex-1">
+          <li class="flex items-start gap-3 text-xs text-slate-200 font-sans">
+            <div class="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-blue-500/20 text-blue-400">
+              <svg fill="none" height="10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="10"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            Unlimited generations
+          </li>
+          <li class="flex items-start gap-3 text-xs text-slate-200 font-sans">
+            <div class="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-blue-500/20 text-blue-400">
+              <svg fill="none" height="10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="10"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            High fidelity (WAV 24-bit)
+          </li>
+          <li class="flex items-start gap-3 text-xs text-slate-200 font-sans">
+            <div class="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-blue-500/20 text-blue-400">
+              <svg fill="none" height="10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="10"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            Global Commercial License
+          </li>
+        </ul>
+        <button class="relative z-10 w-full rounded-lg bg-white py-2.5 text-xs font-bold text-slate-950 transition-all hover:bg-blue-50 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:scale-[1.02] active:scale-[0.98] font-sans">
+          Start Free Trial
+        </button>
+      </div>
+
+      <!-- Studio — subtle -->
+      <div class="group relative flex flex-col rounded-3xl border border-white/5 bg-slate-900/20 p-8 backdrop-blur-sm transition-all hover:bg-slate-900/40 hover:border-white/10">
+        <div class="mb-6">
+          <h3 class="text-lg font-semibold text-slate-200 font-sans">Studio</h3>
+          <div class="mt-4 flex items-baseline gap-1">
+            <span class="text-4xl text-white font-manrope font-medium tracking-tighter">$99</span>
+            <span class="text-sm text-slate-500 font-sans">/mo</span>
+          </div>
+          <p class="mt-4 text-xs leading-relaxed text-slate-400 font-sans">Advanced tools for production houses and agencies managing multiple artists.</p>
+        </div>
+        <ul class="mb-8 space-y-3 flex-1">
+          <li class="flex items-start gap-3 text-xs text-slate-300 font-sans">
+            <svg class="h-4 w-4 shrink-0 text-slate-500" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            5 Team Seats included
+          </li>
+          <li class="flex items-start gap-3 text-xs text-slate-300 font-sans">
+            <svg class="h-4 w-4 shrink-0 text-slate-500" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            VST/AU Plugin Access
+          </li>
+          <li class="flex items-start gap-3 text-xs text-slate-300 font-sans">
+            <svg class="h-4 w-4 shrink-0 text-slate-500" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            API Access (10k req/mo)
+          </li>
+        </ul>
+        <button class="w-full rounded-lg border border-white/10 bg-white/5 py-2.5 text-xs font-semibold text-white transition-all hover:bg-white/10 hover:scale-[1.02] active:scale-[0.98] font-sans">
+          Contact Sales
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <hr class="ds-divider"/>
+
+  <!-- ========================================================= -->
+  <!-- SECTION 4 — LAYOUT & SPACING                              -->
+  <!-- ========================================================= -->
+  <section id="layout">
+    <p class="ds-section-label font-sans">04 — Layout & Spacing</p>
+
+    <!-- Container -->
+    <h3 class="text-[13px] font-semibold text-slate-400 font-sans mb-4">Container</h3>
+    <div class="ds-row">
+      <span class="ds-row-label font-sans">Page Container</span>
+      <div class="w-full">
+        <div class="border border-dashed border-white/10 rounded-xl p-4 relative">
+          <div class="border border-blue-500/30 border-dashed rounded-lg p-3 bg-blue-500/5">
+            <p class="text-[11px] text-blue-300 font-mono">max-w-6xl mx-auto px-4 lg:px-6</p>
+            <p class="text-[10px] text-slate-500 font-sans mt-1">Max width: 72rem (1152px) · Padding: 16px mobile / 24px desktop</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grids -->
+    <h3 class="text-[13px] font-semibold text-slate-400 font-sans mb-4 mt-8">Grid Patterns</h3>
+
+    <!-- Hero grid -->
+    <div class="mb-6">
+      <p class="text-[11px] text-slate-500 font-sans mb-2 font-medium">Hero — 2 col asymmetric</p>
+      <p class="text-[10px] text-slate-600 font-mono mb-3">grid lg:grid-cols-[1.1fr,0.9fr] lg:items-center gap-x-10 gap-y-10</p>
+      <div class="grid lg:grid-cols-[1.1fr,0.9fr] gap-x-10 gap-y-4">
+        <div class="border border-dashed border-white/10 rounded-xl p-6 bg-white/[0.02] flex items-center justify-center">
+          <span class="text-[11px] text-slate-500 font-mono">Copy column (1.1fr)</span>
+        </div>
+        <div class="border border-dashed border-white/10 rounded-xl p-6 bg-white/[0.02] flex items-center justify-center">
+          <span class="text-[11px] text-slate-500 font-mono">Visual column (0.9fr)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4-col track grid -->
+    <div class="mb-6">
+      <p class="text-[11px] text-slate-500 font-sans mb-2 font-medium">Track Cards — 4 col responsive</p>
+      <p class="text-[10px] text-slate-600 font-mono mb-3">grid gap-4 sm:grid-cols-2 lg:grid-cols-4</p>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="border border-dashed border-white/10 rounded-xl p-4 bg-white/[0.02] flex items-center justify-center h-16"><span class="text-[11px] text-slate-500 font-mono">col 1</span></div>
+        <div class="border border-dashed border-white/10 rounded-xl p-4 bg-white/[0.02] flex items-center justify-center h-16"><span class="text-[11px] text-slate-500 font-mono">col 2</span></div>
+        <div class="border border-dashed border-white/10 rounded-xl p-4 bg-white/[0.02] flex items-center justify-center h-16"><span class="text-[11px] text-slate-500 font-mono">col 3</span></div>
+        <div class="border border-dashed border-white/10 rounded-xl p-4 bg-white/[0.02] flex items-center justify-center h-16"><span class="text-[11px] text-slate-500 font-mono">col 4</span></div>
+      </div>
+    </div>
+
+    <!-- 3-col bento -->
+    <div class="mb-6">
+      <p class="text-[11px] text-slate-500 font-sans mb-2 font-medium">Bento Grid — 3 col equal + span-2 variant</p>
+      <p class="text-[10px] text-slate-600 font-mono mb-3">grid grid-cols-1 gap-6 md:grid-cols-3</p>
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div class="border border-dashed border-white/10 rounded-xl p-4 bg-white/[0.02] flex items-center justify-center h-24"><span class="text-[11px] text-slate-500 font-mono">col 1</span></div>
+        <div class="border border-dashed border-white/10 rounded-xl p-4 bg-white/[0.02] flex items-center justify-center h-24"><span class="text-[11px] text-slate-500 font-mono">col 2</span></div>
+        <div class="border border-dashed border-white/10 rounded-xl p-4 bg-white/[0.02] flex items-center justify-center h-24"><span class="text-[11px] text-slate-500 font-mono">col 3</span></div>
+      </div>
+      <div class="grid grid-cols-1 gap-5 md:grid-cols-3 mt-4">
+        <div class="border border-dashed border-blue-500/20 rounded-xl p-4 bg-blue-500/5 flex items-center justify-center h-24"><span class="text-[11px] text-blue-400 font-mono">col-span-1</span></div>
+        <div class="border border-dashed border-blue-500/20 rounded-xl p-4 bg-blue-500/5 flex items-center justify-center h-24 md:col-span-2"><span class="text-[11px] text-blue-400 font-mono">md:col-span-2</span></div>
+      </div>
+    </div>
+
+    <!-- Pricing 3-col -->
+    <div class="mb-6">
+      <p class="text-[11px] text-slate-500 font-sans mb-2 font-medium">Pricing — 3 col equal</p>
+      <p class="text-[10px] text-slate-600 font-mono mb-3">grid grid-cols-1 gap-6 md:grid-cols-3 lg:gap-8</p>
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div class="border border-dashed border-white/10 rounded-xl p-4 bg-white/[0.02] flex items-center justify-center h-16"><span class="text-[11px] text-slate-500 font-mono">Starter</span></div>
+        <div class="border border-dashed border-blue-500/20 rounded-xl p-4 bg-blue-500/5 flex items-center justify-center h-16"><span class="text-[11px] text-blue-400 font-mono">Creator (highlight)</span></div>
+        <div class="border border-dashed border-white/10 rounded-xl p-4 bg-white/[0.02] flex items-center justify-center h-16"><span class="text-[11px] text-slate-500 font-mono">Studio</span></div>
+      </div>
+    </div>
+
+    <!-- Section Spacing -->
+    <h3 class="text-[13px] font-semibold text-slate-400 font-sans mb-4 mt-8">Section Spacing</h3>
+    <div class="space-y-3">
+      <div class="ds-row">
+        <span class="ds-row-label font-sans">Hero Section</span>
+        <p class="text-[11px] text-slate-300 font-mono">pt-10 pb-16 lg:pt-14 · mt-12 mb-24 (inner grid)</p>
+      </div>
+      <div class="ds-row">
+        <span class="ds-row-label font-sans">Feature Sections</span>
+        <p class="text-[11px] text-slate-300 font-mono">mt-24 mr-auto mb-24 ml-auto pr-4 pb-24 pl-4 lg:px-6</p>
+      </div>
+      <div class="ds-row">
+        <span class="ds-row-label font-sans">Stats Section</span>
+        <p class="text-[11px] text-slate-300 font-mono">pt-16 pr-4 pb-16 pl-4 lg:py-24 lg:px-6</p>
+      </div>
+      <div class="ds-row">
+        <span class="ds-row-label font-sans">Footer</span>
+        <p class="text-[11px] text-slate-300 font-mono">pt-16 pb-8</p>
+      </div>
+      <div class="ds-row">
+        <span class="ds-row-label font-sans">Card Padding</span>
+        <p class="text-[11px] text-slate-300 font-mono">p-6 (bento) · p-8 (pricing) · pt-3.5 pr-3.5 pb-3.5 pl-3.5 (track card body)</p>
+      </div>
+      <div class="ds-row">
+        <span class="ds-row-label font-sans">Border Radius</span>
+        <p class="text-[11px] text-slate-300 font-mono">rounded-full (buttons/badges) · rounded-2xl (track cards) · rounded-3xl (bento/pricing) · rounded-[26px] (hero card outer) · rounded-[24px] (hero card inner)</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="ds-divider"/>
+
+  <!-- ========================================================= -->
+  <!-- SECTION 5 — MOTION & INTERACTION                          -->
+  <!-- ========================================================= -->
+  <section id="motion">
+    <p class="ds-section-label font-sans">05 — Motion & Interaction</p>
+
+    <style>
+      @keyframes enterUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-enter { animation: enterUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
+      .delay-100 { animation-delay: 0.1s; }
+      .delay-200 { animation-delay: 0.2s; }
+      .delay-300 { animation-delay: 0.3s; }
+      @keyframes orbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      .animate-orbit { animation: orbit 20s linear infinite; }
+      @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+      .animate-float { animation: float 4s ease-in-out infinite; }
+      @keyframes pulse-glow {
+        0%, 100% { box-shadow: 0 0 10px rgba(34, 211, 238, 0.2); }
+        50% { box-shadow: 0 0 20px rgba(34, 211, 238, 0.6); }
+      }
+      .animate-pulse-glow { animation: pulse-glow 3s infinite; }
+      @keyframes bar-bounce { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.6); } }
+      .animate-bar { animation: bar-bounce 1s ease-in-out infinite; }
+      @keyframes scan {
+        0% { top: 10%; opacity: 0; }
+        15% { opacity: 1; }
+        85% { opacity: 1; }
+        100% { top: 90%; opacity: 0; }
+      }
+      .animate-scan { animation: scan 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+
+      /* Motion demo card wrapper */
+      .motion-demo {
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 16px;
+        padding: 24px 20px 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        min-height: 140px;
+        justify-content: space-between;
+      }
+      .motion-demo-subject { flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; }
+      .motion-demo-label {
+        font-size: 10px;
+        color: #475569;
+        font-family: monospace;
+        text-align: center;
+        line-height: 1.5;
+      }
+    </style>
+
+    <!-- ---- Entrance Animations ---- -->
+    <h3 class="text-[13px] font-semibold text-slate-400 font-sans mb-2">Entrance Animations</h3>
+    <p class="text-[11px] text-slate-500 font-sans mb-6">Triggered on page load / scroll reveal. Reload page to replay.</p>
+    <div class="grid grid-cols-2 gap-4 sm:grid-cols-4 mb-8">
+      <div class="motion-demo">
+        <div class="motion-demo-subject">
+          <div class="animate-enter bg-slate-800 border border-white/10 rounded-2xl p-4 w-full text-center">
+            <span class="text-[11px] text-slate-300 font-sans">Card</span>
+          </div>
+        </div>
+        <div class="motion-demo-label">animate-enter<br/>delay-0<br/>0.6s cubic(0.16,1,0.3,1)</div>
+      </div>
+      <div class="motion-demo">
+        <div class="motion-demo-subject">
+          <div class="animate-enter delay-100 bg-slate-800 border border-white/10 rounded-2xl p-4 w-full text-center">
+            <span class="text-[11px] text-slate-300 font-sans">Card</span>
+          </div>
+        </div>
+        <div class="motion-demo-label">animate-enter<br/>delay-100<br/>+0.1s</div>
+      </div>
+      <div class="motion-demo">
+        <div class="motion-demo-subject">
+          <div class="animate-enter delay-200 bg-slate-800 border border-white/10 rounded-2xl p-4 w-full text-center">
+            <span class="text-[11px] text-slate-300 font-sans">Card</span>
+          </div>
+        </div>
+        <div class="motion-demo-label">animate-enter<br/>delay-200<br/>+0.2s</div>
+      </div>
+      <div class="motion-demo">
+        <div class="motion-demo-subject">
+          <div class="animate-enter delay-300 bg-slate-800 border border-white/10 rounded-2xl p-4 w-full text-center">
+            <span class="text-[11px] text-slate-300 font-sans">Card</span>
+          </div>
+        </div>
+        <div class="motion-demo-label">animate-enter<br/>delay-300<br/>+0.3s</div>
+      </div>
+    </div>
+
+    <!-- ---- Continuous Animations ---- -->
+    <h3 class="text-[13px] font-semibold text-slate-400 font-sans mb-6">Continuous Animations</h3>
+    <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 mb-8">
+
+      <!-- Dial spin -->
+      <div class="motion-demo">
+        <div class="motion-demo-subject">
+          <div class="relative h-16 w-16 rounded-full border border-blue-400/50 bg-gradient-to-b from-slate-900 via-slate-950 to-black shadow-[0_0_30px_rgba(34,197,235,0.35)]">
+            <div class="animate-[spin_10s_linear_infinite] opacity-70 rounded-full absolute top-[2px] right-[2px] bottom-[2px] left-[2px]" style="background: conic-gradient(transparent, rgba(59,130,246,0.4), transparent)"></div>
+            <div class="absolute inset-3 rounded-full bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950"></div>
+          </div>
+        </div>
+        <div class="motion-demo-label">animate-[spin_10s_<br/>linear_infinite]<br/>Dial ring</div>
+      </div>
+
+      <!-- Orbit -->
+      <div class="motion-demo">
+        <div class="motion-demo-subject">
+          <div class="relative h-16 w-16 flex items-center justify-center">
+            <div class="absolute h-16 w-16 rounded-full border border-dashed border-white/10"></div>
+            <div class="h-3 w-3 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]"></div>
+            <div class="absolute inset-0 flex items-center justify-center animate-orbit pointer-events-none">
+              <div class="absolute -top-1.5 left-1/2 -translate-x-1/2">
+                <div class="h-3 w-3 rounded-full bg-slate-300 border border-white/20"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="motion-demo-label">animate-orbit<br/>orbit 20s linear<br/>infinite</div>
+      </div>
+
+      <!-- Float -->
+      <div class="motion-demo">
+        <div class="motion-demo-subject">
+          <div class="animate-float bg-slate-800 border border-white/10 rounded-xl px-4 py-2 text-[11px] text-slate-300 font-sans shadow-lg">
+            Floating card
+          </div>
+        </div>
+        <div class="motion-demo-label">animate-float<br/>4s ease-in-out<br/>infinite ±4px Y</div>
+      </div>
+
+      <!-- Pulse Glow -->
+      <div class="motion-demo">
+        <div class="motion-demo-subject">
+          <div class="animate-pulse-glow h-14 w-14 rounded-2xl border border-white/10 bg-slate-950 flex items-center justify-center">
+            <div class="h-7 w-7 rounded-lg bg-gradient-to-br from-blue-400 to-blue-500 shadow-blue-500/50 shadow-lg"></div>
+          </div>
+        </div>
+        <div class="motion-demo-label">animate-pulse-glow<br/>3s box-shadow<br/>cyan 0.2→0.6 opacity</div>
+      </div>
+
+      <!-- Tailwind pulse (dot) -->
+      <div class="motion-demo">
+        <div class="motion-demo-subject">
+          <div class="flex items-center gap-3">
+            <div class="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_#10b981]"></div>
+            <span class="text-[11px] text-emerald-400 font-sans">Live</span>
+          </div>
+        </div>
+        <div class="motion-demo-label">animate-pulse (Tailwind)<br/>+ shadow-[0_0_8px_<br/>#10b981]</div>
+      </div>
+
+      <!-- Waveform bars -->
+      <div class="motion-demo">
+        <div class="motion-demo-subject">
+          <div class="flex items-end gap-[3px] h-10">
+            <div class="h-3 w-1.5 rounded-full animate-bar bg-blue-500" style="animation-delay:0.1s"></div>
+            <div class="h-5 w-1.5 rounded-full animate-bar bg-blue-500" style="animation-delay:0.2s"></div>
+            <div class="h-2 w-1.5 rounded-full animate-bar bg-blue-500" style="animation-delay:0.0s"></div>
+            <div class="h-7 w-1.5 rounded-full animate-bar bg-blue-500" style="animation-delay:0.3s"></div>
+            <div class="h-4 w-1.5 rounded-full animate-bar bg-blue-500" style="animation-delay:0.15s"></div>
+            <div class="h-3 w-1.5 rounded-full animate-bar bg-blue-500" style="animation-delay:0.4s"></div>
+            <div class="h-6 w-1.5 rounded-full animate-bar bg-blue-500" style="animation-delay:0.1s"></div>
+            <div class="h-2 w-1.5 rounded-full animate-bar bg-blue-500" style="animation-delay:0.25s"></div>
+          </div>
+        </div>
+        <div class="motion-demo-label">animate-bar<br/>bar-bounce 1s<br/>ease-in-out infinite</div>
+      </div>
+
+      <!-- Scan line -->
+      <div class="motion-demo">
+        <div class="motion-demo-subject">
+          <div class="relative h-16 w-24 rounded-xl overflow-hidden border border-white/10 bg-slate-950">
+            <div class="animate-scan absolute left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-blue-400/60 to-transparent" style="position:absolute"></div>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <span class="text-[9px] text-slate-500 font-mono">scanning...</span>
+            </div>
+          </div>
+        </div>
+        <div class="motion-demo-label">animate-scan<br/>2.5s cubic(0.4,0,0.2,1)<br/>top 10%→90% infinite</div>
+      </div>
+
+      <!-- Shine (bg-shine) -->
+      <div class="motion-demo">
+        <div class="motion-demo-subject">
+          <div class="bg-shine rounded-xl px-5 py-3 border border-white/5 text-[11px] text-slate-300 font-sans">
+            Loading state
+          </div>
+        </div>
+        <div class="motion-demo-label">bg-shine<br/>shine 2s linear<br/>infinite skeleton</div>
+      </div>
+
+      <!-- Gradient text pulse -->
+      <div class="motion-demo">
+        <div class="motion-demo-subject">
+          <span class="text-xl font-manrope font-medium tracking-tighter bg-clip-text text-transparent bg-gradient-to-r animate-pulse to-blue-400 from-blue-200">
+            deep focus
+          </span>
+        </div>
+        <div class="motion-demo-label">animate-pulse<br/>gradient-to-r<br/>blue-200→blue-400</div>
+      </div>
+
+    </div>
+
+    <!-- ---- CTA Button Animation (special) ---- -->
+    <h3 class="text-[13px] font-semibold text-slate-400 font-sans mb-4">Primary CTA — 3-layer animation</h3>
+    <div class="rounded-2xl border border-white/6 bg-white/[0.02] p-6 mb-8">
+      <div class="flex flex-wrap gap-8 items-start">
+        <div class="flex flex-col items-center gap-3">
+          <div class="inline-block bg-transparent">
+            <button class="overflow-hidden focus:outline-none transition-all duration-300 text-lg font-medium text-white bg-black rounded-full pt-1 pr-10 pb-1 pl-10 relative" style="background: linear-gradient(#000000, #000000) padding-box, conic-gradient(from 0deg, transparent 0%, #1d4ed8 5%, #8484ff 15%, #1d4ed8 30%, transparent 40%, transparent 100%) border-box; box-shadow: inset 0 0 0 1px #1a1818; animation: border-spin 2.5s linear infinite; font-family: 'Inter', 'Helvetica Neue', sans-serif">
+              <span class="z-10 inline-block text-sm relative font-sans">Generate a track</span>
+              <span class="absolute inset-[2px] z-0 rounded-full" style="background: radial-gradient(circle at 2px 2px, white 0.5px, transparent 0) padding-box; background-size: 4px 4px; background-repeat: space; mask-image: conic-gradient(from 45deg, black, transparent 10% 90%, black); opacity: 0.4; animation: dot-spin 2.5s linear infinite;"></span>
+              <span class="z-[1] aspect-square -translate-x-1/2 -translate-y-1/2 w-full absolute top-1/2 right-0 bottom-0 left-1/2" style="background: linear-gradient(-50deg, transparent, #1d4ed8, transparent); opacity: 0.6; animation: shimmer 4s linear infinite"></span>
+            </button>
+          </div>
+          <span class="text-[10px] text-slate-500 font-mono">Live preview</span>
+        </div>
+        <div class="flex-1 min-w-[240px] space-y-3">
+          <div class="flex items-start gap-3 text-[11px] text-slate-400 font-sans">
+            <span class="flex-shrink-0 h-5 w-5 rounded-full bg-blue-500/20 text-blue-400 text-[9px] flex items-center justify-center font-bold">1</span>
+            <div><span class="text-slate-200 font-medium">border-spin</span> — conic-gradient rotates 0→360deg. Duration: <span class="font-mono text-slate-300">2.5s linear infinite</span></div>
+          </div>
+          <div class="flex items-start gap-3 text-[11px] text-slate-400 font-sans">
+            <span class="flex-shrink-0 h-5 w-5 rounded-full bg-blue-500/20 text-blue-400 text-[9px] flex items-center justify-center font-bold">2</span>
+            <div><span class="text-slate-200 font-medium">dot-spin</span> — dot pattern mask-image conic rotates 45→405deg. Duration: <span class="font-mono text-slate-300">2.5s linear infinite</span></div>
+          </div>
+          <div class="flex items-start gap-3 text-[11px] text-slate-400 font-sans">
+            <span class="flex-shrink-0 h-5 w-5 rounded-full bg-blue-500/20 text-blue-400 text-[9px] flex items-center justify-center font-bold">3</span>
+            <div><span class="text-slate-200 font-medium">shimmer</span> — diagonal glow rotates 360deg. Duration: <span class="font-mono text-slate-300">4s linear infinite</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---- Hover / Interaction States ---- -->
+    <h3 class="text-[13px] font-semibold text-slate-400 font-sans mb-6">Hover & Interaction States</h3>
+    <div class="space-y-0 mb-8">
+      <div class="ds-row flex-wrap gap-4">
+        <span class="ds-row-label font-sans">Card Lift</span>
+        <div class="flex flex-wrap gap-6 items-center">
+          <div class="flex flex-col items-center gap-2">
+            <div class="group bg-slate-900/40 rounded-2xl p-4 w-36 border border-white/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:bg-slate-900/80 hover:shadow-blue-500/10 hover:border-blue-500/30 cursor-pointer text-center">
+              <span class="text-[11px] text-slate-400 font-sans group-hover:text-slate-200 transition-colors">Hover me</span>
+            </div>
+            <span class="text-[10px] text-slate-600 font-mono">hover:-translate-y-1<br/>duration-300</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="group bg-slate-900/40 rounded-2xl p-4 w-36 border border-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:bg-slate-900/60 hover:shadow-blue-500/20 hover:border-blue-500/30 cursor-pointer text-center">
+              <span class="text-[11px] text-slate-400 font-sans group-hover:text-slate-200 transition-colors">Hover me</span>
+            </div>
+            <span class="text-[10px] text-slate-600 font-mono">hover:-translate-y-1<br/>duration-500</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="group relative rounded-3xl bg-slate-900/40 p-4 w-36 border border-transparent transition-all cursor-pointer text-center -translate-y-1 shadow-2xl shadow-blue-900/10" style="background: rgba(15,23,42,0.4)">
+              <div class="absolute inset-0 rounded-3xl p-[1px] bg-gradient-to-b from-blue-500/40 via-blue-500/10 to-transparent pointer-events-none"></div>
+              <div class="absolute -top-8 -right-8 h-24 w-24 rounded-full bg-blue-500/20 blur-[40px] pointer-events-none"></div>
+              <span class="text-[11px] text-slate-200 font-sans relative z-10">Active state</span>
+            </div>
+            <span class="text-[10px] text-slate-600 font-mono">pricing card<br/>hover:-translate-y-1</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-row flex-wrap gap-4">
+        <span class="ds-row-label font-sans">Image Scale</span>
+        <div class="flex flex-wrap gap-6 items-center">
+          <div class="flex flex-col items-center gap-2">
+            <div class="group h-20 w-32 rounded-xl overflow-hidden cursor-pointer">
+              <img class="h-full w-full object-cover transition duration-500 group-hover:scale-105" src="assets/6f6eb6d2-42ff-4512-877b-fe27ef_9d2c1d7d8d41.webp" alt=""/>
+            </div>
+            <span class="text-[10px] text-slate-600 font-mono">group-hover:scale-105<br/>transition duration-500</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="group h-20 w-32 rounded-xl overflow-hidden cursor-pointer">
+              <img class="h-full w-full object-cover transition duration-500 scale-105" src="assets/613b77bb-3447-42c7-93d2-2e919e_79a327500cd3.webp" alt=""/>
+            </div>
+            <span class="text-[10px] text-slate-600 font-mono">scale-105 (hover state<br/>simulated)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-row flex-wrap gap-4">
+        <span class="ds-row-label font-sans">Button Scale</span>
+        <div class="flex flex-wrap gap-6 items-center">
+          <div class="flex flex-col items-center gap-2">
+            <button class="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500 shadow-md shadow-blue-500/40 hover:scale-105 transition-all active:scale-95 cursor-pointer">
+              <span class="lucide lucide-play h-3.5 w-3.5 text-slate-950"></span>
+            </button>
+            <span class="text-[10px] text-slate-600 font-mono">hover:scale-105<br/>active:scale-95</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <button class="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500 shadow-md shadow-blue-500/40 hover:bg-blue-400 transition-all cursor-pointer">
+              <span class="lucide lucide-play h-3.5 w-3.5 text-slate-950"></span>
+            </button>
+            <span class="text-[10px] text-slate-600 font-mono">hover:bg-blue-400<br/>(play button)</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div class="flex items-center gap-2">
+              <button class="w-32 rounded-lg border border-white/10 bg-white/5 py-2 text-xs font-semibold text-white transition-all hover:bg-white/10 hover:scale-[1.02] active:scale-[0.98] font-sans">Default</button>
+            </div>
+            <span class="text-[10px] text-slate-600 font-mono">hover:scale-[1.02]<br/>active:scale-[0.98]</span>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <button class="flex items-center gap-2 rounded-lg border border-white/5 bg-white/5 p-2 transition-all hover:bg-white/10 hover:scale-105 active:scale-95">
+              <div class="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500/20 text-blue-400"><span class="lucide lucide-search h-3.5 w-3.5"></span></div>
+              <div class="h-1.5 w-6 rounded-full bg-white/20"></div>
+            </button>
+            <span class="text-[10px] text-slate-600 font-mono">bento action<br/>hover:scale-105<br/>active:scale-95</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-row flex-wrap gap-4">
+        <span class="ds-row-label font-sans">Progress Bar</span>
+        <div class="flex flex-col items-start gap-3 w-full max-w-xs">
+          <div class="flex flex-col gap-2 w-full">
+            <div class="h-1.5 w-full overflow-hidden rounded-full bg-slate-800 cursor-pointer hover:h-2 transition-all">
+              <div class="h-full w-[55%] bg-gradient-to-r via-blue-400 from-blue-400 to-blue-500 transition-all duration-100 ease-linear"></div>
+            </div>
+            <span class="text-[10px] text-slate-600 font-mono">h-1.5 → hover:h-2 transition-all · progress: gradient-to-r</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-row flex-wrap gap-4">
+        <span class="ds-row-label font-sans">Nav / Text</span>
+        <div class="flex gap-6 items-center flex-wrap">
+          <div class="flex flex-col items-start gap-2">
+            <div class="flex gap-6">
+              <a class="text-slate-300 hover:text-slate-100 transition-colors text-sm font-sans cursor-pointer">Discover</a>
+              <a class="text-slate-300 hover:text-slate-100 transition-colors text-sm font-sans cursor-pointer">Studio</a>
+              <a class="text-slate-300 hover:text-slate-50 transition text-sm font-sans cursor-pointer">Pricing</a>
+            </div>
+            <span class="text-[10px] text-slate-600 font-mono">hover:text-slate-100 / hover:text-slate-50<br/>transition / transition-colors</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-row flex-wrap gap-4">
+        <span class="ds-row-label font-sans">Group-hover text</span>
+        <div class="flex gap-6 items-center flex-wrap">
+          <div class="group flex flex-col gap-1 p-4 rounded-xl bg-white/[0.02] border border-white/5 cursor-pointer w-48 hover:bg-white/5 transition-all">
+            <h3 class="text-[13px] font-semibold text-slate-200 transition-colors group-hover:text-blue-100 font-sans">Live Session Sync</h3>
+            <p class="text-[10px] text-slate-500 font-sans transition-colors group-hover:text-slate-400">group-hover:text-blue-100</p>
+          </div>
+          <div class="group flex flex-col gap-1 p-4 rounded-xl bg-white/[0.02] border border-white/5 cursor-pointer w-48 hover:bg-white/5 transition-all">
+            <h3 class="text-[13px] font-semibold text-slate-200 transition-colors group-hover:text-blue-300 font-sans">Mix Assistant</h3>
+            <p class="text-[10px] text-slate-500 font-sans transition-colors group-hover:text-slate-400">group-hover:text-blue-300</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transition Reference Table -->
+    <h3 class="text-[13px] font-semibold text-slate-400 font-sans mb-4">Transition Reference</h3>
+    <div class="rounded-2xl border border-white/6 bg-white/[0.02] overflow-hidden mb-2">
+      <div class="grid grid-cols-3 gap-0 text-[10px] font-semibold text-slate-500 font-sans px-4 py-2 border-b border-white/5 uppercase tracking-wider">
+        <span>Class</span><span>Duration</span><span>Usage</span>
+      </div>
+      <div class="divide-y divide-white/[0.04]">
+        <div class="grid grid-cols-3 gap-0 px-4 py-2 text-[11px]"><span class="font-mono text-slate-300">transition-all duration-300</span><span class="text-slate-400 font-sans">300ms</span><span class="text-slate-500 font-sans">Bento cards (lift + bg)</span></div>
+        <div class="grid grid-cols-3 gap-0 px-4 py-2 text-[11px]"><span class="font-mono text-slate-300">transition-all duration-500</span><span class="text-slate-400 font-sans">500ms</span><span class="text-slate-500 font-sans">Bento card 2 (slower lift)</span></div>
+        <div class="grid grid-cols-3 gap-0 px-4 py-2 text-[11px]"><span class="font-mono text-slate-300">transition duration-500</span><span class="text-slate-400 font-sans">500ms</span><span class="text-slate-500 font-sans">Track card image scale</span></div>
+        <div class="grid grid-cols-3 gap-0 px-4 py-2 text-[11px]"><span class="font-mono text-slate-300">transition-colors</span><span class="text-slate-400 font-sans">150ms</span><span class="text-slate-500 font-sans">Nav links, button bg, text</span></div>
+        <div class="grid grid-cols-3 gap-0 px-4 py-2 text-[11px]"><span class="font-mono text-slate-300">transition-transform duration-300</span><span class="text-slate-400 font-sans">300ms</span><span class="text-slate-500 font-sans">Center node scale (hub card)</span></div>
+        <div class="grid grid-cols-3 gap-0 px-4 py-2 text-[11px]"><span class="font-mono text-slate-300">transition-all</span><span class="text-slate-400 font-sans">150ms</span><span class="text-slate-500 font-sans">Progress bar height (h-1.5→h-2)</span></div>
+        <div class="grid grid-cols-3 gap-0 px-4 py-2 text-[11px]"><span class="font-mono text-slate-300">transition-all duration-100 ease-linear</span><span class="text-slate-400 font-sans">100ms</span><span class="text-slate-500 font-sans">Progress bar fill width</span></div>
+        <div class="grid grid-cols-3 gap-0 px-4 py-2 text-[11px]"><span class="font-mono text-slate-300">transition-opacity duration-500</span><span class="text-slate-400 font-sans">500ms</span><span class="text-slate-500 font-sans">Bento hover radial overlay</span></div>
+        <div class="grid grid-cols-3 gap-0 px-4 py-2 text-[11px]"><span class="font-mono text-slate-300">transition-all duration-300</span><span class="text-slate-400 font-sans">300ms</span><span class="text-slate-500 font-sans">Button CTA (focus:outline-none)</span></div>
+        <div class="grid grid-cols-3 gap-0 px-4 py-2 text-[11px]"><span class="font-mono text-slate-300">transition-transform</span><span class="text-slate-400 font-sans">150ms</span><span class="text-slate-500 font-sans">Play button (card), track img</span></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="ds-divider"/>
+
+  <!-- ========================================================= -->
+  <!-- SECTION 6 — ICONS                                         -->
+  <!-- ========================================================= -->
+  <section id="icons">
+    <p class="ds-section-label font-sans">06 — Icons</p>
+    <p class="text-[12px] text-slate-400 font-sans mb-8">
+      All icons use the <span class="font-mono text-slate-300">Lucide</span> icon font loaded via <code class="font-mono text-slate-300 bg-white/5 px-1 rounded">assets/lucide_37ad69c8e3b6.css</code>.<br/>
+      Usage: <code class="font-mono text-slate-300 bg-white/5 px-1 rounded text-[11px]">&lt;span class="lucide lucide-[name] h-X w-X text-[color]"&gt;&lt;/span&gt;</code>
+    </p>
+
+    <!-- Nav Icons -->
+    <h3 class="text-[13px] font-semibold text-slate-400 font-sans mb-4">Navigation Icons <span class="text-slate-600 text-[11px] font-normal ml-2">h-[14px] w-[14px]</span></h3>
+    <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3 mb-8">
+      <div class="flex flex-col items-center gap-2 p-3 rounded-xl border border-white/5 bg-white/[0.02]">
+        <svg class="lucide lucide-music h-5 w-5 text-slate-300" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+        <span class="text-[10px] text-slate-500 font-mono">lucide-music</span>
+        <span class="text-[9px] text-slate-600 font-sans">Tracks nav</span>
+      </div>
+      <div class="flex flex-col items-center gap-2 p-3 rounded-xl border border-white/5 bg-white/[0.02]">
+        <svg class="lucide lucide-audio-lines h-5 w-5 text-slate-300" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M2 10v3"></path><path d="M6 6v11"></path><path d="M10 3v18"></path><path d="M14 8v7"></path><path d="M18 5v13"></path><path d="M22 10v3"></path></svg>
+        <span class="text-[10px] text-slate-500 font-mono">lucide-audio-lines</span>
+        <span class="text-[9px] text-slate-600 font-sans">Soundscapes nav</span>
+      </div>
+      <div class="flex flex-col items-center gap-2 p-3 rounded-xl border border-white/5 bg-white/[0.02]">
+        <svg class="lucide lucide-sparkles h-5 w-5 text-slate-300" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
+        <span class="text-[10px] text-slate-500 font-mono">lucide-sparkles</span>
+        <span class="text-[9px] text-slate-600 font-sans">Spotlight / Plans</span>
+      </div>
+      <div class="flex flex-col items-center gap-2 p-3 rounded-xl border border-white/5 bg-white/[0.02]">
+        <svg class="lucide lucide-users h-5 w-5 text-slate-300" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="19" cy="4" r="4"></circle></svg>
+        <span class="text-[10px] text-slate-500 font-mono">lucide-users</span>
+        <span class="text-[9px] text-slate-600 font-sans">Creators nav</span>
+      </div>
+      <div class="flex flex-col items-center gap-2 p-3 rounded-xl border border-white/5 bg-white/[0.02]">
+        <svg class="lucide lucide-tag h-5 w-5 text-slate-300" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"></path><circle cx="7.5" cy="7.5" fill="currentColor" r=".5"></circle></svg>
+        <span class="text-[10px] text-slate-500 font-mono">lucide-tag</span>
+        <span class="text-[9px] text-slate-600 font-sans">Pricing nav</span>
+      </div>
+      <div class="flex flex-col items-center gap-2 p-3 rounded-xl border border-white/5 bg-white/[0.02]">
+        <svg class="lucide lucide-search h-5 w-5 text-slate-300" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+        <span class="text-[10px] text-slate-500 font-mono">lucide-search</span>
+        <span class="text-[9px] text-slate-600 font-sans">Library / bento</span>
+      </div>
+      <div class="flex flex-col items-center gap-2 p-3 rounded-xl border border-white/5 bg-white/[0.02]">
+        <svg class="lucide lucide-user-circle-2 h-5 w-5 text-slate-300" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><path d="M7 20.662V19c0-1.657 1.343-3 3-3h4c1.657 0 3 1.343 3 3v1.662"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        <span class="text-[10px] text-slate-500 font-mono">lucide-user-circle-2</span>
+        <span class="text-[9px] text-slate-600 font-sans">Account nav</span>
+      </div>
+    </div>
+
+    <!-- UI / Component Icons -->
+    <h3 class="text-[13px] font-semibold text-slate-400 font-sans mb-4">UI & Component Icons <span class="text-slate-600 text-[11px] font-normal ml-2">h-3.5 w-3.5 / h-4 w-4</span></h3>
+    <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3 mb-8">
+      <div class="flex flex-col items-center gap-2 p-3 rounded-xl border border-white/5 bg-white/[0.02]">
+        <span class="lucide lucide-flame h-6 w-6 text-amber-400"></span>
+        <span class="text-[10px] text-slate-500 font-mono">lucide-flame</span>
+        <span class="text-[9px] text-slate-600 font-sans text-amber-400/60">text-amber-400</span>
+      </div>
+      <div class="flex flex-col items-center gap-2 p-3 rounded-xl border border-white/5 bg-white/[0.02]">
+        <span class="lucide lucide-waves h-6 w-6 text-blue-400"></span>
+        <span class="text-[10px] text-slate-500 font-mono">lucide-waves</span>
+        <span class="text-[9px] text-blue-400/60 font-sans">text-blue-400</span>
+      </div>
+      <div class="flex flex-col items-center gap-2 p-3 rounded-xl border border-white/5 bg-white/[0.02]">
+        <span class="lucide lucide-bot h-6 w-6 text-blue-400"></span>
+        <span class="text-[10px] text-slate-500 font-mono">lucide-bot</span>
+        <span class="text-[9px] text-blue-400/60 font-sans">text-blue-400</span>
+      </div>
+      <div class="flex flex-col items-center gap-2 p-3 rounded-xl border border-white/5 bg-white/[0.02]">
+        <span class="lucide lucide-music-3 h-6 w-6 text-slate-300"></span>
+        <span class="text-[10px] text-slate-500 font-mono">lucide-music-3</span>
+        <span class="text-[9px] text-slate-600 font-sans">Mobile nav</span>
+      </div>
+      <div class="flex flex-col items-center gap-2 p-3 rounded-xl border border-white/5 bg-white/[0.02]">
+        <span class="lucide lucide-radar h-6 w-6 text-slate-300"></span>
+        <span class="text-[10px] text-slate-500 font-mono">lucide-radar</span>
+        <span class="text-[9px] text-slate-600 font-sans">Mobile nav</span>
+      </div>
+      <div class="flex flex-col items-center gap-2 p-3 rounded-xl border border-white/5 bg-white/[0.02]">
+        <span class="lucide lucide-rocket h-6 w-6 text-slate-300"></span>
+        <span class="text-[10px] text-slate-500 font-mono">lucide-rocket</span>
+        <span class="text-[9px] text-slate-600 font-sans">Mobile nav</span>
+      </div>
+      <div class="flex flex-col items-center gap-2 p-3 rounded-xl border border-white/5 bg-white/[0.02]">
+        <span class="lucide lucide-shield-check h-6 w-6 text-emerald-400"></span>
+        <span class="text-[10px] text-slate-500 font-mono">lucide-shield-check</span>
+        <span class="text-[9px] text-emerald-400/60 font-sans">text-emerald-400</span>
+      </div>
+      <div class="flex flex-col items-center gap-2 p-3 rounded-xl border border-white/5 bg-white/[0.02]">
+        <span class="lucide lucide-twitter h-6 w-6 text-slate-300"></span>
+        <span class="text-[10px] text-slate-500 font-mono">lucide-twitter</span>
+        <span class="text-[9px] text-slate-600 font-sans">Footer social</span>
+      </div>
+      <div class="flex flex-col items-center gap-2 p-3 rounded-xl border border-white/5 bg-white/[0.02]">
+        <span class="lucide lucide-github h-6 w-6 text-slate-300"></span>
+        <span class="text-[10px] text-slate-500 font-mono">lucide-github</span>
+        <span class="text-[9px] text-slate-600 font-sans">Footer social</span>
+      </div>
+      <div class="flex flex-col items-center gap-2 p-3 rounded-xl border border-white/5 bg-white/[0.02]">
+        <span class="lucide lucide-youtube h-6 w-6 text-slate-300"></span>
+        <span class="text-[10px] text-slate-500 font-mono">lucide-youtube</span>
+        <span class="text-[9px] text-slate-600 font-sans">Footer social</span>
+      </div>
+    </div>
+
+    <!-- Sizes -->
+    <h3 class="text-[13px] font-semibold text-slate-400 font-sans mb-4">Size Variants & Color Inheritance</h3>
+    <div class="rounded-2xl border border-white/6 bg-white/[0.02] overflow-hidden mb-4">
+      <div class="grid grid-cols-4 text-[10px] font-semibold text-slate-500 font-sans px-4 py-2 border-b border-white/5 uppercase tracking-wider">
+        <span>Size class</span><span>px</span><span>Usage</span><span>Preview</span>
+      </div>
+      <div class="divide-y divide-white/[0.04]">
+        <div class="grid grid-cols-4 px-4 py-3 items-center">
+          <span class="font-mono text-[11px] text-slate-300">h-3 w-3</span>
+          <span class="text-[11px] text-slate-400 font-sans">12px</span>
+          <span class="text-[11px] text-slate-500 font-sans">Skip buttons (player)</span>
+          <span class="lucide lucide-skip-back h-3 w-3 text-slate-300"></span>
+        </div>
+        <div class="grid grid-cols-4 px-4 py-3 items-center">
+          <span class="font-mono text-[11px] text-slate-300">h-3.5 w-3.5</span>
+          <span class="text-[11px] text-slate-400 font-sans">14px</span>
+          <span class="text-[11px] text-slate-500 font-sans">Hero dial, badge icons</span>
+          <span class="lucide lucide-flame h-3.5 w-3.5 text-amber-400"></span>
+        </div>
+        <div class="grid grid-cols-4 px-4 py-3 items-center">
+          <span class="font-mono text-[11px] text-slate-300">h-4 w-4</span>
+          <span class="text-[11px] text-slate-400 font-sans">16px</span>
+          <span class="text-[11px] text-slate-500 font-sans">Arrow icon, pricing check</span>
+          <span class="lucide lucide-sparkles h-4 w-4 text-blue-400"></span>
+        </div>
+        <div class="grid grid-cols-4 px-4 py-3 items-center">
+          <span class="font-mono text-[11px] text-slate-300">h-5 w-5 / h-6 w-6</span>
+          <span class="text-[11px] text-slate-400 font-sans">20–24px</span>
+          <span class="text-[11px] text-slate-500 font-sans">Feature section icons</span>
+          <span class="lucide lucide-waves h-5 w-5 text-blue-400"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color usage -->
+    <div class="flex flex-wrap gap-6 mt-6">
+      <div class="flex items-center gap-2">
+        <span class="lucide lucide-flame h-5 w-5 text-amber-400"></span>
+        <span class="text-[11px] text-slate-400 font-sans">text-amber-400 — live/trending indicator</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="lucide lucide-bot h-5 w-5 text-blue-400"></span>
+        <span class="text-[11px] text-slate-400 font-sans">text-blue-400 — AI / accent icons</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="lucide lucide-shield-check h-5 w-5 text-emerald-400"></span>
+        <span class="text-[11px] text-slate-400 font-sans">text-emerald-400 — trust / verified</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="lucide lucide-music h-5 w-5 text-slate-300"></span>
+        <span class="text-[11px] text-slate-400 font-sans">text-slate-300 — navigation / neutral</span>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /sections wrapper -->
+</div>
+</div>
+
+</body>
+</html>
