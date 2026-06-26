@@ -1,13 +1,80 @@
 <html class="h-full" lang="pt-BR">
 <head>
 <meta charset="utf-8"/>
-<title>FusionPrime — Tech Solutions</title>
-<meta name="description" content="Desenvolvemos softwares, apps e sistemas que transformam ideias em soluções digitais de alto impacto. Python, Flutter, ERP, IA."/>
+<title>FusionPrime — Soluções Digitais para o seu Negócio</title>
+<meta name="description" content="Criamos aplicativos, sites institucionais, landing pages, integrações com ERP e plataformas SaaS sob medida. Tecnologia que gera resultado para o seu negócio."/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="apple-touch-icon" href="logo.png"/>
+<meta name="theme-color" content="#0b1220"/>
+
+<!-- Open Graph (preview ao compartilhar em WhatsApp, LinkedIn, etc.) -->
+<!-- NOTA: ajuste o domínio abaixo (og:url / og:image) quando o site for publicado -->
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="FusionPrime"/>
+<meta property="og:locale" content="pt_BR"/>
+<meta property="og:title" content="FusionPrime — Soluções Digitais para o seu Negócio"/>
+<meta property="og:description" content="Aplicativos, sites institucionais, landing pages, integrações com ERP e plataformas SaaS sob medida. Tecnologia que gera resultado para o seu negócio."/>
+<meta property="og:url" content="https://fusionprime.com.br/"/>
+<meta property="og:image" content="https://fusionprime.com.br/logo.png"/>
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="FusionPrime — Soluções Digitais para o seu Negócio"/>
+<meta name="twitter:description" content="Aplicativos, sites, landing pages, integrações com ERP e plataformas SaaS sob medida."/>
+<meta name="twitter:image" content="https://fusionprime.com.br/logo.png"/>
 <script src="assets/resource_3fa48481346f.es"></script>
 <link href="assets/lucide_37ad69c8e3b6.css" rel="stylesheet"/>
 <link href="assets/css2_9b8bf743d4a8.css" rel="stylesheet"/>
+<style>
+/* Map .lucide-* classes to the bundled lucide icon font */
+[class*="lucide-"] { display:inline-flex; align-items:center; justify-content:center; line-height:1; font-style:normal; vertical-align:middle; }
+[class*="lucide-"]::before { font-family:'lucide' !important; font-style:normal; font-weight:400; font-size:1em; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+[class*="lucide-"].h-3::before { font-size:12px; }
+[class*="lucide-"].h-3\.5::before { font-size:14px; }
+[class*="lucide-"].h-4::before { font-size:16px; }
+[class*="lucide-"].h-5::before { font-size:20px; }
+[class*="lucide-"].h-6::before { font-size:24px; }
+[class*="lucide-"].h-8::before { font-size:32px; }
+[class*="lucide-"].h-9::before { font-size:36px; }
+[class*="lucide-"].h-\[13px\]::before { font-size:13px; }
+[class*="lucide-"].h-\[14px\]::before { font-size:14px; }
+[class*="lucide-"].h-\[18px\]::before { font-size:18px; }
+.lucide-arrow-right::before { content:"\e049"; }
+.lucide-box::before { content:"\e061"; }
+.lucide-briefcase::before { content:"\e062"; }
+.lucide-check-circle::before { content:"\e07c"; }
+.lucide-circle-check-big::before { content:"\e07c"; }
+.lucide-code-2::before { content:"\e206"; }
+.lucide-database::before { content:"\e0ad"; }
+.lucide-globe::before { content:"\e0e8"; }
+.lucide-image::before { content:"\e0f6"; }
+.lucide-landmark::before { content:"\e23a"; }
+.lucide-layers::before { content:"\e529"; }
+.lucide-lightbulb::before { content:"\e1c2"; }
+.lucide-mail::before { content:"\e10f"; }
+.lucide-message-circle::before { content:"\e116"; }
+.lucide-monitor::before { content:"\e11d"; }
+.lucide-send::before { content:"\e152"; }
+.lucide-shield-check::before { content:"\e1ff"; }
+.lucide-shopping-bag::before { content:"\e15b"; }
+.lucide-smartphone::before { content:"\e163"; }
+.lucide-sparkles::before { content:"\e412"; }
+.lucide-tag::before { content:"\e17f"; }
+.lucide-user-circle-2::before { content:"\e462"; }
+.lucide-zap::before { content:"\e1b4"; }
+</style>
 <style>.font-manrope { font-family: 'Manrope', sans-serif !important; }</style>
+<style>
+  html { scroll-behavior: smooth; }
+  /* Offset so section titles aren't hidden behind the sticky header */
+  section[id] { scroll-margin-top: 88px; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
 <style>
 [style*="--border-gradient"]::before {
   content: "";
@@ -110,10 +177,13 @@ tailwind.config = {
         <span class="lucide lucide-layers h-[14px] w-[14px]"></span>Serviços
       </a>
       <a href="#ia" class="transition hover:text-slate-50 text-xs font-normal text-slate-300 font-sans flex items-center gap-2">
-        <span class="lucide lucide-sparkles h-[14px] w-[14px]"></span>IA & Inovação
+        <span class="lucide lucide-sparkles h-[14px] w-[14px]"></span>Por que nós
       </a>
       <a href="#portfolio" class="transition hover:text-slate-50 text-xs font-normal text-slate-300 font-sans flex items-center gap-2">
         <span class="lucide lucide-briefcase h-[14px] w-[14px]"></span>Portfólio
+      </a>
+      <a href="#produtos" class="transition hover:text-slate-50 text-xs font-normal text-slate-300 font-sans flex items-center gap-2">
+        <span class="lucide lucide-box h-[14px] w-[14px]"></span>Produtos
       </a>
       <a href="#sobre" class="transition hover:text-slate-50 text-xs font-normal text-slate-300 font-sans flex items-center gap-2">
         <span class="lucide lucide-user-circle-2 h-[14px] w-[14px]"></span>Sobre
@@ -145,8 +215,9 @@ tailwind.config = {
   <div class="hidden md:hidden absolute top-full left-0 w-full bg-slate-950/95 border-b border-white/5 backdrop-blur-xl shadow-2xl origin-top transition-all" id="mobile-menu">
     <nav class="flex flex-col px-4 py-6 gap-5">
       <a href="#servicos" class="inline-flex gap-3 text-sm font-normal text-slate-300 hover:text-white items-center font-sans transition-colors"><span class="lucide lucide-layers h-4 w-4"></span>Serviços</a>
-      <a href="#ia" class="inline-flex gap-3 text-sm font-normal text-slate-300 hover:text-white items-center font-sans transition-colors"><span class="lucide lucide-sparkles h-4 w-4"></span>IA & Inovação</a>
+      <a href="#ia" class="inline-flex gap-3 text-sm font-normal text-slate-300 hover:text-white items-center font-sans transition-colors"><span class="lucide lucide-sparkles h-4 w-4"></span>Por que nós</a>
       <a href="#portfolio" class="inline-flex gap-3 text-sm font-normal text-slate-300 hover:text-white items-center font-sans transition-colors"><span class="lucide lucide-briefcase h-4 w-4"></span>Portfólio</a>
+      <a href="#produtos" class="inline-flex gap-3 text-sm font-normal text-slate-300 hover:text-white items-center font-sans transition-colors"><span class="lucide lucide-box h-4 w-4"></span>Produtos</a>
       <a href="#sobre" class="inline-flex gap-3 text-sm font-normal text-slate-300 hover:text-white items-center font-sans transition-colors"><span class="lucide lucide-user-circle-2 h-4 w-4"></span>Sobre</a>
       <a href="#planos" class="inline-flex gap-3 text-sm font-normal text-slate-300 hover:text-white items-center font-sans transition-colors"><span class="lucide lucide-tag h-4 w-4"></span>Planos</a>
       <a href="#contato" class="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-normal text-slate-200 hover:bg-white/10 transition-colors font-sans">Fale conosco</a>
@@ -163,17 +234,17 @@ tailwind.config = {
     <div class="space-y-6">
       <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-2 py-1 text-[11px] font-medium text-slate-200 backdrop-blur">
         <span class="flex h-5 w-5 items-center justify-center rounded-full text-[10px] text-white bg-gradient-to-tl from-blue-400 to-blue-600 font-sans font-bold">20</span>
-        <span class="font-sans">Anos de experiência em desenvolvimento de software</span>
+        <span class="font-sans">20 anos transformando negócios em soluções digitais</span>
       </div>
       <h1 class="sm:text-5xl md:text-6xl text-4xl text-slate-50 font-manrope font-medium tracking-tighter">
-        Transformamos ideias em
+        Tecnologia que
         <span class="bg-clip-text text-transparent bg-gradient-to-br from-blue-400 to-blue-600 font-manrope font-medium tracking-tighter">
-          soluções digitais
+          impulsiona
         </span>
-        de alto impacto
+        o seu negócio
       </h1>
       <p class="md:text-base text-sm font-normal text-slate-300 max-w-lg font-sans">
-        Do backend robusto ao app mobile, do ERP ao recurso com IA — entregamos mais que código. Entregamos resultados que movem o seu negócio.
+        Aplicativos, sites institucionais, landing pages, integrações com ERP e plataformas SaaS. Criamos a solução sob medida que a sua empresa precisa para crescer — você foca no negócio, nós cuidamos da tecnologia.
       </p>
       <div class="flex flex-wrap gap-3 items-center">
         <div class="inline-block bg-transparent">
@@ -187,7 +258,7 @@ tailwind.config = {
           Ver portfólio
         </a>
         <p class="w-full text-[11px] font-normal text-slate-400 sm:w-auto font-sans">
-          Sem enrolação. Direto ao ponto. Resultado garantido.
+          Atendimento direto. Prazo claro. Resultado entregue.
         </p>
       </div>
     </div>
@@ -207,52 +278,121 @@ tailwind.config = {
               </span>
             </div>
           </div>
-          <!-- Central visual -->
-          <div class="relative mx-auto mt-2 h-64 w-full max-w-md">
-            <div class="absolute inset-x-4 bottom-0 top-10 rounded-[140px] border bg-gradient-to-b via-transparent to-transparent blur-2xl border-blue-500/30 from-blue-500/25"></div>
-            <div class="flex flex-col h-full relative items-center justify-end">
-              <div class="flex w-full mb-4 relative items-center justify-center">
-                <div class="relative h-40 w-40 sm:h-48 sm:w-48 rounded-full border bg-gradient-to-b from-slate-900 via-slate-950 to-black shadow-[0_0_60px_rgba(34,197,235,0.55)] border-blue-400/50">
-                  <div class="animate-[spin_10s_linear_infinite] opacity-70 rounded-full absolute top-[2px] right-[2px] bottom-[2px] left-[2px]" style="background: conic-gradient(transparent, rgba(59,130,246,0.5), transparent)"></div>
-                  <div class="absolute inset-4 rounded-full bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950"></div>
-                  <!-- Center text -->
-                  <div class="flex flex-col h-full z-10 pointer-events-none relative gap-1 items-center justify-center">
-                    <div class="text-base font-semibold tracking-tight text-slate-50 font-sans">E-commerce</div>
-                    <div class="flex items-center gap-1 text-[10px] font-medium text-slate-400 font-sans">
-                      <span class="lucide lucide-code-2 h-3.5 w-3.5 text-blue-400"></span>
-                      Python · Flutter
-                    </div>
-                  </div>
-                  <!-- Orbiting tech pills -->
-                  <div class="absolute top-0 right-0 bottom-0 left-0">
-                    <div class="absolute -top-3 left-1/2 -translate-x-1/2">
-                      <div class="flex gap-1.5 text-[10px] shadow-blue-500/40 font-medium text-slate-100 bg-slate-900/90 rounded-full pt-1 pr-2 pb-1 pl-2 shadow-lg items-center">
-                        <span class="lucide lucide-globe h-3 w-3 text-blue-400"></span>
-                        <span class="font-sans">Web App</span>
-                      </div>
-                    </div>
-                    <div class="absolute left-0 top-14 -translate-x-1/3">
-                      <div class="flex gap-1.5 text-[10px] shadow-blue-500/40 font-medium text-slate-100 bg-slate-900/90 rounded-full pt-1 pr-2 pb-1 pl-2 shadow-lg items-center">
-                        <span class="lucide lucide-smartphone h-3 w-3 text-blue-400"></span>
-                        <span class="font-sans">Mobile</span>
-                      </div>
-                    </div>
-                    <div class="absolute right-0 top-14 translate-x-1/3">
-                      <div class="flex gap-1.5 text-[10px] shadow-blue-500/40 font-medium text-slate-100 bg-slate-900/90 rounded-full pt-1 pr-2 pb-1 pl-2 shadow-lg items-center">
-                        <span class="lucide lucide-sparkles h-3 w-3 text-blue-400"></span>
-                        <span class="font-sans">IA</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          <!-- Central visual — neural network -->
+          <style>
+            @keyframes nn2-dash  { to { stroke-dashoffset: -100; } }
+            @keyframes nn2-pulse { 0%,100% { opacity:.55; transform:scale(.88); } 50% { opacity:1; transform:scale(1.18); } }
+            .nn2-base  { fill:none; stroke:url(#nn2line); stroke-width:1; opacity:.13; }
+            .nn2-route { fill:none; stroke:url(#nn2route); stroke-width:2; stroke-linecap:round; stroke-dasharray:16 84; animation:nn2-dash 3.4s linear infinite; }
+            .nn2-node  { fill:url(#nn2node); transform-box:fill-box; transform-origin:center; animation:nn2-pulse 3.6s ease-in-out infinite; }
+          </style>
+          <div class="relative mx-auto mt-2 h-64 w-full max-w-md px-2">
+            <div class="absolute inset-x-8 top-8 bottom-8 rounded-full bg-blue-600/15 blur-3xl"></div>
+            <div class="absolute right-6 top-1/2 h-24 w-24 -translate-y-1/2 rounded-full bg-cyan-400/20 blur-2xl"></div>
+            <svg viewBox="0 0 440 260" class="relative z-10 h-full w-full" preserveAspectRatio="xMidYMid meet" fill="none">
+              <defs>
+                <radialGradient id="nn2node" cx="50%" cy="45%" r="55%">
+                  <stop offset="0%" stop-color="#ecfeff"/>
+                  <stop offset="40%" stop-color="#38bdf8"/>
+                  <stop offset="100%" stop-color="#2563eb"/>
+                </radialGradient>
+                <radialGradient id="nn2out" cx="50%" cy="45%" r="55%">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="35%" stop-color="#67e8f9"/>
+                  <stop offset="100%" stop-color="#3b82f6"/>
+                </radialGradient>
+                <linearGradient id="nn2line" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%"   stop-color="#3b82f6" stop-opacity="0"/>
+                  <stop offset="50%"  stop-color="#60a5fa" stop-opacity="1"/>
+                  <stop offset="100%" stop-color="#818cf8" stop-opacity="0"/>
+                </linearGradient>
+                <linearGradient id="nn2route" gradientUnits="userSpaceOnUse" x1="40" y1="0" x2="410" y2="0">
+                  <stop offset="0%"   stop-color="#22d3ee"/>
+                  <stop offset="55%"  stop-color="#3b82f6"/>
+                  <stop offset="100%" stop-color="#a5b4fc"/>
+                </linearGradient>
+                <filter id="nn2soft" x="-60%" y="-60%" width="220%" height="220%">
+                  <feGaussianBlur stdDeviation="1.6" result="b"/>
+                  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+                <filter id="nn2glow" x="-90%" y="-90%" width="280%" height="280%">
+                  <feGaussianBlur stdDeviation="3" result="b"/>
+                  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <!-- Base mesh (subtle, curved) -->
+              <g>
+                <path class="nn2-base" d="M55,75 C122.5,75 122.5,50 190,50"/>
+                <path class="nn2-base" d="M55,75 C122.5,75 122.5,103 190,103"/>
+                <path class="nn2-base" d="M55,130 C122.5,130 122.5,50 190,50"/>
+                <path class="nn2-base" d="M55,130 C122.5,130 122.5,103 190,103"/>
+                <path class="nn2-base" d="M55,130 C122.5,130 122.5,156 190,156"/>
+                <path class="nn2-base" d="M55,130 C122.5,130 122.5,209 190,209"/>
+                <path class="nn2-base" d="M55,185 C122.5,185 122.5,156 190,156"/>
+                <path class="nn2-base" d="M55,185 C122.5,185 122.5,209 190,209"/>
+                <path class="nn2-base" d="M190,50 C255,50 255,75 320,75"/>
+                <path class="nn2-base" d="M190,50 C255,50 255,130 320,130"/>
+                <path class="nn2-base" d="M190,103 C255,103 255,75 320,75"/>
+                <path class="nn2-base" d="M190,103 C255,103 255,130 320,130"/>
+                <path class="nn2-base" d="M190,156 C255,156 255,130 320,130"/>
+                <path class="nn2-base" d="M190,156 C255,156 255,185 320,185"/>
+                <path class="nn2-base" d="M190,209 C255,209 255,130 320,130"/>
+                <path class="nn2-base" d="M190,209 C255,209 255,185 320,185"/>
+                <path class="nn2-base" d="M320,75 C360,75 360,130 400,130"/>
+                <path class="nn2-base" d="M320,130 C360,130 360,130 400,130"/>
+                <path class="nn2-base" d="M320,185 C360,185 360,130 400,130"/>
+              </g>
+              <!-- Glowing signal routes (input -> solution) -->
+              <g filter="url(#nn2soft)">
+                <path class="nn2-route" pathLength="100" style="animation-delay:0s"    d="M55,75 C122.5,75 122.5,50 190,50 C255,50 255,75 320,75 C360,75 360,130 400,130"/>
+                <path class="nn2-route" pathLength="100" style="animation-delay:1.1s"  d="M55,130 C122.5,130 122.5,156 190,156 C255,156 255,130 320,130 C360,130 360,130 400,130"/>
+                <path class="nn2-route" pathLength="100" style="animation-delay:2.2s"  d="M55,185 C122.5,185 122.5,209 190,209 C255,209 255,185 320,185 C360,185 360,130 400,130"/>
+              </g>
+              <!-- Nodes -->
+              <g filter="url(#nn2glow)">
+                <circle class="nn2-node" cx="55"  cy="75"  r="5.5" style="animation-delay:0s"/>
+                <circle class="nn2-node" cx="55"  cy="130" r="5.5" style="animation-delay:.5s"/>
+                <circle class="nn2-node" cx="55"  cy="185" r="5.5" style="animation-delay:1s"/>
+                <circle class="nn2-node" cx="190" cy="50"  r="6" style="animation-delay:.3s"/>
+                <circle class="nn2-node" cx="190" cy="103" r="6" style="animation-delay:.8s"/>
+                <circle class="nn2-node" cx="190" cy="156" r="6" style="animation-delay:.2s"/>
+                <circle class="nn2-node" cx="190" cy="209" r="6" style="animation-delay:1.2s"/>
+                <circle class="nn2-node" cx="320" cy="75"  r="6" style="animation-delay:.6s"/>
+                <circle class="nn2-node" cx="320" cy="130" r="6" style="animation-delay:1.1s"/>
+                <circle class="nn2-node" cx="320" cy="185" r="6" style="animation-delay:.4s"/>
+              </g>
+              <!-- Output node with energy ripples -->
+              <g>
+                <circle cx="400" cy="130" r="10" fill="none" stroke="#67e8f9" stroke-width="1.5" opacity="0">
+                  <animate attributeName="r" values="9;30" dur="2.8s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" values="0.55;0" dur="2.8s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="400" cy="130" r="10" fill="none" stroke="#67e8f9" stroke-width="1.5" opacity="0">
+                  <animate attributeName="r" values="9;30" dur="2.8s" begin="1.4s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" values="0.55;0" dur="2.8s" begin="1.4s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="400" cy="130" r="9.5" fill="url(#nn2out)" filter="url(#nn2glow)"/>
+              </g>
+            </svg>
+            <!-- Story labels -->
+            <div class="absolute left-1 top-1/2 -translate-y-1/2 z-20">
+              <div class="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-slate-900/90 px-2.5 py-1 text-[10px] font-medium text-slate-100 shadow-lg backdrop-blur font-sans">
+                <span class="lucide lucide-lightbulb h-3 w-3 text-blue-400"></span>
+                Ideia
+              </div>
+            </div>
+            <div class="absolute right-1 top-1/2 -translate-y-1/2 z-20">
+              <div class="inline-flex items-center gap-1.5 rounded-full border border-blue-400/30 bg-blue-500/15 px-2.5 py-1 text-[10px] font-medium text-blue-100 shadow-[0_0_12px_rgba(59,130,246,0.3)] backdrop-blur font-sans">
+                <span class="lucide lucide-check-circle h-3 w-3 text-blue-300"></span>
+                Solução
               </div>
             </div>
           </div>
           <!-- Progress footer -->
           <div class="relative mb-4 flex w-full items-center justify-between px-6 text-[11px] text-slate-300">
             <div class="flex items-center gap-2">
-              <span class="lucide lucide-bot h-3.5 w-3.5 text-blue-400"></span>
-              <span class="font-sans">Stack: Python + Flutter + IA</span>
+              <span class="lucide lucide-circle-check-big h-3.5 w-3.5 text-blue-400"></span>
+              <span class="font-sans">Acompanhamento em cada etapa</span>
             </div>
             <span class="text-[10px] text-emerald-400 font-sans font-medium">Entregue ✓</span>
           </div>
@@ -287,119 +427,93 @@ tailwind.config = {
     </div>
     <h2 class="text-3xl text-slate-50 md:text-5xl font-manrope font-medium tracking-tighter">
       Soluções sob medida para
-      <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-200 via-blue-400 to-blue-600 font-manrope font-medium tracking-tighter">cada desafio</span>
+      <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-200 via-blue-400 to-blue-600 font-manrope font-medium tracking-tighter">cada negócio</span>
     </h2>
     <p class="max-w-xl text-sm text-slate-400 leading-relaxed font-sans">
-      Desenvolvemos com as tecnologias certas para cada problema — sem over-engineering, sem atalhos. Qualidade e entrega são inegociáveis.
+      Do primeiro contato à entrega final, cuidamos de toda a parte técnica para você. Soluções pensadas para gerar resultado real — mais clientes, mais eficiência, mais crescimento.
     </p>
   </div>
   <!-- Service cards -->
   <div class="grid grid-cols-1 gap-6 md:grid-cols-2 gap-x-6 gap-y-6">
-    <!-- Web -->
+    <!-- Aplicativos -->
     <div class="group flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:bg-slate-900/80 bg-slate-900/40 rounded-3xl p-6 relative backdrop-blur-md hover:shadow-blue-500/10 animate-enter delay-100" style="position:relative; --border-gradient:linear-gradient(135deg,rgba(59,130,246,0),rgba(59,130,246,0.2),rgba(59,130,246,0)); --border-radius-before:24px">
-      <div class="mb-6">
-        <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-lg group-hover:scale-110 transition-transform duration-300 text-blue-400 mb-4">
-          <span class="lucide lucide-globe h-6 w-6"></span>
-        </div>
-        <h3 class="text-lg font-semibold text-slate-200 transition-colors group-hover:text-blue-100 font-sans">Desenvolvimento Web</h3>
-        <p class="mt-2 text-sm text-slate-400 leading-relaxed font-sans">Aplicações web robustas e escaláveis. Especialistas em Python (Django, FastAPI, Flask), mas também dominamos Node.js, TypeScript e React para entregas full-stack completas.</p>
-      </div>
-      <div class="flex flex-wrap gap-2 mt-auto">
-        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Python</span>
-        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Django</span>
-        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">FastAPI</span>
-        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Node.js</span>
-        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">TypeScript</span>
-        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">React</span>
-      </div>
-    </div>
-    <!-- Mobile -->
-    <div class="group flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:bg-slate-900/80 bg-slate-900/40 rounded-3xl p-6 relative backdrop-blur-md hover:shadow-blue-500/10 animate-enter delay-200" style="position:relative; --border-gradient:linear-gradient(135deg,rgba(59,130,246,0),rgba(59,130,246,0.2),rgba(59,130,246,0)); --border-radius-before:24px">
       <div class="mb-6">
         <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-lg group-hover:scale-110 transition-transform duration-300 text-blue-400 mb-4">
           <span class="lucide lucide-smartphone h-6 w-6"></span>
         </div>
-        <h3 class="text-lg font-semibold text-slate-200 transition-colors group-hover:text-blue-100 font-sans">App Mobile</h3>
-        <p class="mt-2 text-sm text-slate-400 leading-relaxed font-sans">Apps nativos para iOS e Android com uma única base de código. Flutter garante performance nativa, UI fluida e experiência premium — sem sacrificar velocidade de entrega.</p>
+        <h3 class="text-lg font-semibold text-slate-200 transition-colors group-hover:text-blue-100 font-sans">Aplicativos</h3>
+        <p class="mt-2 text-sm text-slate-400 leading-relaxed font-sans">Apps para iOS, Android e web que aproximam você dos seus clientes. Rápidos, intuitivos e prontos para escalar — uma experiência que fideliza e gera novas vendas.</p>
       </div>
       <div class="flex flex-wrap gap-2 mt-auto">
-        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Flutter</span>
-        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Dart</span>
-        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">iOS</span>
-        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Android</span>
-        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Cross-platform</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">iOS & Android</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Web</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Notificações</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Experiência premium</span>
       </div>
     </div>
-    <!-- ERP -->
+    <!-- Sites Institucionais -->
+    <div class="group flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:bg-slate-900/80 bg-slate-900/40 rounded-3xl p-6 relative backdrop-blur-md hover:shadow-blue-500/10 animate-enter delay-200" style="position:relative; --border-gradient:linear-gradient(135deg,rgba(59,130,246,0),rgba(59,130,246,0.2),rgba(59,130,246,0)); --border-radius-before:24px">
+      <div class="mb-6">
+        <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-lg group-hover:scale-110 transition-transform duration-300 text-blue-400 mb-4">
+          <span class="lucide lucide-globe h-6 w-6"></span>
+        </div>
+        <h3 class="text-lg font-semibold text-slate-200 transition-colors group-hover:text-blue-100 font-sans">Sites Institucionais</h3>
+        <p class="mt-2 text-sm text-slate-400 leading-relaxed font-sans">A presença digital que passa credibilidade. Sites profissionais, rápidos e fáceis de encontrar no Google — a cara da sua empresa na internet, do jeito que ela merece.</p>
+      </div>
+      <div class="flex flex-wrap gap-2 mt-auto">
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Design exclusivo</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Otimizado p/ Google</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Responsivo</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Fácil de gerenciar</span>
+      </div>
+    </div>
+    <!-- Integrações & ERP -->
     <div class="group flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:bg-slate-900/80 bg-slate-900/40 rounded-3xl p-6 relative backdrop-blur-md hover:shadow-blue-500/10 animate-enter delay-300" style="position:relative; --border-gradient:linear-gradient(135deg,rgba(59,130,246,0),rgba(59,130,246,0.2),rgba(59,130,246,0)); --border-radius-before:24px">
       <div class="mb-6">
         <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-lg group-hover:scale-110 transition-transform duration-300 text-blue-400 mb-4">
           <span class="lucide lucide-database h-6 w-6"></span>
         </div>
-        <h3 class="text-lg font-semibold text-slate-200 transition-colors group-hover:text-blue-100 font-sans">Sistemas ERP</h3>
-        <p class="mt-2 text-sm text-slate-400 leading-relaxed font-sans">Sistemas de gestão empresarial desenvolvidos sob medida para o seu negócio. Módulos de estoque, financeiro, RH, vendas e muito mais — integrados, rápidos e seguros.</p>
+        <h3 class="text-lg font-semibold text-slate-200 transition-colors group-hover:text-blue-100 font-sans">Integrações & ERP</h3>
+        <p class="mt-2 text-sm text-slate-400 leading-relaxed font-sans">Conectamos seus sistemas e automatizamos a operação. Estoque, financeiro, vendas e emissão de nota fiscal conversando entre si — menos retrabalho, mais controle do seu negócio.</p>
       </div>
       <div class="flex flex-wrap gap-2 mt-auto">
-        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Customizado</span>
-        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Integrado</span>
-        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Financeiro</span>
-        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Estoque</span>
-        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">RH</span>
-      </div>
-    </div>
-    <!-- IA -->
-    <div class="group flex flex-col overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl bg-gradient-to-tl via-slate-900/40 rounded-3xl p-6 relative backdrop-blur-md hover:shadow-blue-500/20 animate-enter delay-400 from-blue-500/10 to-blue-500/10" style="position:relative; --border-gradient:linear-gradient(315deg,rgba(59,130,246,0.25),rgba(59,130,246,0),rgba(59,130,246,0.25)); --border-radius-before:24px">
-      <div class="absolute top-0 right-0 bottom-0 left-0 bg-[radial-gradient(circle_at_80%_20%,_var(--tw-gradient-stops))] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 from-blue-900/25 rounded-3xl"></div>
-      <div class="mb-6 relative z-10">
-        <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-blue-500/30 bg-blue-500/10 shadow-lg group-hover:scale-110 transition-transform duration-300 text-blue-400 mb-4 animate-pulse-glow">
-          <span class="lucide lucide-sparkles h-6 w-6"></span>
-        </div>
-        <h3 class="text-lg font-semibold text-slate-200 transition-colors group-hover:text-blue-300 font-sans">Features com IA</h3>
-        <p class="mt-2 text-sm text-slate-400 leading-relaxed font-sans">Integramos inteligência artificial diretamente nos seus produtos — recomendações, classificação, geração de conteúdo, chatbots e muito mais. IA aplicada, não experimental.</p>
-      </div>
-      <div class="flex flex-wrap gap-2 mt-auto relative z-10">
-        <span class="rounded-full px-2.5 py-0.5 text-[10px] font-medium bg-blue-500/20 text-blue-300 border border-blue-500/30 shadow-[0_0_10px_rgba(59,130,246,0.2)] font-sans">LLMs</span>
-        <span class="rounded-full px-2.5 py-0.5 text-[10px] font-medium bg-blue-500/20 text-blue-300 border border-blue-500/30 font-sans">OpenAI</span>
-        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">RAG</span>
-        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Classificação</span>
-        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Chatbots</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Automação</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Estoque & Financeiro</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Nota fiscal</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Sincronização</span>
       </div>
     </div>
     <!-- Landing Pages -->
-    <div class="group md:col-span-2 flex flex-col md:flex-row overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:bg-slate-900/80 bg-slate-900/40 rounded-3xl p-6 relative backdrop-blur-md hover:shadow-blue-500/10 animate-enter delay-400" style="position:relative; --border-gradient:linear-gradient(135deg,rgba(59,130,246,0),rgba(59,130,246,0.2),rgba(59,130,246,0)); --border-radius-before:24px">
-      <div class="mb-6 md:mb-0 md:mr-8 md:w-1/2">
+    <div class="group flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:bg-slate-900/80 bg-slate-900/40 rounded-3xl p-6 relative backdrop-blur-md hover:shadow-blue-500/10 animate-enter delay-400" style="position:relative; --border-gradient:linear-gradient(135deg,rgba(59,130,246,0),rgba(59,130,246,0.2),rgba(59,130,246,0)); --border-radius-before:24px">
+      <div class="mb-6">
         <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-lg group-hover:scale-110 transition-transform duration-300 text-blue-400 mb-4">
           <span class="lucide lucide-monitor h-6 w-6"></span>
         </div>
-        <h3 class="text-lg font-semibold text-slate-200 transition-colors group-hover:text-blue-100 font-sans">Landing Pages Personalizadas</h3>
-        <p class="mt-2 text-sm text-slate-400 leading-relaxed font-sans">Criamos landing pages de alto impacto que convertem visitantes em clientes. Design exclusivo, animações fluidas, performance máxima e copy estratégico — tudo alinhado à identidade da sua marca.</p>
+        <h3 class="text-lg font-semibold text-slate-200 transition-colors group-hover:text-blue-100 font-sans">Landing Pages</h3>
+        <p class="mt-2 text-sm text-slate-400 leading-relaxed font-sans">Páginas feitas para vender. Design exclusivo e textos estratégicos que transformam visitantes em clientes — o complemento perfeito para suas campanhas e anúncios.</p>
       </div>
-      <div class="flex flex-col justify-between md:w-1/2 gap-4">
-        <div class="grid grid-cols-2 gap-3">
-          <div class="rounded-2xl border border-white/5 bg-slate-950/50 p-3 flex items-center gap-2.5 group-hover:border-white/10 transition-colors">
-            <span class="lucide lucide-zap h-4 w-4 text-blue-400 shrink-0"></span>
-            <span class="text-xs text-slate-300 font-sans">Alta conversão</span>
-          </div>
-          <div class="rounded-2xl border border-white/5 bg-slate-950/50 p-3 flex items-center gap-2.5 group-hover:border-white/10 transition-colors">
-            <span class="lucide lucide-palette h-4 w-4 text-blue-400 shrink-0"></span>
-            <span class="text-xs text-slate-300 font-sans">Design exclusivo</span>
-          </div>
-          <div class="rounded-2xl border border-white/5 bg-slate-950/50 p-3 flex items-center gap-2.5 group-hover:border-white/10 transition-colors">
-            <span class="lucide lucide-gauge h-4 w-4 text-blue-400 shrink-0"></span>
-            <span class="text-xs text-slate-300 font-sans">Performance máxima</span>
-          </div>
-          <div class="rounded-2xl border border-white/5 bg-slate-950/50 p-3 flex items-center gap-2.5 group-hover:border-white/10 transition-colors">
-            <span class="lucide lucide-smartphone h-4 w-4 text-blue-400 shrink-0"></span>
-            <span class="text-xs text-slate-300 font-sans">Mobile-first</span>
-          </div>
+      <div class="flex flex-wrap gap-2 mt-auto">
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Alta conversão</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Pronta p/ campanhas</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Carregamento rápido</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Mobile-first</span>
+      </div>
+    </div>
+    <!-- IA Aplicada — full width highlight -->
+    <div class="group md:col-span-2 flex flex-col md:flex-row md:items-center gap-6 overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl bg-gradient-to-tl via-slate-900/40 rounded-3xl p-6 md:p-8 relative backdrop-blur-md hover:shadow-blue-500/20 animate-enter delay-400 from-blue-500/10 to-blue-500/10" style="position:relative; --border-gradient:linear-gradient(315deg,rgba(59,130,246,0.25),rgba(59,130,246,0),rgba(59,130,246,0.25)); --border-radius-before:24px">
+      <div class="absolute top-0 right-0 bottom-0 left-0 bg-[radial-gradient(circle_at_80%_20%,_var(--tw-gradient-stops))] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 from-blue-900/25 rounded-3xl"></div>
+      <div class="relative z-10 md:flex-1">
+        <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-blue-500/30 bg-blue-500/10 shadow-lg group-hover:scale-110 transition-transform duration-300 text-blue-400 mb-4 animate-pulse-glow">
+          <span class="lucide lucide-sparkles h-6 w-6"></span>
         </div>
-        <div class="flex flex-wrap gap-2">
-          <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">HTML/CSS</span>
-          <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">JavaScript</span>
-          <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">SEO</span>
-          <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Tailwind</span>
-          <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Animações</span>
-        </div>
+        <h3 class="text-lg font-semibold text-slate-200 transition-colors group-hover:text-blue-300 font-sans">Inteligência Artificial</h3>
+        <p class="mt-2 text-sm text-slate-400 leading-relaxed font-sans max-w-xl">Coloque a IA para trabalhar pelo seu negócio: atendimento automático que responde na hora, recomendações que vendem mais e análises que apoiam suas decisões. Resultado, não promessa.</p>
+      </div>
+      <div class="flex flex-wrap gap-2 relative z-10 md:max-w-xs md:justify-end">
+        <span class="rounded-full px-2.5 py-0.5 text-[10px] font-medium bg-blue-500/20 text-blue-300 border border-blue-500/30 shadow-[0_0_10px_rgba(59,130,246,0.2)] font-sans">Atendimento automático</span>
+        <span class="rounded-full px-2.5 py-0.5 text-[10px] font-medium bg-blue-500/20 text-blue-300 border border-blue-500/30 font-sans">Recomendações</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Análise de dados</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Geração de conteúdo</span>
       </div>
     </div>
   </div>
@@ -419,7 +533,7 @@ tailwind.config = {
       <span class="bg-clip-text text-transparent bg-gradient-to-r animate-pulse to-blue-400 from-blue-200 font-manrope font-medium tracking-tighter">Um parceiro estratégico</span>
     </h2>
     <p class="max-w-2xl text-sm text-slate-400 font-sans">
-      Trazemos experiência de especialista para cada linha de código. A diferença entre software que funciona e software que escala está nos detalhes — e nós dominamos os detalhes.
+      Não entregamos só um projeto e desaparecemos. Acompanhamos cada etapa, entendemos o seu negócio e ficamos ao seu lado para crescer junto. Sua tecnologia em boas mãos, do começo ao fim.
     </p>
   </div>
   <!-- Bento grid -->
@@ -431,7 +545,7 @@ tailwind.config = {
           <h3 class="text-lg font-semibold text-slate-200 transition-colors group-hover:text-blue-100 font-sans">Expertise de 20 anos</h3>
           <div class="h-2 w-2 rounded-full bg-blue-500 animate-pulse shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
         </div>
-        <p class="text-xs text-slate-400 font-sans leading-relaxed">Cada decisão técnica é tomada por quem já viu o que funciona — e o que quebra — em produção real, durante duas décadas de projetos.</p>
+        <p class="text-xs text-slate-400 font-sans leading-relaxed">Duas décadas resolvendo problemas reais de empresas de todos os tamanhos. Essa bagagem vira segurança e tranquilidade para o seu projeto.</p>
       </div>
       <div class="relative z-10 space-y-2 rounded-xl border border-white/5 bg-slate-950/50 p-4 transition-all group-hover:border-white/10 group-hover:bg-slate-950/80">
         <div class="flex items-center justify-between text-[11px] text-slate-400 font-sans">
@@ -441,7 +555,7 @@ tailwind.config = {
           <span>Anos no mercado</span><span class="text-slate-200 font-semibold">20+</span>
         </div>
         <div class="flex items-center justify-between text-[11px] text-slate-400 font-sans">
-          <span>Tecnologias dominadas</span><span class="text-slate-200 font-semibold">15+</span>
+          <span>Clientes atendidos</span><span class="text-slate-200 font-semibold">Diversos segmentos</span>
         </div>
       </div>
     </div>
@@ -475,33 +589,33 @@ tailwind.config = {
             <circle class="animate-[spin_30s_linear_infinite]" cx="50%" cy="50%" fill="none" r="80" stroke="currentColor" stroke-dasharray="4 4" stroke-width="1"></circle>
           </svg>
         </div>
-        <h3 class="mt-4 text-center text-lg font-semibold text-slate-200 group-hover:text-white transition-colors font-sans">Stack Integrado</h3>
-        <p class="max-w-xs text-center text-xs text-slate-400 group-hover:text-slate-300 transition-colors font-sans mt-2">Web, Mobile, ERP e IA trabalhando juntos em ecossistemas coesos e escaláveis.</p>
+        <h3 class="mt-4 text-center text-lg font-semibold text-slate-200 group-hover:text-white transition-colors font-sans">Tudo em um só lugar</h3>
+        <p class="max-w-xs text-center text-xs text-slate-400 group-hover:text-slate-300 transition-colors font-sans mt-2">Aplicativos, sites, sistemas e IA trabalhando juntos. Um único parceiro para toda a sua tecnologia.</p>
       </div>
     </div>
 
     <!-- Code quality -->
     <div class="group flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:bg-slate-900/80 bg-slate-900/40 rounded-3xl p-6 relative backdrop-blur-md hover:shadow-blue-500/10 animate-enter delay-300" style="position:relative; --border-gradient:linear-gradient(135deg,rgba(59,130,246,0),rgba(59,130,246,0.2),rgba(59,130,246,0)); --border-radius-before:24px">
       <div class="relative z-10 mb-6">
-        <h3 class="text-lg font-semibold text-slate-200 transition-colors group-hover:text-blue-100 font-sans mb-2">Código que escala</h3>
-        <p class="text-xs text-slate-400 font-sans leading-relaxed">Não entregamos protótipos disfarçados de produto. Arquitetura limpa, testes, documentação e código que outro dev consegue manter.</p>
+        <h3 class="text-lg font-semibold text-slate-200 transition-colors group-hover:text-blue-100 font-sans mb-2">Feito para durar</h3>
+        <p class="text-xs text-slate-400 font-sans leading-relaxed">Nada de soluções de gaveta que travam em seis meses. Entregamos algo sólido, seguro e pronto para acompanhar o crescimento da sua empresa.</p>
       </div>
       <div class="relative z-10 space-y-3 rounded-xl border border-white/5 bg-slate-950/50 p-4 group-hover:border-white/10 group-hover:bg-slate-950/80 transition-all">
         <div class="flex items-center gap-2">
           <span class="lucide lucide-check-circle h-3.5 w-3.5 text-emerald-400"></span>
-          <span class="text-[11px] text-slate-300 font-sans">Arquitetura limpa</span>
+          <span class="text-[11px] text-slate-300 font-sans">Seguro e confiável</span>
         </div>
         <div class="flex items-center gap-2">
           <span class="lucide lucide-check-circle h-3.5 w-3.5 text-emerald-400"></span>
-          <span class="text-[11px] text-slate-300 font-sans">Testes automatizados</span>
+          <span class="text-[11px] text-slate-300 font-sans">Sem retrabalho</span>
         </div>
         <div class="flex items-center gap-2">
           <span class="lucide lucide-check-circle h-3.5 w-3.5 text-emerald-400"></span>
-          <span class="text-[11px] text-slate-300 font-sans">Documentação completa</span>
+          <span class="text-[11px] text-slate-300 font-sans">Pronto para crescer</span>
         </div>
         <div class="flex items-center gap-2">
           <span class="lucide lucide-check-circle h-3.5 w-3.5 text-emerald-400"></span>
-          <span class="text-[11px] text-slate-300 font-sans">Deploy & CI/CD configurado</span>
+          <span class="text-[11px] text-slate-300 font-sans">Suporte contínuo</span>
         </div>
       </div>
     </div>
@@ -529,26 +643,30 @@ tailwind.config = {
   </div>
   <!-- Portfolio grid -->
   <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-    <article class="group flex flex-col overflow-hidden bg-gradient-to-br rounded-2xl from-blue-500/0 via-blue-500/10 to-blue-500/0" style="position:relative; --border-gradient:linear-gradient(315deg,rgba(255,255,255,0.1),rgba(255,255,255,0)); --border-radius-before:16px">
-      <div class="overflow-hidden w-full h-32 relative">
-        <img alt="E-commerce Platform" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" src="assets/6f6eb6d2-42ff-4512-877b-fe27ef_9d2c1d7d8d41.webp"/>
-        <div class="bg-gradient-to-t from-black/70 via-black/20 to-transparent absolute inset-0"></div>
+    <!-- Loja Virtual -->
+    <article class="group flex flex-col overflow-hidden rounded-2xl border border-white/5 bg-slate-900/40 transition-all duration-300 hover:-translate-y-1 hover:border-white/10 hover:bg-slate-900/70 hover:shadow-2xl hover:shadow-blue-500/10">
+      <div class="relative flex h-32 w-full items-center justify-center overflow-hidden bg-gradient-to-br from-blue-500/15 via-slate-900/0 to-transparent">
+        <div class="absolute inset-0 opacity-40" style="background-image:radial-gradient(circle at 1px 1px, rgba(148,163,184,0.18) 1px, transparent 0); background-size:16px 16px;"></div>
+        <div class="absolute -bottom-6 right-4 h-20 w-20 rounded-full bg-blue-500/20 blur-2xl"></div>
+        <span class="lucide lucide-shopping-bag relative z-10 h-9 w-9 text-blue-300 transition-transform duration-500 group-hover:scale-110"></span>
       </div>
       <div class="flex flex-1 flex-col p-3.5">
         <div class="mb-1 flex items-center justify-between gap-2">
-          <h3 class="text-[13px] font-semibold tracking-tight text-slate-50 font-sans">E-commerce Platform</h3>
+          <h3 class="text-[13px] font-semibold tracking-tight text-slate-50 font-sans">Loja Virtual</h3>
           <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Web</span>
         </div>
         <div class="flex flex-wrap items-center justify-between gap-1 text-[11px] text-slate-400">
-          <span class="font-sans">Python · Django</span>
+          <span class="font-sans">Vendas online</span>
           <span class="font-sans">Entregue ✓</span>
         </div>
       </div>
     </article>
-    <article class="group flex flex-col overflow-hidden bg-gradient-to-br rounded-2xl from-blue-500/0 via-blue-500/10 to-blue-500/0" style="position:relative; --border-gradient:linear-gradient(135deg,rgba(59,130,246,0),rgba(59,130,246,0.1),rgba(59,130,246,0)); --border-radius-before:16px">
-      <div class="relative h-32 w-full overflow-hidden">
-        <img alt="App Mobile Gestão" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" src="assets/613b77bb-3447-42c7-93d2-2e919e_79a327500cd3.webp"/>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+    <!-- App de Gestão -->
+    <article class="group flex flex-col overflow-hidden rounded-2xl border border-white/5 bg-slate-900/40 transition-all duration-300 hover:-translate-y-1 hover:border-white/10 hover:bg-slate-900/70 hover:shadow-2xl hover:shadow-blue-500/10">
+      <div class="relative flex h-32 w-full items-center justify-center overflow-hidden bg-gradient-to-br from-blue-500/15 via-slate-900/0 to-transparent">
+        <div class="absolute inset-0 opacity-40" style="background-image:radial-gradient(circle at 1px 1px, rgba(148,163,184,0.18) 1px, transparent 0); background-size:16px 16px;"></div>
+        <div class="absolute -bottom-6 left-4 h-20 w-20 rounded-full bg-blue-500/20 blur-2xl"></div>
+        <span class="lucide lucide-smartphone relative z-10 h-9 w-9 text-blue-300 transition-transform duration-500 group-hover:scale-110"></span>
       </div>
       <div class="flex flex-1 flex-col p-3.5">
         <div class="mb-1 flex items-center justify-between gap-2">
@@ -556,43 +674,138 @@ tailwind.config = {
           <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Mobile</span>
         </div>
         <div class="flex flex-wrap items-center justify-between gap-1 text-[11px] text-slate-400">
-          <span class="font-sans">Flutter · Dart</span>
+          <span class="font-sans">iOS & Android</span>
           <span class="font-sans">Entregue ✓</span>
         </div>
       </div>
     </article>
-    <article class="group flex flex-col overflow-hidden bg-gradient-to-br rounded-2xl from-blue-500/0 via-blue-500/10 to-blue-500/0">
-      <div class="relative h-32 w-full overflow-hidden">
-        <img alt="Sistema ERP" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" src="assets/6267906a-0a72-43a3-beb6-9255fe_3e94d5403119.webp"/>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+    <!-- Sistema de Gestão -->
+    <article class="group flex flex-col overflow-hidden rounded-2xl border border-white/5 bg-slate-900/40 transition-all duration-300 hover:-translate-y-1 hover:border-white/10 hover:bg-slate-900/70 hover:shadow-2xl hover:shadow-emerald-500/10">
+      <div class="relative flex h-32 w-full items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-500/15 via-slate-900/0 to-transparent">
+        <div class="absolute inset-0 opacity-40" style="background-image:radial-gradient(circle at 1px 1px, rgba(148,163,184,0.18) 1px, transparent 0); background-size:16px 16px;"></div>
+        <div class="absolute -bottom-6 right-4 h-20 w-20 rounded-full bg-emerald-500/20 blur-2xl"></div>
+        <span class="lucide lucide-database relative z-10 h-9 w-9 text-emerald-300 transition-transform duration-500 group-hover:scale-110"></span>
       </div>
       <div class="flex flex-1 flex-col p-3.5">
         <div class="mb-1 flex items-center justify-between gap-2">
-          <h3 class="text-[13px] font-semibold tracking-tight text-slate-50 font-sans">ERP Customizado</h3>
+          <h3 class="text-[13px] font-semibold tracking-tight text-slate-50 font-sans">Sistema de Gestão</h3>
           <span class="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-300 font-sans">ERP</span>
         </div>
         <div class="flex flex-wrap items-center justify-between gap-1 text-[11px] text-slate-400">
-          <span class="font-sans">Python · FastAPI</span>
+          <span class="font-sans">Gestão integrada</span>
           <span class="font-sans">Entregue ✓</span>
         </div>
       </div>
     </article>
-    <article class="group flex flex-col overflow-hidden bg-gradient-to-br rounded-2xl from-blue-500/0 via-blue-500/10 to-blue-500/0" style="position:relative; --border-gradient:linear-gradient(315deg,rgba(255,255,255,0.1),rgba(255,255,255,0)); --border-radius-before:16px">
-      <div class="overflow-hidden w-full h-32 relative">
-        <img alt="Feature IA" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" src="assets/491fb3a7-aa96-4243-8cf2-c33942_1e8a58e802de.webp"/>
-        <div class="bg-gradient-to-t from-black/70 via-black/20 to-transparent absolute inset-0"></div>
+    <!-- Assistente Inteligente -->
+    <article class="group flex flex-col overflow-hidden rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-500/10 to-slate-900/40 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/20">
+      <div class="relative flex h-32 w-full items-center justify-center overflow-hidden bg-gradient-to-br from-blue-500/20 via-slate-900/0 to-transparent">
+        <div class="absolute inset-0 opacity-40" style="background-image:radial-gradient(circle at 1px 1px, rgba(148,163,184,0.18) 1px, transparent 0); background-size:16px 16px;"></div>
+        <div class="absolute -bottom-6 left-4 h-20 w-20 rounded-full bg-blue-500/30 blur-2xl"></div>
+        <span class="lucide lucide-sparkles relative z-10 h-9 w-9 text-blue-300 transition-transform duration-500 group-hover:scale-110"></span>
       </div>
       <div class="flex flex-1 flex-col p-3.5">
         <div class="mb-1 flex items-center justify-between gap-2">
-          <h3 class="text-[13px] font-semibold tracking-tight text-slate-50 font-sans">Assistente IA</h3>
+          <h3 class="text-[13px] font-semibold tracking-tight text-slate-50 font-sans">Assistente Inteligente</h3>
           <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/20 text-blue-300 border border-blue-500/30 font-sans">IA</span>
         </div>
         <div class="flex flex-wrap items-center justify-between gap-1 text-[11px] text-slate-400">
-          <span class="font-sans">Python · LLM</span>
+          <span class="font-sans">Atendimento 24h</span>
           <span class="font-sans">Entregue ✓</span>
         </div>
       </div>
     </article>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PRODUTOS SAAS                                                -->
+<!-- ============================================================ -->
+<section id="produtos" class="flex flex-col lg:px-6 max-w-6xl mx-auto px-4 pb-24 gap-12">
+  <div class="flex flex-col items-center text-center animate-enter space-y-4">
+    <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium backdrop-blur text-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.2)] font-sans">
+      <span class="lucide lucide-box h-3.5 w-3.5"></span>
+      Produtos próprios
+    </div>
+    <h2 class="text-3xl text-slate-50 md:text-5xl font-manrope font-medium tracking-tighter">
+      SaaS que criamos e
+      <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-200 via-blue-400 to-blue-600 font-manrope font-medium tracking-tighter">mantemos no ar</span>
+    </h2>
+    <p class="max-w-xl text-sm text-slate-400 leading-relaxed font-sans">
+      Não só desenvolvemos para clientes — também construímos e operamos nossos próprios produtos. A melhor prova de que entregamos software de verdade, pronto para o dia a dia.
+    </p>
+  </div>
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+    <!-- VisualHub -->
+    <div class="group flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:bg-slate-900/80 bg-slate-900/40 rounded-3xl p-8 relative backdrop-blur-md hover:shadow-blue-500/10 animate-enter delay-100" style="position:relative; --border-gradient:linear-gradient(135deg,rgba(59,130,246,0),rgba(59,130,246,0.2),rgba(59,130,246,0)); --border-radius-before:24px">
+      <div class="flex items-center justify-between mb-5">
+        <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-lg group-hover:scale-110 transition-transform duration-300 text-blue-400">
+          <span class="lucide lucide-image h-6 w-6"></span>
+        </div>
+        <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1 text-[10px] font-medium text-emerald-300 font-sans">
+          <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_6px_#10b981]"></span>
+          Em operação
+        </span>
+      </div>
+      <div class="flex items-center gap-2 flex-wrap">
+        <h3 class="text-xl font-semibold text-slate-100 group-hover:text-blue-100 transition-colors font-sans">VisualHub</h3>
+        <span class="rounded-full border border-blue-500/30 bg-blue-500/10 px-2 py-0.5 text-[10px] font-medium text-blue-300 font-sans">Assinatura mensal</span>
+      </div>
+      <p class="mt-1 text-xs text-blue-400 font-sans font-medium">Catálogo offline para mobile</p>
+      <p class="mt-4 text-sm text-slate-400 leading-relaxed font-sans">
+        Aplicativo que reúne catálogos de produtos em altíssima definição e funciona mesmo sem internet. Criado para representantes de móveis de luxo apresentarem sua linha completa em qualquer lugar, com sincronização automática das imagens sempre que houver conexão.
+      </p>
+      <div class="flex flex-wrap gap-2 mt-6">
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Funciona sem internet</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Imagens em alta resolução</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Sincronização automática</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Vendas em campo</span>
+      </div>
+      <div class="mt-6 flex items-baseline gap-1">
+        <span class="text-sm text-slate-500 font-sans">R$</span>
+        <span class="text-3xl text-white font-manrope font-medium tracking-tighter">99,99</span>
+        <span class="text-sm text-slate-400 font-sans">/mês</span>
+      </div>
+      <a href="#contato" class="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-blue-300 hover:text-blue-200 transition-colors font-sans">
+        Quero assinar
+        <span class="lucide lucide-arrow-right h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"></span>
+      </a>
+    </div>
+    <!-- Pecunia -->
+    <div class="group flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:bg-slate-900/80 bg-slate-900/40 rounded-3xl p-8 relative backdrop-blur-md hover:shadow-blue-500/10 animate-enter delay-200" style="position:relative; --border-gradient:linear-gradient(135deg,rgba(59,130,246,0),rgba(59,130,246,0.2),rgba(59,130,246,0)); --border-radius-before:24px">
+      <div class="flex items-center justify-between mb-5">
+        <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-lg group-hover:scale-110 transition-transform duration-300 text-blue-400">
+          <span class="lucide lucide-landmark h-6 w-6"></span>
+        </div>
+        <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1 text-[10px] font-medium text-emerald-300 font-sans">
+          <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_6px_#10b981]"></span>
+          Em operação
+        </span>
+      </div>
+      <div class="flex items-center gap-2 flex-wrap">
+        <h3 class="text-xl font-semibold text-slate-100 group-hover:text-blue-100 transition-colors font-sans">Pecunia</h3>
+        <span class="rounded-full border border-blue-500/30 bg-blue-500/10 px-2 py-0.5 text-[10px] font-medium text-blue-300 font-sans">Assinatura mensal</span>
+      </div>
+      <p class="mt-1 text-xs text-blue-400 font-sans font-medium">Gestão de microcrédito</p>
+      <p class="mt-4 text-sm text-slate-400 leading-relaxed font-sans">
+        Plataforma completa para gestão de microcrédito, empréstimos e factoring. Centraliza toda a operação de pequenas financeiras que antes dependiam de planilhas — do cadastro à cobrança — com segurança, controle e dados sempre organizados.
+      </p>
+      <div class="flex flex-wrap gap-2 mt-6">
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Empréstimos & factoring</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-blue-500/10 text-blue-300 font-sans">Multiempresa</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Adeus planilhas</span>
+        <span class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-white/5 text-slate-300 font-sans border border-white/10">Controle total</span>
+      </div>
+      <div class="mt-6 flex items-baseline gap-1">
+        <span class="text-sm text-slate-500 font-sans">R$</span>
+        <span class="text-3xl text-white font-manrope font-medium tracking-tighter">99,99</span>
+        <span class="text-sm text-slate-400 font-sans">/mês</span>
+      </div>
+      <a href="#contato" class="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-blue-300 hover:text-blue-200 transition-colors font-sans">
+        Quero assinar
+        <span class="lucide lucide-arrow-right h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"></span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -624,7 +837,7 @@ tailwind.config = {
         </div>
         <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-slate-200 backdrop-blur font-sans">
           <span class="lucide lucide-code-2 h-3.5 w-3.5 text-blue-400"></span>
-          Full Stack Specialist
+          Soluções de ponta a ponta
         </div>
         <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-slate-200 backdrop-blur font-sans">
           <span class="lucide lucide-sparkles h-3.5 w-3.5 text-blue-400"></span>
@@ -650,8 +863,8 @@ tailwind.config = {
               <span class="text-xs text-slate-400 font-sans">Serviços especializados</span>
             </div>
             <div class="flex flex-col gap-1">
-              <span class="text-4xl font-manrope font-medium tracking-tighter text-white">∞</span>
-              <span class="text-xs text-slate-400 font-sans">Comprometimento</span>
+              <span class="text-4xl font-manrope font-medium tracking-tighter text-white">24<span class="text-blue-400">h</span></span>
+              <span class="text-xs text-slate-400 font-sans">Tempo de resposta</span>
             </div>
           </div>
           <div class="mt-6 pt-6 border-t border-white/5">
@@ -680,7 +893,7 @@ tailwind.config = {
       <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-200 via-blue-400 to-blue-600 font-manrope font-medium tracking-tighter">início ao fim</span>
     </h2>
     <p class="max-w-xl text-sm text-slate-400 leading-relaxed font-sans">
-      Cada projeto é único. Os planos abaixo servem como ponto de partida — sempre adequamos a proposta à realidade e ao escopo do seu negócio.
+      Cada projeto é único — por isso o orçamento é sempre <span class="text-slate-200 font-medium">sob consulta</span>, adequado ao escopo do seu negócio. Já os nossos <a href="#produtos" class="text-blue-300 hover:text-blue-200 underline underline-offset-2 transition-colors">produtos SaaS</a> funcionam por assinatura mensal.
     </p>
   </div>
   <div class="grid grid-cols-1 gap-6 md:grid-cols-3 lg:gap-8">
@@ -689,11 +902,8 @@ tailwind.config = {
       <div class="mb-6">
         <h3 class="text-lg font-semibold text-slate-200 font-sans">MVP</h3>
         <p class="mt-1 text-[10px] text-slate-500 font-sans uppercase tracking-wider">Produto Mínimo Viável</p>
-        <div class="mt-4 flex items-baseline gap-1">
-          <span class="text-sm text-slate-500 font-sans">A partir de</span>
-        </div>
-        <div class="flex items-baseline gap-1 mt-1">
-          <span class="text-4xl text-white font-manrope font-medium tracking-tighter">R$5k</span>
+        <div class="mt-5 flex items-baseline gap-1">
+          <span class="text-3xl text-white font-manrope font-medium tracking-tighter">Sob consulta</span>
         </div>
         <p class="mt-4 text-xs leading-relaxed text-slate-400 font-sans">Ideal para startups e projetos que precisam validar a ideia no mercado rapidamente, com qualidade e sem desperdício.</p>
       </div>
@@ -730,11 +940,8 @@ tailwind.config = {
           <span class="rounded-full bg-blue-500/20 px-2.5 py-0.5 text-[10px] font-medium text-blue-300 border border-blue-500/30 shadow-[0_0_10px_rgba(59,130,246,0.2)] font-sans">Mais pedido</span>
         </div>
         <p class="mt-1 text-[10px] text-slate-500 font-sans uppercase tracking-wider">Projeto completo</p>
-        <div class="mt-4 flex items-baseline gap-1">
-          <span class="text-sm text-slate-500 font-sans">A partir de</span>
-        </div>
-        <div class="flex items-baseline gap-1 mt-1">
-          <span class="text-4xl text-white font-manrope font-medium tracking-tighter">R$15k</span>
+        <div class="mt-5 flex items-baseline gap-1">
+          <span class="text-3xl text-white font-manrope font-medium tracking-tighter">Sob consulta</span>
         </div>
         <p class="mt-4 text-xs leading-relaxed text-slate-300 font-sans">Para negócios que precisam de uma solução robusta, escalável e integrada — sem atalhos e com resultado de longo prazo.</p>
       </div>
@@ -780,10 +987,10 @@ tailwind.config = {
       <div class="mb-6">
         <h3 class="text-lg font-semibold text-slate-200 font-sans">Enterprise</h3>
         <p class="mt-1 text-[10px] text-slate-500 font-sans uppercase tracking-wider">Sob demanda</p>
-        <div class="mt-4 flex items-baseline gap-1 mt-5">
-          <span class="text-4xl text-white font-manrope font-medium tracking-tighter">Customizado</span>
+        <div class="mt-5 flex items-baseline gap-1">
+          <span class="text-3xl text-white font-manrope font-medium tracking-tighter">Sob consulta</span>
         </div>
-        <p class="mt-4 text-xs leading-relaxed text-slate-400 font-sans">Para projetos complexos, ERPs completos, sistemas multi-tenant ou integrações com IA em larga escala. Orçamento sob consulta.</p>
+        <p class="mt-4 text-xs leading-relaxed text-slate-400 font-sans">Para projetos complexos, ERPs completos, sistemas multi-tenant ou integrações com IA em larga escala.</p>
       </div>
       <ul class="mb-8 space-y-3 flex-1">
         <li class="flex items-start gap-3 text-xs text-slate-300 font-sans">
@@ -861,17 +1068,17 @@ tailwind.config = {
       <div class="col-span-2 md:col-span-2">
         <img src="FP Logo Detalhe  600x200 - Transparente.png" alt="FusionPrime" class="h-8 w-auto mb-4"/>
         <p class="text-xs text-slate-400 font-sans leading-relaxed max-w-xs">
-          Desenvolvemos softwares, apps e sistemas. Entregamos mais que código — entregamos soluções que movem o seu negócio.
+          Aplicativos, sites, landing pages, integrações e plataformas SaaS. Tecnologia sob medida que move o seu negócio.
         </p>
         <div class="flex gap-3 mt-5">
-          <a href="#" class="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-colors">
-            <span class="lucide lucide-github h-3.5 w-3.5 text-slate-300"></span>
+          <a href="#" aria-label="LinkedIn" class="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-colors">
+            <svg class="h-3.5 w-3.5 text-slate-300" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
           </a>
-          <a href="#" class="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-colors">
-            <span class="lucide lucide-linkedin h-3.5 w-3.5 text-slate-300"></span>
+          <a href="#" aria-label="Instagram" class="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-colors">
+            <svg class="h-3.5 w-3.5 text-slate-300" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
           </a>
-          <a href="#" class="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-colors">
-            <span class="lucide lucide-instagram h-3.5 w-3.5 text-slate-300"></span>
+          <a href="https://wa.me/5500000000000" target="_blank" aria-label="WhatsApp" class="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-colors">
+            <span class="lucide lucide-message-circle h-3.5 w-3.5 text-slate-300"></span>
           </a>
         </div>
       </div>
@@ -879,10 +1086,10 @@ tailwind.config = {
       <div>
         <h4 class="text-[11px] font-semibold text-slate-200 uppercase tracking-wider font-sans mb-4">Serviços</h4>
         <ul class="space-y-2.5">
-          <li><a href="#servicos" class="text-xs text-slate-400 hover:text-slate-200 transition-colors font-sans">Desenvolvimento Web</a></li>
-          <li><a href="#servicos" class="text-xs text-slate-400 hover:text-slate-200 transition-colors font-sans">App Mobile</a></li>
-          <li><a href="#servicos" class="text-xs text-slate-400 hover:text-slate-200 transition-colors font-sans">Sistemas ERP</a></li>
-          <li><a href="#ia" class="text-xs text-slate-400 hover:text-slate-200 transition-colors font-sans">Features com IA</a></li>
+          <li><a href="#servicos" class="text-xs text-slate-400 hover:text-slate-200 transition-colors font-sans">Aplicativos</a></li>
+          <li><a href="#servicos" class="text-xs text-slate-400 hover:text-slate-200 transition-colors font-sans">Sites Institucionais</a></li>
+          <li><a href="#servicos" class="text-xs text-slate-400 hover:text-slate-200 transition-colors font-sans">Integrações & ERP</a></li>
+          <li><a href="#servicos" class="text-xs text-slate-400 hover:text-slate-200 transition-colors font-sans">Plataformas SaaS</a></li>
           <li><a href="#servicos" class="text-xs text-slate-400 hover:text-slate-200 transition-colors font-sans">Landing Pages</a></li>
         </ul>
       </div>
@@ -892,13 +1099,14 @@ tailwind.config = {
         <ul class="space-y-2.5">
           <li><a href="#sobre" class="text-xs text-slate-400 hover:text-slate-200 transition-colors font-sans">Sobre nós</a></li>
           <li><a href="#portfolio" class="text-xs text-slate-400 hover:text-slate-200 transition-colors font-sans">Portfólio</a></li>
+          <li><a href="#produtos" class="text-xs text-slate-400 hover:text-slate-200 transition-colors font-sans">Produtos SaaS</a></li>
           <li><a href="#planos" class="text-xs text-slate-400 hover:text-slate-200 transition-colors font-sans">Planos</a></li>
           <li><a href="#contato" class="text-xs text-slate-400 hover:text-slate-200 transition-colors font-sans">Contato</a></li>
         </ul>
       </div>
     </div>
     <div class="flex flex-col gap-4 text-center border-white/5 border-t pt-6 md:flex-row md:items-center md:justify-between">
-      <p class="text-[11px] text-slate-500 font-sans">© 2025 FusionPrime Tech Solutions. Todos os direitos reservados.</p>
+      <p class="text-[11px] text-slate-500 font-sans">© 2026 FusionPrime Tech Solutions. Todos os direitos reservados.</p>
       <div class="flex items-center justify-center gap-1 text-[11px] text-slate-500 font-sans">
         <span class="lucide lucide-shield-check h-3 w-3 text-emerald-500/60"></span>
         Código com qualidade. Entrega com responsabilidade.
@@ -909,5 +1117,15 @@ tailwind.config = {
 
 </div>
 </div>
+<script>
+  // Fecha o menu mobile ao navegar para uma seção
+  document.querySelectorAll('#mobile-menu a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      document.getElementById('mobile-menu').classList.add('hidden');
+      document.getElementById('icon-menu').classList.remove('hidden');
+      document.getElementById('icon-close').classList.add('hidden');
+    });
+  });
+</script>
 </body>
 </html>
