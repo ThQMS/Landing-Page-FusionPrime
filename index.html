@@ -59,7 +59,7 @@
     --ink: #1f1b16; --ink-2: #4a433b; --ink-3: #7a7168; --line: #ddd5ca;
     --accent: #e0590f; --accent-ink: #b8460a; --accent-soft: #fbe6d6;
     --shadow: 0 1px 2px rgba(31,27,22,.06), 0 12px 32px -12px rgba(31,27,22,.18);
-    --radius: 10px; --max: 1120px;
+    --radius: 10px; --max: 1360px; --gutter: clamp(16px, 4vw, 48px); --top-h: 68px;
     /* cores do símbolo do logo: vermelho-laranja → âmbar */
     --brand-a: #e8401c; --brand-b: #ff9a2e;
     --grad: linear-gradient(135deg, var(--brand-a), var(--brand-b));
@@ -95,7 +95,10 @@
   *, *::before, *::after { box-sizing: border-box; }
   html { scroll-behavior: smooth; scroll-padding-top: 80px; -webkit-text-size-adjust: 100%; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  body { overflow-x: clip; margin: 0; background: var(--bg); color: var(--ink);
+  /* nada vaza para os lados; clip mantém o cabeçalho fixo (hidden só onde clip não existe) */
+  html { overflow-x: hidden; }
+  @supports (overflow: clip) { html { overflow-x: visible; } body { overflow-x: clip; } }
+  body { margin: 0; background: var(--bg); color: var(--ink);
     font-family: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif; font-size: 17px; line-height: 1.6;
     -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
   img { max-width: 100%; display: block; }
@@ -103,8 +106,8 @@
   p { margin: 0; }
   h1, h2, h3 { margin: 0; line-height: 1.12; letter-spacing: -.025em; font-weight: 700; }
   h1, h2 { font-family: var(--display); font-weight: 600; letter-spacing: -.02em; line-height: 1.08; }
-  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
-  @media (max-width: 560px) { .wrap { padding: 0 16px; } body { font-size: 16px; } }
+  .wrap { width: 100%; max-width: calc(var(--max) + 2 * var(--gutter)); margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
+  @media (max-width: 560px) { body { font-size: 16px; } }
   .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
@@ -130,7 +133,7 @@
   /* ---------- cabeçalho ---------- */
   .top { position: sticky; top: 0; z-index: 20; background: var(--bg); border-bottom: 1px solid transparent; transition: border-color .2s; }
   .top.scrolled { border-bottom-color: var(--line); }
-  .top-bar { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 24px; }
+  .top-bar { display: flex; align-items: center; justify-content: space-between; height: var(--top-h); gap: 24px; }
   .logo img { height: 44px; width: auto; }
   .logo .on-dark { display: none; }
   :root[data-theme="dark"] .logo .on-light { display: none; }
@@ -151,7 +154,7 @@
   .mobile-nav a:last-child { border-bottom: 0; color: var(--accent-ink); }
   .mobile-nav.open { display: block; }
   @media (max-width: 920px) { .nav, .top-actions .btn { display: none; } .menu-btn { display: grid; } }
-  @media (max-width: 560px) { .top-bar { height: 62px; } .logo img { height: 38px; } }
+  @media (max-width: 560px) { :root { --top-h: 62px; } .top-bar { height: var(--top-h); } .logo img { height: 38px; } }
 
   /* ---------- seções ---------- */
   section { padding: 96px 0; }
@@ -163,10 +166,12 @@
   @media (max-width: 560px) { section { padding: 64px 0; } .sec-head { margin-bottom: 32px; } }
 
   /* ---------- topo ---------- */
-  .hero { padding: 6px 0 0; }
-  .hero-shell { padding: 0 16px; }
-  .hero-card { position: relative; max-width: 1440px; margin: 0 auto; border-radius: 28px; overflow: hidden; isolation: isolate;
-    background: var(--stage); color: var(--s-ink); min-height: min(800px, calc(100svh - 80px)); display: flex; align-items: center; }
+  .hero { padding: 0; }
+  .hero-shell { padding: 0; }
+  /* ocupa a largura toda e a altura da tela abaixo do cabeçalho (vh como reserva para navegadores sem svh) */
+  .hero-card { position: relative; width: 100%; margin: 0; border-radius: 0; overflow: hidden; isolation: isolate;
+    background: var(--stage); color: var(--s-ink); min-height: 560px; min-height: calc(100vh - var(--top-h)); min-height: calc(100svh - var(--top-h));
+    display: flex; align-items: center; }
   .hero-art { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
   /* computador: a arte tem a proporção da imagem e fica deslocada para a esquerda */
   .art-in { position: absolute; top: 0; bottom: 0; left: -15%; aspect-ratio: 2560 / 1429; height: 100%; }
@@ -204,10 +209,9 @@
   .ship li.live.on::before { background: #3fbf72; }
   @media (max-width: 1180px) { .ship { left: 2%; bottom: 4%; } }
 
-  /* celular: imagem vertical própria, texto em cima e a cabeça embaixo */
-  @media (max-width: 760px) {
-    .hero-shell { padding: 0 8px; }
-    .hero-card { display: block; min-height: 0; border-radius: 22px; }
+  /* celular e tablet em pé: texto em cima e a cabeça embaixo */
+  @media (max-width: 760px), (max-width: 1100px) and (max-aspect-ratio: 1/1) {
+    .hero-card { display: block; min-height: 0; }
     /* a mesma foto do computador, recortada em volta da cabeça de perfil, presa embaixo do texto */
     .art-in { top: auto; bottom: 0; left: 0; width: 100%; height: min(108vw, 600px); aspect-ratio: auto; }
     .art-in img { object-fit: cover; object-position: 40% 50%; }
@@ -245,7 +249,8 @@
   .b-demo .demo-tabs { margin-top: 22px; }
   /* cartão escuro */
   .b.dark { background: var(--stage); border-color: var(--stage-line); color: var(--s-ink); }
-  :root:not([data-theme="dark"]) .hero-card, :root:not([data-theme="dark"]) .contact-card { box-shadow: 0 0 0 1px var(--stage-line); }
+  :root:not([data-theme="dark"]) .hero-card, :root:not([data-theme="dark"]) .contact-card { border-bottom: 1px solid var(--stage-line); }
+  :root:not([data-theme="dark"]) .contact-card { border-top: 1px solid var(--stage-line); }
   :root:not([data-theme="dark"]) .principle .mk { box-shadow: 0 0 0 1px var(--stage-line); }
   .b.dark .tag { color: var(--s-ink-3); }
   .b.dark p { color: var(--s-ink-2); }
@@ -549,9 +554,9 @@
   }
 
   /* ---------- contato: palco escuro com a arte de fechamento ---------- */
-  .contact-sec { padding: 24px 0 96px; }
-  .contact-card { position: relative; max-width: 1440px; margin: 0 auto; border-radius: 28px; overflow: hidden; isolation: isolate; background: var(--stage); color: var(--s-ink); }
-  .contact-shell { padding: 0 16px; }
+  .contact-sec { padding: 0; }
+  .contact-card { position: relative; width: 100%; margin: 0; border-radius: 0; overflow: hidden; isolation: isolate; background: var(--stage); color: var(--s-ink); }
+  .contact-shell { padding: 0; }
   .contact-art { position: absolute; inset: 0; z-index: 0; }
   .contact-art img { width: 100%; height: 100%; object-fit: cover; object-position: 75% 50%; }
   .contact-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--stage) 0%, rgba(var(--stage-rgb),.82) 36%, rgba(var(--stage-rgb),0) 62%); }
@@ -570,13 +575,10 @@
   .contact-links strong { font-weight: 600; word-break: break-word; }
   .contact-links svg { width: 20px; height: 20px; flex: none; }
   @media (max-width: 760px) {
-    .contact-shell { padding: 0 8px; }
-    .contact-card { border-radius: 22px; }
     .contact-art { position: relative; height: 240px; }
     .contact-art img { object-position: 82% 50%; }
     .contact-art::after { background: linear-gradient(0deg, var(--stage) 0%, rgba(var(--stage-rgb),0) 60%); }
     .contact { padding-top: 0; padding-bottom: 40px; margin-top: -24px; }
-    .contact-sec { padding: 8px 0 56px; }
   }
 
   /* ---------- rodapé ---------- */
@@ -1327,7 +1329,7 @@
     var img = art.querySelector('img'), flow = document.getElementById('flow'), sparks = document.getElementById('sparks');
     var gl = flow.getContext('webgl', { alpha: true, premultipliedAlpha: false, antialias: false, depth: false, stencil: false, powerPreference: 'low-power' });
     var sx = sparks.getContext('2d');
-    var mq = window.matchMedia('(max-width: 760px)');
+    var mq = window.matchMedia('(max-width: 760px), (max-width: 1100px) and (max-aspect-ratio: 1/1)');
     /* onde fica o feixe em cada imagem (frações da imagem) */
     var BEAM = { desk: { y: .36, h: .2, end: .42, endR: .1 } }; BEAM.mob = BEAM.desk;   /* celular usa a mesma foto */
     var running = false, raf = 0, t0 = performance.now(), inView = true, ok = false, W = 0, H = 0, sdpr = 1, last = 0, lastDraw = 0;
