@@ -18,6 +18,11 @@
     if (/[?&]tema=escuro/.test(location.search)) t = 'dark';
     if (/[?&]tema=claro/.test(location.search)) t = 'light';
     document.documentElement.setAttribute('data-theme', t === 'dark' ? 'dark' : 'light');
+    /* entrada "rede neural": uma vez por sessão, nunca com "reduzir movimento" */
+    try {
+      if (!sessionStorage.getItem('fp-intro') && !matchMedia('(prefers-reduced-motion: reduce)').matches)
+        document.documentElement.classList.add('intro-on');
+    } catch (e) {}
     /* imagens com versão clara e escura: o HTML não tem src fixo (para não baixar a errada); isto escolhe */
     window.fpImgs = function (scope) {
       var dark = document.documentElement.getAttribute('data-theme') === 'dark';
@@ -639,9 +644,21 @@
   .reveal { opacity: 0; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease; }
   .reveal.in { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) { .enter, .reveal { opacity: 1; transform: none; animation: none; transition: none; } }
+
+  /* entrada "rede neural" (o script no fim do body desenha; isto é o véu e o botão de pular) */
+  #intro { display: none; }
+  .intro-on #intro { display: block; position: fixed; inset: 0; z-index: 100; background: var(--bg); cursor: pointer; }
+  .intro-on .enter { animation-play-state: paused; }
+  .intro-cv { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 101; pointer-events: none; }
+  #intro .intro-skip { position: absolute; right: 20px; bottom: calc(20px + env(safe-area-inset-bottom)); padding: 7px 14px; border-radius: 999px;
+    border: 1px solid var(--line); background: transparent; color: var(--ink-3); font: 500 .75rem/1 var(--mono); cursor: pointer;
+    opacity: 0; animation: introBtn .4s ease .6s forwards; }
+  #intro .intro-skip:hover { color: var(--accent); border-color: var(--accent); }
+  @keyframes introBtn { to { opacity: 1; } }
 </style>
 </head>
 <body>
+<div id="intro" aria-hidden="true"><button class="intro-skip" type="button" tabindex="-1">pular ›</button></div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
@@ -1545,6 +1562,167 @@
   } else {
     document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
   }
+})();
+</script>
+<script>
+/* ---------- entrada "rede neural" ----------
+   Nós laranja surgem e se ligam numa rede 3D que gira; pulsos correm pelas ligações cada vez
+   mais rápido, a rede "pensa", e um clarão revela o site. Desenhado em canvas na resolução da
+   tela. Respeita o tema (luz somada no escuro, traço laranja no claro), toca uma vez por sessão,
+   pula com clique/tecla e respeita "reduzir movimento" (decidido no script do <head>). */
+(function () {
+  var root = document.documentElement, veil = document.getElementById('intro');
+  if (!veil) return;
+  if (!root.classList.contains('intro-on')) { veil.remove(); return; }
+
+  var dark = root.getAttribute('data-theme') === 'dark';
+  var C  = dark ? [240, 122, 46] : [224, 89, 15];    /* laranja (accent) */
+  var C2 = dark ? [232, 64, 28]  : [184, 70, 10];    /* laranja avermelhado / escuro */
+  var HOT = dark ? [255, 205, 150] : [232, 64, 28];  /* núcleo dos brilhos */
+  var MODE = dark ? 'lighter' : 'source-over';
+  var mobile = window.innerWidth < 768;
+
+  function rgba(c, a) { return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
+  function clamp(x, a, b) { return Math.max(a, Math.min(b, x)); }
+  function seg(t, a, b) { return clamp((t - a) / (b - a), 0, 1); }
+  function eout(t) { return 1 - Math.pow(1 - t, 3); }
+  function ein(t) { return t * t * t; }
+  function rnd(a, b) { return a + Math.random() * (b - a); }
+
+  var main = document.querySelector('main'), top = document.querySelector('.top');
+  var finished = false, released = false, t = 0;
+  function rise(p) {
+    [main, top].forEach(function (el) {
+      if (!el) return;
+      el.style.transform = p >= 1 ? '' : 'scale(' + (1.05 - 0.05 * eout(p)).toFixed(4) + ')';
+      el.style.filter = p >= 1 || mobile ? '' : 'blur(' + ((1 - eout(p)) * 8).toFixed(2) + 'px)';
+    });
+  }
+  function release() { /* solta as animações de entrada do topo bem na hora da revelação */
+    if (released) return; released = true;
+    root.classList.remove('intro-on');
+  }
+  function done() {
+    if (finished) return; finished = true;
+    release();
+    try { sessionStorage.setItem('fp-intro', '1'); } catch (e) {}
+    window.removeEventListener('resize', resize);
+    if (cv.parentNode) cv.remove();
+    veil.remove();
+    rise(1);
+  }
+
+  var cv = document.createElement('canvas'), ctx = cv.getContext('2d');
+  if (!ctx) { done(); return; }
+  cv.setAttribute('aria-hidden', 'true');
+  cv.className = 'intro-cv';
+  document.body.appendChild(cv);
+
+  var W, H, CX, CY, RMAX;
+  function resize() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    CX = W / 2; CY = H / 2; RMAX = Math.hypot(W, H) / 2;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function sprite(c) {
+    var s = document.createElement('canvas'); s.width = s.height = 128;
+    var g = s.getContext('2d'), gr = g.createRadialGradient(64, 64, 0, 64, 64, 64);
+    gr.addColorStop(0, rgba(HOT, 1)); gr.addColorStop(0.12, rgba(c, dark ? 0.9 : 0.7));
+    gr.addColorStop(0.4, rgba(c, dark ? 0.25 : 0.14)); gr.addColorStop(1, rgba(c, 0));
+    g.fillStyle = gr; g.fillRect(0, 0, 128, 128); return s;
+  }
+  var S1 = sprite(C), S2 = sprite(C2);
+  function glow(s, x, y, r, a) { if (a <= 0 || r <= 0) return; ctx.globalAlpha = Math.min(1, a); ctx.drawImage(s, x - r, y - r, 2 * r, 2 * r); ctx.globalAlpha = 1; }
+  function line(x1, y1, x2, y2, c, a, w) { ctx.strokeStyle = rgba(c, a); ctx.lineWidth = w; ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); }
+
+  /* rede: nós num elipsoide, cada um ligado aos 3 vizinhos mais próximos */
+  var N = mobile ? 80 : 150, R = Math.min(W, H) * 0.48, nodes = [], edges = [], pulses = [];
+  for (var i = 0; i < N; i++) {
+    var x, y, z;
+    do { x = rnd(-1, 1); y = rnd(-1, 1); z = rnd(-1, 1); } while (x * x + y * y + z * z > 1);
+    nodes.push({ x: x * R * (mobile ? 0.9 : 1.5), y: y * R * (mobile ? 1.4 : 0.9), z: z * R, t0: Math.random() * 1.1, fl: 0, alt: Math.random() < 0.2 });
+  }
+  var seen = {};
+  nodes.forEach(function (a, ia) {
+    nodes.map(function (b, ib) { return { ib: ib, d: (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y) + (a.z - b.z) * (a.z - b.z) }; })
+      .sort(function (p, q) { return p.d - q.d; }).slice(1, 4)
+      .forEach(function (n) {
+        var k = Math.min(ia, n.ib) + '-' + Math.max(ia, n.ib);
+        if (seen[k]) return; seen[k] = 1;
+        edges.push({ a: ia, b: n.ib, t0: Math.max(a.t0, nodes[n.ib].t0) + 0.05 });
+      });
+  });
+
+  var REVEAL = 3.05, END = 4.0, last = null, acc = 0, D = R * 2.4;
+  function skip() { if (t < REVEAL - 0.2) t = REVEAL - 0.2; }
+  veil.addEventListener('click', skip);
+  window.addEventListener('keydown', function k() { window.removeEventListener('keydown', k); skip(); });
+  setTimeout(done, 9000); /* garantia: nunca prende o site */
+  rise(0);
+
+  function frame(now) {
+    if (finished) return;
+    var dt = last === null ? 0 : Math.min(0.05, (now - last) / 1000);
+    last = now; t += dt;
+
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.clearRect(0, 0, W, H);
+    ctx.globalCompositeOperation = MODE;
+
+    var rot = t * 0.35 + ein(seg(t, 2.0, 3.3)) * 1.4, c = Math.cos(rot), s = Math.sin(rot);
+    var zoom = 1 + ein(seg(t, 2.0, 3.4)) * 1.6, I = 1 + 1.5 * seg(t, 2.0, 3.0);
+    var out = eout(seg(t, 3.1, 3.9));
+    nodes.forEach(function (n) {
+      var rx = n.x * c - n.z * s, rz = n.x * s + n.z * c, k = D / (D + rz) * zoom * (1 + out * 1.5);
+      n.px = CX + rx * k; n.py = CY + n.y * k; n.k = k;
+      n.a = clamp(0.35 + 0.65 * (1 - (rz + R) / (2 * R)), 0, 1);
+    });
+    edges.forEach(function (e) {
+      if (t < e.t0) return;
+      var a = nodes[e.a], b = nodes[e.b], g = eout(seg(t, e.t0, e.t0 + 0.4));
+      line(a.px, a.py, a.px + (b.px - a.px) * g, a.py + (b.py - a.py) * g, C, (dark ? 0.16 : 0.22) * Math.min(a.a, b.a) * I * (1 - out), 1);
+    });
+    if (t > 0.9 && t < 3.1) {
+      acc += 6 * Math.exp((t - 0.9) * 1.7) * dt;
+      while (acc >= 1) {
+        acc -= 1;
+        var e = edges[(Math.random() * edges.length) | 0];
+        if (t > e.t0 + 0.4) pulses.push({ e: e, dir: Math.random() < 0.5, p: 0, sp: rnd(1.4, 2.8) });
+      }
+    }
+    pulses = pulses.filter(function (p) {
+      p.p += dt * p.sp;
+      var a = nodes[p.dir ? p.e.a : p.e.b], b = nodes[p.dir ? p.e.b : p.e.a];
+      if (p.p >= 1) { b.fl = 1; return false; }
+      var x = a.px + (b.px - a.px) * p.p, y = a.py + (b.py - a.py) * p.p, q = Math.max(0, p.p - 0.18);
+      line(a.px + (b.px - a.px) * q, a.py + (b.py - a.py) * q, x, y, HOT, 0.6 * (1 - out), 1.4);
+      glow(S1, x, y, 7, 0.9 * (1 - out));
+      return true;
+    });
+    nodes.forEach(function (n) {
+      if (t < n.t0) return;
+      var pop = eout(seg(t, n.t0, n.t0 + 0.3)), a = n.a * pop * (1 - out * 0.8);
+      glow(n.alt ? S2 : S1, n.px, n.py, (9 + n.fl * 18) * n.k, (0.35 + n.fl * 0.65) * a * I);
+      ctx.fillStyle = rgba(HOT, a);
+      ctx.beginPath(); ctx.arc(n.px, n.py, Math.max(0.6, (1.3 + n.fl * 1.8) * n.k * pop), 0, 6.283); ctx.fill();
+      n.fl *= Math.pow(0.02, dt);
+    });
+    var f = seg(t, 2.9, 3.2) * (1 - seg(t, 3.2, 3.8));
+    glow(S1, CX, CY, RMAX * (0.4 + f * 1.4), f * (dark ? 0.95 : 0.6));
+
+    if (t >= REVEAL) release();
+    veil.style.opacity = String(1 - seg(t, REVEAL, REVEAL + 0.35));
+    rise(seg(t, REVEAL, REVEAL + 0.85));
+    cv.style.opacity = String(1 - seg(t, END - 0.5, END));
+    if (t >= END) { done(); return; }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
 })();
 </script>
 </body>
